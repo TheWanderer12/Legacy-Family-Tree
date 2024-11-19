@@ -1,0 +1,28 @@
+[
+  {
+    "id": "dyTpfj6sr",
+    "gender": "male",
+    "spouses": [],
+    "siblings": [],
+    "parents": [],
+    "children": [
+      {
+        "id": "ahfR5lR2s",
+        "type": "blood"
+      }
+    ]
+  },
+  {
+    "id": "ahfR5lR2s",
+    "gender": "female",
+    "spouses": [],
+    "siblings": [],
+    "parents": [
+      {
+        "id": "dyTpfj6sr",
+        "type": "blood"
+      }
+    ],
+    "children": []
+  }
+]
