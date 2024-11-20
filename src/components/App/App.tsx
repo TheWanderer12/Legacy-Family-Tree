@@ -44,7 +44,7 @@ export default React.memo(function App() {
 
   return (
     <div className={css.root}>
-      <header className={css.header}>
+      <header className={`${css.header} mt-16`}>
         <h1 className={css.title}>
           Legacy Family Tree
           <span className={css.version}>core: {treePackage.version}</span>
