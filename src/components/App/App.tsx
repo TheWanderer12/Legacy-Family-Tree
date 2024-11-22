@@ -6,9 +6,9 @@ import { SourceSelect } from "../SourceSelect/SourceSelect";
 import { PinchZoomPan } from "../PinchZoomPan/PinchZoomPan";
 import { FamilyNode } from "../FamilyNode/FamilyNode";
 import { NodeDetails } from "../NodeDetails/NodeDetails";
-import { NODE_WIDTH, NODE_HEIGHT, SOURCES, DEFAULT_SOURCE } from "../const";
+import { NODE_WIDTH, NODE_HEIGHT, SOURCES, DEFAULT_SOURCE } from "../const1";
 import { getNodeStyle } from "./utils";
-
+import Sidebar from "../Sidebar/Sidebar";
 import css from "./App.module.css";
 
 export default React.memo(function App() {
@@ -44,12 +44,13 @@ export default React.memo(function App() {
 
   return (
     <div className={css.root}>
-      <header className={`${css.header} mt-16`}>
+      <header className={`${css.header} mt-0`}>
+        {" "}
+        {/* header */}
         <h1 className={css.title}>
           Legacy Family Tree
           <span className={css.version}>core: {treePackage.version}</span>
         </h1>
-
         <div>
           <label>Source: </label>
           <SourceSelect
@@ -59,6 +60,8 @@ export default React.memo(function App() {
           />
         </div>
       </header>
+      {/* <Sidebar /> */}
+      {/* tree */}
       {nodes.length > 0 && (
         <PinchZoomPan min={0.5} max={2.5} captureWheel className={css.wrapper}>
           <ReactFamilyTree
@@ -80,12 +83,14 @@ export default React.memo(function App() {
             )}
           />
         </PinchZoomPan>
-      )}
+      )}{" "}
+      {/* reset button */}
       {rootId !== firstNodeId && (
         <button className={css.reset} onClick={resetRootHandler}>
           Reset
         </button>
-      )}
+      )}{" "}
+      {/* node details */}
       {selected && (
         <NodeDetails
           node={selected}

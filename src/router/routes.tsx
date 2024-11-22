@@ -8,7 +8,7 @@ import App from "../components/App/App";
 const AppRouter = () => {
   return (
     <Router>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/home" element={<Home />} />

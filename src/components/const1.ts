@@ -14,16 +14,16 @@ export const NODE_WIDTH = 70;
 export const NODE_HEIGHT = 80;
 
 export const SOURCES = {
-  "average-tree.json": averageTree,
   "couple.json": couple,
-  "diff-parents.json": diffParents,
-  "divorced-parents.json": divorcedParents,
-  "empty.json": empty,
-  "sample-data.json": sampleData,
-  "several-spouses.json": severalSpouses,
-  "simple-family.json": simpleFamily,
-  "test-tree-n1.json": testTreeN1,
-  "test-tree-n2.json": testTreeN2,
+  // "average-tree.json": averageTree,
+  // "diff-parents.json": diffParents,
+  // "divorced-parents.json": divorcedParents,
+  // "empty.json": empty,
+  // "sample-data.json": sampleData,
+  // "several-spouses.json": severalSpouses,
+  // "simple-family.json": simpleFamily,
+  // "test-tree-n1.json": testTreeN1,
+  // "test-tree-n2.json": testTreeN2,
 } as Readonly<{ [key: string]: readonly Readonly<Node>[] }>;
 
 export const DEFAULT_SOURCE = Object.keys(SOURCES)[0];

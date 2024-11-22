@@ -1,6 +1,10 @@
 [
   {
     "id": "jsyRsE5sr",
+    "name": "Barack",
+    "surname": "Obama",
+    "dateOfBirth": "1961-08-04",
+    "description": "44th President of the United States",
     "gender": "male",
     "parents": [],
     "siblings": [],
@@ -14,6 +18,10 @@
   },
   {
     "id": "pdRwdtR54",
+    "name": "Michelle",
+    "surname": "Obama",
+    "dateOfBirth": "1964-01-17",
+    "description": "First Lady of the United States",
     "gender": "female",
     "parents": [],
     "siblings": [],
@@ -23,13 +31,6 @@
         "type": "married"
       }
     ],
-    "children": []
-  },
-  {
-    "id": "pdRwdtT54",
-    "gender": "Male",
-    "parents": [],
-    "siblings": [],
     "children": []
   }
 ]
