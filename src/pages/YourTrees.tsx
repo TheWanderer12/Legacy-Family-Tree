@@ -1,75 +1,87 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { RelData } from "relatives-tree/lib/types";
+import { RelData, Node } from "relatives-tree/lib/types";
 
 type Tree = {
   id: string;
   name: string;
-  members: any[]; // Update with proper types if you have `Node` types available
+  members: Node[];
 };
 
 export default function YourTrees() {
-  const [trees, setTrees] = useState<RelData[]>([]);
+  const [trees, setTrees] = useState<Tree[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  // Fetch trees on component mount
   useEffect(() => {
     fetchTrees();
   }, []);
 
-  // Fetch all family trees
   const fetchTrees = async () => {
+    setLoading(true);
+    setError(null);
     try {
       const response = await axios.get<Tree[]>(
         "http://localhost:5001/api/family-trees"
       );
       setTrees(response.data);
-    } catch (error) {
-      console.error("Error fetching trees:", (error as Error).message);
+    } catch (err) {
+      setError((err as Error).message);
+    } finally {
+      setLoading(false);
     }
   };
 
-  // Open a specific tree (e.g., navigate to its details page)
   const openTree = (id: string) => {
     console.log(`Open tree with ID: ${id}`);
     // Navigate to another page or render the tree in a detailed view
   };
 
-  // Delete a tree
   const deleteTree = async (id: string) => {
+    if (!window.confirm("Are you sure you want to delete this tree?")) {
+      return;
+    }
     try {
       await axios.delete(`http://localhost:5001/api/family-trees/${id}`);
-      setTrees(trees.filter((tree) => tree.id !== id)); // Update state
+      setTrees(trees.filter((tree) => tree.id !== id));
     } catch (error) {
-      console.error("Error deleting tree:", error);
+      console.error("Error deleting tree:", (error as Error).message);
     }
   };
 
-  // Add a new tree
   const addTree = async () => {
     const newTree = {
-      name: `Tree ${trees.length + 1}`, // Temporary name for the new tree
-      members: [], // Start with an empty members array
+      name: `Tree ${trees.length + 1}`,
+      members: [],
     };
     try {
       const response = await axios.post<Tree>(
         "http://localhost:5001/api/family-trees",
         newTree
       );
-      setTrees([...trees, response.data]); // Append the new tree to the state
+      setTrees([...trees, response.data]);
     } catch (error) {
-      console.error("Error adding tree:", error);
+      console.error("Error adding tree:", (error as Error).message);
     }
   };
 
   return (
     <div>
       <h1 className="mt-32">Your Trees:</h1>
+      {loading && <p>Loading trees...</p>}
+      {error && <p className="text-red-500">Error: {error}</p>}
+      {trees.length === 0 && !loading && (
+        <p>No trees available. Add a tree to get started.</p>
+      )}
       <div className="flex flex-wrap mt-8">
-        {trees.map((tree, index) => (
+        {trees.map((tree) => (
           <div
-            key={index}
+            key={tree.id}
             className="border rounded-lg p-4 m-2 cursor-pointer"
+            role="button"
+            tabIndex={0}
             onClick={() => openTree(tree.id)}
+            onKeyDown={(e) => e.key === "Enter" && openTree(tree.id)}
           >
             <h2>{tree.name}</h2>
             <button
@@ -78,6 +90,7 @@ export default function YourTrees() {
                 e.stopPropagation();
                 deleteTree(tree.id);
               }}
+              aria-label={`Delete tree ${tree.name}`}
             >
               Delete
             </button>
