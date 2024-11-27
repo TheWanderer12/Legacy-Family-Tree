@@ -7,18 +7,23 @@ const router = express.Router();
 /** Get all family trees */
 router.get("/", async (_req: Request, res: Response) => {
   try {
-    const trees = await FamilyTree.find({}, "name members");
+    const trees = await FamilyTree.find();
     console.log("Retrieved trees:", trees);
-    res.json(trees);
+    const formattedTrees = trees.map((tree) => ({
+      id: tree._id,
+      name: tree.name,
+      members: tree.members,
+    }));
+    res.json(formattedTrees);
   } catch (err) {
     res.status(500).json({ error: (err as Error).message });
   }
 });
 
 /** Get a single family tree */
-router.get("/:name", async (req: Request, res: Response) => {
+router.get("/:id", async (req: Request, res: Response) => {
   try {
-    const tree = await FamilyTree.findOne({ name: req.params.name });
+    const tree = await FamilyTree.findById(req.params.id);
     if (!tree) {
       return res.status(404).json({ error: "Family tree not found" });
     }
