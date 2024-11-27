@@ -1,6 +1,10 @@
 [
   {
     "id": "dyTpfj6sr",
+    "name": "John",
+    "surname": "Doe",
+    "dateOfBirth": "1970-05-15",
+    "description": "Father of the family",
     "gender": "male",
     "spouses": [],
     "siblings": [],
@@ -14,6 +18,10 @@
   },
   {
     "id": "ahfR5lR2s",
+    "name": "Jane",
+    "surname": "Doe",
+    "dateOfBirth": "2000-03-25",
+    "description": "Daughter in the family",
     "gender": "female",
     "spouses": [],
     "siblings": [],

@@ -14,14 +14,14 @@ export const NODE_WIDTH = 70;
 export const NODE_HEIGHT = 80;
 
 export const SOURCES = {
-  "couple.json": couple,
+  // "couple.json": couple,
   // "average-tree.json": averageTree,
   // "diff-parents.json": diffParents,
   // "divorced-parents.json": divorcedParents,
   // "empty.json": empty,
   // "sample-data.json": sampleData,
   // "several-spouses.json": severalSpouses,
-  // "simple-family.json": simpleFamily,
+  "simple-family.json": simpleFamily,
   // "test-tree-n1.json": testTreeN1,
   // "test-tree-n2.json": testTreeN2,
 } as Readonly<{ [key: string]: readonly Readonly<Node>[] }>;

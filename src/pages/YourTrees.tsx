@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { RelData, Node } from "relatives-tree/lib/types";
+import { useNavigate } from "react-router-dom";
 
 type Tree = {
   id: string;
@@ -12,6 +13,8 @@ export default function YourTrees() {
   const [trees, setTrees] = useState<Tree[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchTrees();
@@ -32,9 +35,8 @@ export default function YourTrees() {
     }
   };
 
-  const openTree = (id: string) => {
-    console.log(`Open tree with ID: ${id}`);
-    // Navigate to another page or render the tree in a detailed view
+  const openTree = (tree: Tree) => {
+    navigate(`/tree/${tree.id}`, { state: { tree } }); // Pass the tree data
   };
 
   const deleteTree = async (id: string) => {
@@ -80,8 +82,8 @@ export default function YourTrees() {
             className="border rounded-lg p-4 m-2 cursor-pointer"
             role="button"
             tabIndex={0}
-            onClick={() => openTree(tree.id)}
-            onKeyDown={(e) => e.key === "Enter" && openTree(tree.id)}
+            onClick={() => openTree(tree)}
+            onKeyDown={(e) => e.key === "Enter" && openTree(tree)}
           >
             <h2>{tree.name}</h2>
             <button

@@ -51,13 +51,13 @@ router.post("/", async (req: Request, res: Response) => {
 });
 
 /** Delete a family tree */
-router.delete("/:name", async (req: Request, res: Response) => {
+router.delete("/:id", async (req: Request, res: Response) => {
   try {
-    const result = await FamilyTree.deleteOne({ name: req.params.name });
-    if (result.deletedCount === 0) {
-      return res.status(404).json({ error: "Family tree not found" });
+    const tree = await FamilyTree.findByIdAndDelete(req.params.id);
+    if (!tree) {
+      return res.status(404).json({ error: "Tree not found" });
     }
-    res.json({ message: "Family tree deleted successfully" });
+    res.json({ message: "Tree deleted successfully" });
   } catch (err) {
     res.status(500).json({ error: (err as Error).message });
   }

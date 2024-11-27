@@ -10,8 +10,12 @@ import { NODE_WIDTH, NODE_HEIGHT, SOURCES, DEFAULT_SOURCE } from "../const";
 import { getNodeStyle } from "./utils";
 import Sidebar from "../Sidebar/Sidebar";
 import css from "./App.module.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default React.memo(function App() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [source, setSource] = useState(DEFAULT_SOURCE);
   const [nodes, setNodes] = useState(SOURCES[source]);
 
@@ -42,6 +46,18 @@ export default React.memo(function App() {
     [nodes, selectId]
   );
 
+  if (!location.state || !location.state.tree) {
+    console.error(
+      "No tree data found in location.state. Redirecting to YourTrees."
+    );
+    navigate("/your-trees");
+    return null; // Prevent rendering until navigation occurs
+  }
+
+  const { tree } = location.state as {
+    tree: { id: string; name: string; members: Node[] };
+  };
+
   return (
     <div className={css.root}>
       <header className={`${css.header} mt-0`}>
@@ -65,8 +81,8 @@ export default React.memo(function App() {
       {nodes.length > 0 && (
         <PinchZoomPan min={0.5} max={2.5} captureWheel className={css.wrapper}>
           <ReactFamilyTree
-            nodes={nodes}
-            rootId={rootId}
+            nodes={tree.members}
+            rootId={tree.members[0].id}
             width={NODE_WIDTH}
             height={NODE_HEIGHT}
             className={css.tree}

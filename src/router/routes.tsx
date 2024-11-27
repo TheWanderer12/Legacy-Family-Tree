@@ -10,7 +10,7 @@ const AppRouter = () => {
     <Router>
       {/* <Header /> */}
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/tree/:id" element={<App />} />
         <Route path="/home" element={<Home />} />
         <Route path="/your-trees" element={<YourTrees />} />
       </Routes>
