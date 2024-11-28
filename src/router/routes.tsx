@@ -8,10 +8,10 @@ import App from "../components/App/App";
 const AppRouter = () => {
   return (
     <Router>
-      {/* <Header /> */}
+      <Header />
       <Routes>
         <Route path="/tree/:id" element={<App />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/your-trees" element={<YourTrees />} />
       </Routes>
     </Router>

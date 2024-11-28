@@ -60,9 +60,8 @@ export default React.memo(function App() {
 
   return (
     <div className={css.root}>
-      <header className={`${css.header} mt-0`}>
+      {/* <header className={`${css.header} mt-0`}>
         {" "}
-        {/* header */}
         <h1 className={css.title}>
           Legacy Family Tree
           <span className={css.version}>core: {treePackage.version}</span>
@@ -75,7 +74,7 @@ export default React.memo(function App() {
             onChange={changeSourceHandler}
           />
         </div>
-      </header>
+      </header> */}
       {/* <Sidebar /> */}
       {/* tree */}
       {nodes.length > 0 && (
