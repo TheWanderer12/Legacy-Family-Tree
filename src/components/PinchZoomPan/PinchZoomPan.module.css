@@ -2,6 +2,11 @@
   position: relative;
   transform: translateZ(0);
   overflow: hidden;
+  cursor: grab;
+}
+
+.root:active {
+  cursor: grabbing;
 }
 
 .point {
