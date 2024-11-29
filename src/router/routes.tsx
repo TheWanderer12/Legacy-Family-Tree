@@ -10,9 +10,9 @@ const AppRouter = () => {
     <Router>
       <Header />
       <Routes>
-        <Route path="/tree/:id" element={<App />} />
         <Route path="/" element={<Home />} />
         <Route path="/your-trees" element={<YourTrees />} />
+        <Route path="/tree/:id" element={<App />} />
       </Routes>
     </Router>
   );
