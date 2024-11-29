@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent } from "react";
-import type { Node } from "relatives-tree/lib/types";
+import type { Node } from "types";
 import { MongoClient } from "mongodb";
 import styles from "./Sidebar.module.css";
 

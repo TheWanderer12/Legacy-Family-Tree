@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
+    "baseUrl": ".", // Required for path aliases
+    "typeRoots": ["./node_modules/@types", "./types"], // Add your custom types folder
+    "paths": {
+      "types": ["types.d.ts"] // Alias "types" to the `src/types` folder
+    },
     "target": "es6",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -20,7 +21,5 @@
     "jsx": "react-jsx",
     "noFallthroughCasesInSwitch": true
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src", "types.d.ts"]
 }

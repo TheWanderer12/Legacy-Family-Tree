@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useCallback } from "react";
-import type { Node, ExtNode } from "relatives-tree/lib/types";
+import type { Node, ExtNode } from "types";
 import treePackage from "relatives-tree/package.json";
 import ReactFamilyTree from "react-family-tree";
 import { SourceSelect } from "../SourceSelect/SourceSelect";
@@ -30,16 +30,16 @@ export default React.memo(function App() {
     [firstNodeId]
   );
 
-  const changeSourceHandler = useCallback(
-    (value: string, nodes: readonly Readonly<Node>[]) => {
-      setRootId(nodes[0].id);
-      setNodes(nodes);
-      setSource(value);
-      setSelectId(undefined);
-      setHoverId(undefined);
-    },
-    []
-  );
+  // const changeSourceHandler = useCallback(
+  //   (value: string, nodes: readonly Readonly<Node>[]) => {
+  //     setRootId(nodes[0].id);
+  //     setNodes(nodes);
+  //     setSource(value);
+  //     setSelectId(undefined);
+  //     setHoverId(undefined);
+  //   },
+  //   []
+  // );
 
   const selected = useMemo(
     () => nodes.find((item) => item.id === selectId),

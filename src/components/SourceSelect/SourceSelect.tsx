@@ -1,5 +1,5 @@
 import React, { memo, useCallback, ChangeEvent } from "react";
-import type { Node } from "relatives-tree/lib/types";
+import type { Node } from "types";
 import { URL_LABEL } from "../const";
 
 interface SourceSelectProps {

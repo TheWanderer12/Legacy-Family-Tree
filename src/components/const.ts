@@ -8,7 +8,7 @@ import simpleFamily from "../data/simple-family.json";
 import sampleData from "../data/sample-data.json";
 import testTreeN1 from "../data/test-tree-n1.json";
 import testTreeN2 from "../data/test-tree-n2.json";
-import type { Node } from "relatives-tree/lib/types";
+import type { Node } from "types";
 
 export const NODE_WIDTH = 70;
 export const NODE_HEIGHT = 80;

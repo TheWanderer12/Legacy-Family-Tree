@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { Node } from "relatives-tree/lib/types"; // Ensure the correct path to your types.d.ts
+import { Node } from "../../../types";
 
 export interface IFamilyTree extends Document {
   name: string;

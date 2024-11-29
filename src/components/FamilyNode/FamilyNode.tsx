@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import classNames from "classnames";
-import type { ExtNode } from "relatives-tree/lib/types";
+import type { ExtNode } from "types";
 import css from "./FamilyNode.module.css";
 
 interface FamilyNodeProps {

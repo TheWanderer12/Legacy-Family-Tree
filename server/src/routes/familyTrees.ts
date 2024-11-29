@@ -1,6 +1,5 @@
 import express, { Request, Response } from "express";
 import FamilyTree from "../models/FamilyTree";
-import { Node, RelData, ExtNode } from "relatives-tree/lib/types"; // Adjust the path to your types.d.ts file
 
 const router = express.Router();
 
