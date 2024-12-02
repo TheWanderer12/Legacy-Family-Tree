@@ -1,6 +1,6 @@
 import React, { memo, useCallback } from "react";
 import classNames from "classnames";
-import type { Node } from "types";
+import type { Node } from "types/types";
 import { Relations } from "./Relations";
 import css from "./NodeDetails.module.css";
 

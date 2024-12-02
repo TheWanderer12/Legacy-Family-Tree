@@ -1,8 +1,10 @@
 import React, { useMemo, useState, useCallback } from "react";
-import type { Node, ExtNode } from "types";
+import type { Node, ExtNode } from "types/types";
+// import type { Node, ExtNode } from "relatives-tree/lib/types";
 import treePackage from "relatives-tree/package.json";
 import ReactFamilyTree from "react-family-tree";
-import { SourceSelect } from "../SourceSelect/SourceSelect";
+// import { SourceSelect } from "../SourceSelect/SourceSelect";
+// import Sidebar from "../SourceSelect/SourceSelect";
 import { PinchZoomPan } from "../PinchZoomPan/PinchZoomPan";
 import { FamilyNode } from "../FamilyNode/FamilyNode";
 import { NodeDetails } from "../NodeDetails/NodeDetails";
@@ -25,21 +27,13 @@ export default React.memo(function App() {
   const [selectId, setSelectId] = useState<string>();
   const [hoverId, setHoverId] = useState<string>();
 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Controls sidebar visibility
+  const [selectedNode, setSelectedNode] = useState<Node | null>(null); // Stores the selected member details
+
   const resetRootHandler = useCallback(
     () => setRootId(firstNodeId),
     [firstNodeId]
   );
-
-  // const changeSourceHandler = useCallback(
-  //   (value: string, nodes: readonly Readonly<Node>[]) => {
-  //     setRootId(nodes[0].id);
-  //     setNodes(nodes);
-  //     setSource(value);
-  //     setSelectId(undefined);
-  //     setHoverId(undefined);
-  //   },
-  //   []
-  // );
 
   const selected = useMemo(
     () => nodes.find((item) => item.id === selectId),
@@ -60,22 +54,6 @@ export default React.memo(function App() {
 
   return (
     <div className={css.root}>
-      {/* <header className={`${css.header} mt-0`}>
-        {" "}
-        <h1 className={css.title}>
-          Legacy Family Tree
-          <span className={css.version}>core: {treePackage.version}</span>
-        </h1>
-        <div>
-          <label>Source: </label>
-          <SourceSelect
-            value={source}
-            items={SOURCES}
-            onChange={changeSourceHandler}
-          />
-        </div>
-      </header> */}
-      {/* <Sidebar /> */}
       {/* tree */}
       {nodes.length > 0 && (
         <PinchZoomPan min={0.5} max={2.5} captureWheel className={css.wrapper}>
@@ -91,7 +69,11 @@ export default React.memo(function App() {
                 node={node}
                 isRoot={node.id === rootId}
                 isHover={node.id === hoverId}
-                onClick={setSelectId}
+                onClick={(id) => {
+                  setSelectId(id);
+                  setSelectedNode(node as Node);
+                  setIsSidebarOpen(true);
+                }}
                 onSubClick={setRootId}
                 style={getNodeStyle(node)}
               />
@@ -106,13 +88,31 @@ export default React.memo(function App() {
         </button>
       )}{" "}
       {/* node details */}
-      {selected && (
+      {/* {selected && (
         <NodeDetails
           node={selected}
           className={css.details}
           onSelect={setSelectId}
           onHover={setHoverId}
           onClear={() => setHoverId(undefined)}
+        />
+      )} */}
+      {isSidebarOpen && selectedNode && (
+        <Sidebar
+          member={selectedNode} // Pass the selected node
+          isOpen={isSidebarOpen} // Pass the sidebar visibility state
+          onClose={() => setIsSidebarOpen(false)} // Function to close the sidebar
+          onSave={(updatedData) => {
+            // Update the node details in the local state
+            setNodes((prevNodes) =>
+              prevNodes.map((node) =>
+                node.id === updatedData.id ? { ...node, ...updatedData } : node
+              )
+            );
+            setIsSidebarOpen(false); // Close the sidebar after saving
+          }}
+          treeId={tree.id} // Pass the current tree ID
+          allMembers={tree.members} // Pass the full list of members
         />
       )}
     </div>

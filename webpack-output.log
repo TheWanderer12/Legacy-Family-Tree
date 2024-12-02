@@ -1,0 +1,23 @@
+npm verbose cli /usr/local/bin/node /usr/local/bin/npm
+npm info using npm@10.8.2
+npm info using node@v20.17.0
+npm verbose title npm run build
+npm verbose argv "run" "build" "--loglevel" "verbose"
+npm verbose logfile logs-max:10 dir:/Users/ravil/.npm/_logs/2024-12-02T03_30_02_894Z-
+npm verbose logfile /Users/ravil/.npm/_logs/2024-12-02T03_30_02_894Z-debug-0.log
+
+> react-family-tree-example@3.2.0 build
+> react-scripts build
+
+Creating an optimized production build...
+Failed to compile.
+
+Module not found: Error: Can't resolve 'types' in '/Users/ravil/Desktop/family tree examples/react-family-tree-example/src/components/Sidebar'
+
+
+npm verbose cwd /Users/ravil/Desktop/family tree examples/react-family-tree-example
+npm verbose os Darwin 24.1.0
+npm verbose node v20.17.0
+npm verbose npm  v10.8.2
+npm verbose exit 1
+npm verbose code 1

@@ -3,6 +3,9 @@
     "id": "HkqEDLvxE",
     "gender": "male",
     "name": "Ravil",
+    "surname": "shainidze",
+    "dateOfBirth": "1980-01-01",
+    "description": "one guy.",
     "parents": [
       {
         "id": "011jVS4rb",

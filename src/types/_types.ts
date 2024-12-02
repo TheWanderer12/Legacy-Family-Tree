@@ -6,7 +6,7 @@ export declare const enum Gender {
   male = "male",
   female = "female",
 }
-export declare const enum RelType {
+export declare enum RelType {
   blood = "blood",
   married = "married",
   divorced = "divorced",
@@ -43,19 +43,19 @@ export declare type Relation = Readonly<{
   id: string;
   type: RelType;
 }>;
-export declare type Node = Readonly<{
+export declare type Node = {
   id: string;
   name: string;
   surname: string;
   gender: Gender;
   dateOfBirth: string;
   description?: string;
-  parents: readonly Relation[];
-  children: readonly Relation[];
-  siblings: readonly Relation[];
-  spouses: readonly Relation[];
+  parents: Relation[];
+  children: Relation[];
+  siblings: Relation[];
+  spouses: Relation[];
   placeholder?: boolean;
-}>;
+};
 export declare type ExtNode = Node &
   Readonly<{
     top: number;

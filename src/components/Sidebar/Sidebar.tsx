@@ -1,14 +1,16 @@
-import React, { useState, ChangeEvent } from "react";
-import type { Node } from "types";
-import { MongoClient } from "mongodb";
-import styles from "./Sidebar.module.css";
+import { Node, RelType } from "types";
+// import { Node, RelType } from "./type_bu";
 
+import React, { useState, useEffect, ChangeEvent } from "react";
+import axios from "axios";
+import styles from "./Sidebar.module.css";
 interface SidebarProps {
   member: Node;
   isOpen: boolean;
   onClose: () => void;
-  onSave: (updatedData: Partial<Node>) => {};
-  onAddRelation: (relationType: keyof Node, memberId: string) => void;
+  onSave: (updatedData: Partial<Node>) => void;
+  treeId: string;
+  allMembers: Node[]; // Pass the full list of members in the tree
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
@@ -16,9 +18,20 @@ const Sidebar: React.FC<SidebarProps> = ({
   isOpen,
   onClose,
   onSave,
-  onAddRelation,
+  treeId,
+  allMembers,
 }) => {
   const [formData, setFormData] = useState<Partial<Node>>(member);
+  const [relationType, setRelationType] = useState<RelType>(RelType.blood);
+  const [relationMode, setRelationMode] = useState<
+    "parent" | "sibling" | "spouse" | "child" | null
+  >(null); // Manage active relation mode
+  const [relatedMemberId, setRelatedMemberId] = useState("");
+
+  useEffect(() => {
+    // Sync form data with the current member when it changes
+    setFormData(member);
+  }, [member]);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -27,13 +40,52 @@ const Sidebar: React.FC<SidebarProps> = ({
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSave = () => {
-    onSave(formData);
+  const handleSave = async () => {
+    if (!formData.name || formData.name.length < 1) {
+      alert("Name is required");
+      return;
+    }
+
+    try {
+      await axios.put(
+        `http://localhost:5001/api/family-trees/${treeId}/members/${member.id}`,
+        formData
+      );
+      onSave(formData);
+      alert("Member updated successfully");
+    } catch (error) {
+      console.error(error);
+      alert("Failed to save member");
+    }
   };
 
-  // const handleAddRelation = (relationType: keyof IMember) => {
-  //   onAddRelation(relationType, member.id.toString());
-  // };
+  const handleAddRelation = async () => {
+    if (!relatedMemberId) {
+      alert("Please select a related member");
+      return;
+    }
+
+    try {
+      await axios.post(
+        `http://localhost:5001/api/family-trees/${treeId}/members/${member.id}/relation`,
+        { relatedMemberId, type: relationType }
+      );
+      alert("Relation added successfully");
+    } catch (error) {
+      console.error(error);
+      alert("Failed to add relation");
+    }
+  };
+
+  const handleRelationMode = (
+    mode: "parent" | "sibling" | "spouse" | "child"
+  ) => {
+    setRelationMode(mode);
+    setRelationType(mode === "sibling" ? RelType.blood : RelType.blood); // Default relation type
+    setRelatedMemberId(""); // Reset selected member
+  };
+
+  const relatedMembers = allMembers.filter((m) => m.id !== member.id);
 
   return (
     <>
@@ -78,10 +130,35 @@ const Sidebar: React.FC<SidebarProps> = ({
           placeholder="Description"
         />
         <button onClick={handleSave}>Save</button>
-        {/* <button onClick={() => handleAddRelation("parents")}>Add Parent</button>
-      <button onClick={() => handleAddRelation("siblings")}>Add Sibling</button>
-      <button onClick={() => handleAddRelation("spouses")}>Add Spouse</button>
-      <button onClick={() => handleAddRelation("children")}>Add Child</button> */}
+
+        <h3>Relationships</h3>
+        <button onClick={() => handleRelationMode("parent")}>Add Parent</button>
+        <button onClick={() => handleRelationMode("sibling")}>
+          Add Sibling
+        </button>
+        <button onClick={() => handleRelationMode("spouse")}>Add Spouse</button>
+        <button onClick={() => handleRelationMode("child")}>Add Child</button>
+
+        {relationMode && (
+          <>
+            <h4>
+              Add {relationMode.charAt(0).toUpperCase() + relationMode.slice(1)}
+            </h4>
+            <select
+              name="relatedMemberId"
+              value={relatedMemberId}
+              onChange={(e) => setRelatedMemberId(e.target.value)}
+            >
+              <option value="">Select a member</option>
+              {relatedMembers.map((m) => (
+                <option key={m.id} value={m.id}>
+                  {m.name} {m.surname} ({m.gender})
+                </option>
+              ))}
+            </select>
+            <button onClick={handleAddRelation}>Save Relation</button>
+          </>
+        )}
       </div>
     </>
   );

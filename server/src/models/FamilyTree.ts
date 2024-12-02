@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { Node } from "../../../types";
+import { Node } from "types";
 
 export interface IFamilyTree extends Document {
   name: string;

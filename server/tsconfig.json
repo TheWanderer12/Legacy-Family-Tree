@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "moduleResolution": "node",
+    "baseUrl": "../src",
+    "paths": {
+      "types": ["types/types.d.ts"] // Adjust the relative path to the frontend `src/types.d.ts`
+    },
     "target": "ES6",
     "module": "commonjs",
     "outDir": "dist",

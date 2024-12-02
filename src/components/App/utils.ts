@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import type { ExtNode } from "types";
+import type { ExtNode } from "types/types";
 import { NODE_HEIGHT, NODE_WIDTH } from "../const";
 
 export function getNodeStyle({ left, top }: Readonly<ExtNode>): CSSProperties {

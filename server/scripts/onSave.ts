@@ -1,5 +1,5 @@
 import { MongoClient, ObjectId } from "mongodb";
-import type { Node } from "../../types";
+import type { Node } from "../../src/types/types";
 
 const uri = "your_mongo_atlas_connection_string";
 const client = new MongoClient(uri);
