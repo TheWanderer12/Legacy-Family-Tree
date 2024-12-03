@@ -6,7 +6,8 @@ export declare const enum Gender {
   male = "male",
   female = "female",
 }
-export declare enum RelType {
+// export declare enum RelType {
+export enum RelType {
   blood = "blood",
   married = "married",
   divorced = "divorced",

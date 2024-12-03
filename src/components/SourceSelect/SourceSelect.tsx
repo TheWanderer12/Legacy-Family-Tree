@@ -8,7 +8,7 @@ import React, {
   useEffect,
   ChangeEvent,
 } from "react";
-import { Node, Relation, RelType } from "types/types";
+import { Node, Relation, RelType } from "../Types/types";
 import axios from "axios";
 import styles from "./Sidebar.module.css";
 

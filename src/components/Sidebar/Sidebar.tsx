@@ -1,5 +1,4 @@
-import { Node, RelType } from "types";
-// import { Node, RelType } from "./type_bu";
+import { Node, RelType } from "../Types/types";
 
 import React, { useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";

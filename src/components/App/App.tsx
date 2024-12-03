@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useCallback } from "react";
-import type { Node, ExtNode } from "types/types";
+import type { Node, ExtNode } from "../Types/types";
 // import type { Node, ExtNode } from "relatives-tree/lib/types";
 import treePackage from "relatives-tree/package.json";
 import ReactFamilyTree from "react-family-tree";

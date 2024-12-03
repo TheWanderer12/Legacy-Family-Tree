@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Node } from "types/types";
+import { Node } from "../components/Types/types";
 import { useNavigate } from "react-router-dom";
 
 type Tree = {

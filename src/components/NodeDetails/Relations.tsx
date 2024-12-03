@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from "react";
-import { Relation } from "types/types";
+import { Relation } from "../Types/types";
 import css from "./Relations.module.css";
 
 interface RelationsProps {
