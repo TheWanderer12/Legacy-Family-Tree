@@ -78,9 +78,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       const bloodParents = member.parents.filter(
         (rel) => rel.type === RelType.blood
       ).length;
-      if (bloodParents === 0) {
-        setRelationOptions([RelType.blood, RelType.adopted]);
-      } else if (bloodParents === 1) {
+      if (bloodParents < 2) {
         setRelationOptions([RelType.blood, RelType.adopted]);
       } else {
         setRelationOptions([RelType.adopted]);
@@ -100,6 +98,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         name: "",
         surname: "",
         gender: Gender.male,
+        dateOfBirth: "",
         parents: [],
         children: [],
         siblings: [],

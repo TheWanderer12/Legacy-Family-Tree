@@ -129,33 +129,52 @@ router.post(
         return res.status(404).json({ error: "Member(s) not found" });
       }
 
-      if (mode === "child") {
-        // Adding a parent to member
-        const relation: Relation = { id: relatedMemberId, type };
-        member.parents.push(relation);
+      if (mode === "parent") {
+        // Adding a parent to the focused member
+        // Focused member gets a parent
+        member.parents.push({ id: relatedMemberId, type });
+        // The related member (new parent) gets this member as a child
         relatedMember.children.push({ id: memberId, type });
+      } else if (mode === "child") {
+        // Adding a child to the focused member
+        // Focused member gets a child
+        member.children.push({ id: relatedMemberId, type });
+        // The related member (new child) gets this member as a parent
+        relatedMember.parents.push({ id: memberId, type });
+
+        // If a spouse is selected as another parent
+        if (spouseIdForChild && spouseIdForChild !== "none") {
+          const spouse = tree.members.find((m) => m.id === spouseIdForChild);
+          if (spouse) {
+            // Add spouse as a blood parent of the new child
+            relatedMember.parents.push({
+              id: spouseIdForChild,
+              type: RelType.blood,
+            });
+            // Add the child to spouse's children
+            spouse.children.push({
+              id: relatedMemberId,
+              type: RelType.blood,
+            });
+          }
+        }
       } else if (mode === "sibling") {
-        // Adding a sibling
-        const relation: Relation = { id: relatedMemberId, type };
-        member.siblings.push(relation);
+        // Adding a sibling to the focused member
+        member.siblings.push({ id: relatedMemberId, type });
         relatedMember.siblings.push({ id: memberId, type });
       } else if (mode === "spouse") {
-        // Adding a spouse
-        const relation: Relation = { id: relatedMemberId, type };
-        member.spouses.push(relation);
+        // Adding a spouse to the focused member
+        member.spouses.push({ id: relatedMemberId, type });
         relatedMember.spouses.push({ id: memberId, type });
 
         // Handle children for the new spouse
         if (Array.isArray(childrenForSpouse)) {
+          // Children chosen as "blood" children of the spouse
           childrenForSpouse.forEach((childId: string) => {
             const child = tree.members.find((m) => m.id === childId);
             if (child) {
-              // Add parent relation to child
-              child.parents.push({
-                id: relatedMemberId,
-                type: RelType.blood,
-              });
-              // Add child relation to new spouse
+              // The spouse becomes a blood parent of these selected children
+              child.parents.push({ id: relatedMemberId, type: RelType.blood });
               relatedMember.children.push({
                 id: childId,
                 type: RelType.blood,
@@ -163,7 +182,7 @@ router.post(
             }
           });
 
-          // Handle adopted children (children not selected)
+          // Children not selected become 'adopted' for the spouse
           const otherChildren = member.children
             .filter((rel) => !childrenForSpouse.includes(rel.id))
             .map((rel) => rel.id);
@@ -171,40 +190,16 @@ router.post(
           otherChildren.forEach((childId) => {
             const child = tree.members.find((m) => m.id === childId);
             if (child) {
-              // Add parent relation to child
               child.parents.push({
                 id: relatedMemberId,
                 type: RelType.adopted,
               });
-              // Add child relation to new spouse
               relatedMember.children.push({
                 id: childId,
                 type: RelType.adopted,
               });
             }
           });
-        }
-      } else if (mode === "parent") {
-        // Adding a child
-        const relation: Relation = { id: relatedMemberId, type };
-        member.children.push(relation);
-        relatedMember.parents.push({ id: memberId, type });
-
-        // Handle spouse as parent
-        if (spouseIdForChild && spouseIdForChild !== "none") {
-          const spouse = tree.members.find((m) => m.id === spouseIdForChild);
-          if (spouse) {
-            // Add parent relation to child
-            relatedMember.parents.push({
-              id: spouseIdForChild,
-              type: RelType.blood,
-            });
-            // Add child relation to spouse
-            spouse.children.push({
-              id: relatedMemberId,
-              type: RelType.blood,
-            });
-          }
         }
       } else {
         return res.status(400).json({ error: "Invalid mode" });
