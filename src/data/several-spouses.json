@@ -1,45 +1,60 @@
-[
-  {
-    "id": "js2RsE5sr",
-    "gender": "male",
-    "parents": [],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "pdRwdtR54",
-        "type": "married"
-      },
-      {
-        "id": "tdRwdtR54",
-        "type": "divorced"
-      }
-    ],
-    "children": []
-  },
-  {
-    "id": "pdRwdtR54",
-    "gender": "female",
-    "parents": [],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "js2RsE5sr",
-        "type": "married"
-      }
-    ],
-    "children": []
-  },
-  {
-    "id": "tdRwdtR54",
-    "gender": "female",
-    "parents": [],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "js2RsE5sr",
-        "type": "divorced"
-      }
-    ],
-    "children": []
-  }
-]
+{
+  "name": "Family with Multiple Spouses",
+  "members": [
+    {
+      "id": "js2RsE5sr",
+      "name": "John",
+      "surname": "Smith",
+      "gender": "male",
+      "dateOfBirth": "1975-05-20",
+      "description": "A man with a complex family dynamic.",
+      "parents": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "pdRwdtR54",
+          "type": "married"
+        },
+        {
+          "id": "tdRwdtR54",
+          "type": "divorced"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "pdRwdtR54",
+      "name": "Alice",
+      "surname": "Smith",
+      "gender": "female",
+      "dateOfBirth": "1977-08-15",
+      "description": "John's current wife.",
+      "parents": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "js2RsE5sr",
+          "type": "married"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "tdRwdtR54",
+      "name": "Karen",
+      "surname": "Smith",
+      "gender": "female",
+      "dateOfBirth": "1976-02-28",
+      "description": "John's ex-wife.",
+      "parents": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "js2RsE5sr",
+          "type": "divorced"
+        }
+      ],
+      "children": []
+    }
+  ]
+}

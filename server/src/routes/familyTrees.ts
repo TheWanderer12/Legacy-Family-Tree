@@ -103,10 +103,6 @@ router.post(
         spouseIdForChild,
       } = req.body;
 
-      console.log("Incoming relation type:", type);
-      console.log("Incoming relation mode:", mode);
-      console.log("Incoming relatedMemberId:", relatedMemberId);
-
       if (!relatedMemberId || !type || !mode) {
         return res
           .status(400)
@@ -134,28 +130,21 @@ router.post(
       }
 
       if (mode === "parent") {
-        // Adding a parent to the focused member
-        // Focused member gets a parent
+        // Adding a parent
         member.parents.push({ id: relatedMemberId, type });
-        // The related member (new parent) gets this member as a child
         relatedMember.children.push({ id: memberId, type });
       } else if (mode === "child") {
-        // Adding a child to the focused member
-        // Focused member gets a child
+        // Adding a child
         member.children.push({ id: relatedMemberId, type });
-        // The related member (new child) gets this member as a parent
         relatedMember.parents.push({ id: memberId, type });
 
-        // If a spouse is selected as another parent
         if (spouseIdForChild && spouseIdForChild !== "none") {
           const spouse = tree.members.find((m) => m.id === spouseIdForChild);
           if (spouse) {
-            // Add spouse as a blood parent of the new child
             relatedMember.parents.push({
               id: spouseIdForChild,
               type: RelType.blood,
             });
-            // Add the child to spouse's children
             spouse.children.push({
               id: relatedMemberId,
               type: RelType.blood,
@@ -163,42 +152,57 @@ router.post(
           }
         }
       } else if (mode === "sibling") {
-        // Adding a sibling to the focused member
+        // Adding a sibling
         member.siblings.push({ id: relatedMemberId, type });
         relatedMember.siblings.push({ id: memberId, type });
+
+        // Replicate parents:
+        for (const parentRel of member.parents) {
+          // Add this parent to the sibling's parents
+          relatedMember.parents.push({
+            id: parentRel.id,
+            type: parentRel.type,
+          });
+
+          // Find the parent in the tree
+          const parentNode = tree.members.find((m) => m.id === parentRel.id);
+          if (parentNode) {
+            // Add this new sibling as a child to the parent
+            parentNode.children.push({
+              id: relatedMemberId,
+              type: parentRel.type,
+            });
+          }
+        }
       } else if (mode === "spouse") {
-        // Adding a spouse to the focused member
+        // Adding a spouse
         member.spouses.push({ id: relatedMemberId, type });
         relatedMember.spouses.push({ id: memberId, type });
 
-        // Handle children for the new spouse
-        if (childrenForSpouse) {
-          if (
-            Array.isArray(childrenForSpouse) &&
-            childrenForSpouse.length > 0
-          ) {
-            // Children chosen as "blood" children of the spouse
-            childrenForSpouse.forEach((childId: string) => {
-              const child = tree.members.find((m) => m.id === childId);
-              if (child) {
-                // The spouse becomes a blood parent of these selected children
-                child.parents.push({
-                  id: relatedMemberId,
-                  type: RelType.blood,
-                });
-                relatedMember.children.push({
-                  id: childId,
-                  type: RelType.blood,
-                });
-              }
-            });
+        // Handle children for the spouse
+        // If childrenForSpouse is provided and is an array, proceed with that logic
+        if (Array.isArray(childrenForSpouse)) {
+          // If childrenForSpouse is empty, it means no children are selected as blood.
+          // If we want no adopted children added automatically when empty, we should check if it's length > 0.
+          const selectedChildren = childrenForSpouse || [];
 
-            // Children not selected become 'adopted' for the spouse
+          // Add selected children as blood
+          for (const childId of selectedChildren) {
+            const child = tree.members.find((m) => m.id === childId);
+            if (child) {
+              child.parents.push({ id: relatedMemberId, type: RelType.blood });
+              relatedMember.children.push({ id: childId, type: RelType.blood });
+            }
+          }
+
+          // If we want to add other children as adopted ONLY if childrenForSpouse was provided:
+          // Check if childrenForSpouse is defined and if we want to do the adopted logic only if it's non-empty.
+          if (selectedChildren.length > 0) {
             const otherChildren = member.children
-              .filter((rel) => !childrenForSpouse.includes(rel.id))
+              .filter((rel) => !selectedChildren.includes(rel.id))
               .map((rel) => rel.id);
 
-            otherChildren.forEach((childId) => {
+            for (const childId of otherChildren) {
               const child = tree.members.find((m) => m.id === childId);
               if (child) {
                 child.parents.push({
@@ -210,8 +214,11 @@ router.post(
                   type: RelType.adopted,
                 });
               }
-            });
+            }
           }
+        } else {
+          // If childrenForSpouse is not provided at all, we do nothing extra here.
+          // No adopted children logic will run if we skip this part entirely.
         }
       } else {
         return res.status(400).json({ error: "Invalid mode" });

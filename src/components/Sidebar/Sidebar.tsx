@@ -24,7 +24,6 @@ const Sidebar: React.FC<SidebarProps> = ({
   const [relationMode, setRelationMode] = useState<
     "parent" | "sibling" | "spouse" | "child" | null
   >(null);
-  const [relatedMemberId, setRelatedMemberId] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [relationOptions, setRelationOptions] = useState<RelType[]>([]);
   const [spouseIdForChild, setSpouseIdForChild] = useState<string>("none");
@@ -43,7 +42,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
   const handleSave = async () => {
     if (!formData.name || formData.name.length < 1) {
-      alert("Name is required");
+      console.log("Name is required");
       return;
     }
 
@@ -54,10 +53,10 @@ const Sidebar: React.FC<SidebarProps> = ({
         formData
       );
       onSave(formData);
-      alert("Member updated successfully");
+      console.log("Member updated successfully");
     } catch (error) {
       console.error(error);
-      alert("Failed to save member");
+      console.log("Failed to save member");
     } finally {
       setIsLoading(false);
     }
@@ -67,7 +66,6 @@ const Sidebar: React.FC<SidebarProps> = ({
     mode: "parent" | "sibling" | "spouse" | "child"
   ) => {
     setRelationMode(mode);
-    setRelatedMemberId("");
     setSpouseIdForChild("none");
     setChildrenForSpouse([]);
 
@@ -151,7 +149,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         // Update the application state
         onSave(newParent);
 
-        alert("Parent added successfully");
+        console.log("Parent added successfully");
       } else if (relationMode === "sibling") {
         // Adding a sibling
         newMemberData.name = `${member.name}'s sibling`;
@@ -171,7 +169,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             mode: "sibling",
           }
         );
-        alert("Sibling added successfully");
+        console.log("Sibling added successfully");
       } else if (relationMode === "spouse") {
         // Adding a spouse
         newMemberData.name = `${member.name}'s spouse`;
@@ -193,7 +191,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             childrenForSpouse,
           }
         );
-        alert("Spouse added successfully");
+        console.log("Spouse added successfully");
       } else if (relationMode === "child") {
         // Adding a child
         newMemberData.name = `${member.name}'s child`;
@@ -214,14 +212,14 @@ const Sidebar: React.FC<SidebarProps> = ({
             spouseIdForChild,
           }
         );
-        alert("Child added successfully");
+        console.log("Child added successfully");
       }
 
       setRelationMode(null);
       onClose();
     } catch (error) {
       console.error(error);
-      alert("Failed to add relation");
+      console.log("Failed to add relation");
     } finally {
       setIsLoading(false);
     }

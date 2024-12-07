@@ -1,72 +1,91 @@
-[
-  {
-    "id": "dyTpfj6st",
-    "gender": "male",
-    "spouses": [],
-    "siblings": [],
-    "parents": [
-      {
-        "id": "aoF9dn5Ew",
-        "type": "blood"
-      },
-      {
-        "id": "tdRwdtR54",
-        "type": "blood"
-      }
-    ],
-    "children": []
-  },
-  {
-    "id": "ahfR5lR2s",
-    "gender": "female",
-    "spouses": [
-      {
-        "id": "aoF9dn5Ew",
-        "type": "married"
-      }
-    ],
-    "siblings": [],
-    "parents": [],
-    "children": []
-  },
-  {
-    "id": "aoF9dn5Ew",
-    "gender": "male",
-    "spouses": [
-      {
-        "id": "ahfR5lR2s",
-        "type": "married"
-      },
-      {
-        "id": "tdRwdtR54",
-        "type": "divorced"
-      }
-    ],
-    "siblings": [],
-    "parents": [],
-    "children": [
-      {
-        "id": "dyTpfj6st",
-        "type": "blood"
-      }
-    ]
-  },
-  {
-    "id": "tdRwdtR54",
-    "gender": "female",
-    "parents": [],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "aoF9dn5Ew",
-        "type": "divorced"
-      }
-    ],
-    "children": [
-      {
-        "id": "dyTpfj6st",
-        "type": "adopted"
-      }
-    ]
-  }
-]
+{
+  "name": "The Thompson Family",
+  "members": [
+    {
+      "id": "dyTpfj6st",
+      "name": "John",
+      "surname": "Thompson",
+      "gender": "male",
+      "dateOfBirth": "1990-01-01",
+      "description": "A young man in the family.",
+      "parents": [
+        {
+          "id": "aoF9dn5Ew",
+          "type": "blood"
+        },
+        {
+          "id": "tdRwdtR54",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "ahfR5lR2s",
+      "name": "Emily",
+      "surname": "Thompson",
+      "gender": "female",
+      "dateOfBirth": "1970-03-25",
+      "description": "A family member married to aoF9dn5Ew.",
+      "parents": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "aoF9dn5Ew",
+          "type": "married"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "aoF9dn5Ew",
+      "name": "Richard",
+      "surname": "Thompson",
+      "gender": "male",
+      "dateOfBirth": "1965-08-20",
+      "description": "Father of dyTpfj6st, married to ahfR5lR2s and divorced from tdRwdtR54.",
+      "parents": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "ahfR5lR2s",
+          "type": "married"
+        },
+        {
+          "id": "tdRwdtR54",
+          "type": "divorced"
+        }
+      ],
+      "children": [
+        {
+          "id": "dyTpfj6st",
+          "type": "blood"
+        }
+      ]
+    },
+    {
+      "id": "tdRwdtR54",
+      "name": "Laura",
+      "surname": "Thompson",
+      "gender": "female",
+      "dateOfBirth": "1967-03-12",
+      "description": "Previously married to aoF9dn5Ew, adoptive mother of dyTpfj6st.",
+      "parents": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "aoF9dn5Ew",
+          "type": "divorced"
+        }
+      ],
+      "children": [
+        {
+          "id": "dyTpfj6st",
+          "type": "adopted"
+        }
+      ]
+    }
+  ]
+}

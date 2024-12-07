@@ -1,72 +1,91 @@
-[
-  {
-    "id": "uJK9",
-    "gender": "male",
-    "parents": [],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "wIFr",
-        "type": "married"
-      },
-      {
-        "id": "aCZW",
-        "type": "divorced"
-      }
-    ],
-    "children": [
-      {
-        "id": "s9HE",
-        "type": "blood"
-      }
-    ]
-  },
-  {
-    "id": "wIFr",
-    "gender": "female",
-    "parents": [],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "uJK9",
-        "type": "married"
-      }
-    ],
-    "children": []
-  },
-  {
-    "id": "aCZW",
-    "gender": "female",
-    "parents": [],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "uJK9",
-        "type": "divorced"
-      }
-    ],
-    "children": [
-      {
-        "id": "s9HE",
-        "type": "blood"
-      }
-    ]
-  },
-  {
-    "id": "s9HE",
-    "gender": "male",
-    "parents": [
-      {
-        "id": "uJK9",
-        "type": "blood"
-      },
-      {
-        "id": "aCZW",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [],
-    "children": []
-  }
-]
+{
+  "name": "Small Family Example",
+  "members": [
+    {
+      "id": "uJK9",
+      "name": "John",
+      "surname": "Doe",
+      "gender": "male",
+      "dateOfBirth": "1980-01-15",
+      "description": "Head of the family.",
+      "parents": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "wIFr",
+          "type": "married"
+        },
+        {
+          "id": "aCZW",
+          "type": "divorced"
+        }
+      ],
+      "children": [
+        {
+          "id": "s9HE",
+          "type": "blood"
+        }
+      ]
+    },
+    {
+      "id": "wIFr",
+      "name": "Mary",
+      "surname": "Doe",
+      "gender": "female",
+      "dateOfBirth": "1982-05-22",
+      "description": "John's current wife.",
+      "parents": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "uJK9",
+          "type": "married"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "aCZW",
+      "name": "Karen",
+      "surname": "Smith",
+      "gender": "female",
+      "dateOfBirth": "1978-03-10",
+      "description": "John's ex-wife.",
+      "parents": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "uJK9",
+          "type": "divorced"
+        }
+      ],
+      "children": [
+        {
+          "id": "s9HE",
+          "type": "blood"
+        }
+      ]
+    },
+    {
+      "id": "s9HE",
+      "name": "James",
+      "surname": "Doe",
+      "gender": "male",
+      "dateOfBirth": "2005-12-12",
+      "description": "Son of John and Karen.",
+      "parents": [
+        {
+          "id": "uJK9",
+          "type": "blood"
+        },
+        {
+          "id": "aCZW",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [],
+      "children": []
+    }
+  ]
+}

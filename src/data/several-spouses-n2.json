@@ -1,330 +1,389 @@
-[
-  {
-    "id": "1718183443",
-    "gender": "male",
-    "parents": [
-      {
-        "id": "710441828",
-        "type": "blood"
-      },
-      {
-        "id": "754994760",
-        "type": "blood"
-      }
-    ],
-    "siblings": [
-      {
-        "id": "999499005",
-        "type": "blood"
-      }
-    ],
-    "spouses": [
-      {
-        "id": "1059082765",
-        "type": "married"
-      }
-    ],
-    "children": [
-      {
-        "id": "1487133388",
-        "type": "blood"
-      }
-    ]
-  },
-  {
-    "id": "1059082765",
-    "gender": "female",
-    "parents": [],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "1718183443",
-        "type": "married"
-      }
-    ],
-    "children": [
-      {
-        "id": "1487133388",
-        "type": "blood"
-      }
-    ]
-  },
-  {
-    "id": "1487133388",
-    "gender": "male",
-    "parents": [
-      {
-        "id": "1718183443",
-        "type": "blood"
-      },
-      {
-        "id": "1059082765",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [],
-    "children": []
-  },
-  {
-    "id": "999499005",
-    "gender": "female",
-    "parents": [
-      {
-        "id": "710441828",
-        "type": "blood"
-      },
-      {
-        "id": "754994760",
-        "type": "blood"
-      }
-    ],
-    "siblings": [
-      {
-        "id": "1718183443",
-        "type": "blood"
-      }
-    ],
-    "spouses": [],
-    "children": []
-  },
-  {
-    "id": "710441828",
-    "gender": "male",
-    "parents": [
-      {
-        "id": "957875050",
-        "type": "blood"
-      },
-      {
-        "id": "641724758",
-        "type": "blood"
-      }
-    ],
-    "siblings": [
-      {
-        "id": "556766444",
-        "type": "half"
-      }
-    ],
-    "spouses": [
-      {
-        "id": "754994760",
-        "type": "married"
-      }
-    ],
-    "children": [
-      {
-        "id": "1718183443",
-        "type": "blood"
-      },
-      {
-        "id": "999499005",
-        "type": "blood"
-      }
-    ]
-  },
-  {
-    "id": "754994760",
-    "gender": "female",
-    "parents": [],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "710441828",
-        "type": "married"
-      }
-    ],
-    "children": [
-      {
-        "id": "1718183443",
-        "type": "blood"
-      },
-      {
-        "id": "999499005",
-        "type": "blood"
-      }
-    ]
-  },
-  {
-    "id": "957875050",
-    "gender": "male",
-    "parents": [],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "641724758",
-        "type": "divorced"
-      },
-      {
-        "id": "1530408275",
-        "type": "divorced"
-      },
-      {
-        "id": "26132359",
-        "type": "married"
-      }
-    ],
-    "children": [
-      {
-        "id": "710441828",
-        "type": "blood"
-      },
-      {
-        "id": "556766444",
-        "type": "blood"
-      }
-    ]
-  },
-  {
-    "id": "556766444",
-    "gender": "male",
-    "parents": [
-      {
-        "id": "957875050",
-        "type": "blood"
-      },
-      {
-        "id": "1530408275",
-        "type": "blood"
-      }
-    ],
-    "siblings": [
-      {
-        "id": "710441828",
-        "type": "half"
-      }
-    ],
-    "spouses": [
-      {
-        "id": "413226302",
-        "type": "married"
-      }
-    ],
-    "children": [
-      {
-        "id": "541055541",
-        "type": "blood"
-      },
-      {
-        "id": "53664179",
-        "type": "blood"
-      }
-    ]
-  },
-  {
-    "id": "413226302",
-    "gender": "female",
-    "parents": [],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "556766444",
-        "type": "married"
-      }
-    ],
-    "children": [
-      {
-        "id": "541055541",
-        "type": "blood"
-      },
-      {
-        "id": "53664179",
-        "type": "blood"
-      }
-    ]
-  },
-  {
-    "id": "541055541",
-    "gender": "male",
-    "parents": [
-      {
-        "id": "556766444",
-        "type": "blood"
-      },
-      {
-        "id": "413226302",
-        "type": "blood"
-      }
-    ],
-    "siblings": [
-      {
-        "id": "53664179",
-        "type": "blood"
-      }
-    ],
-    "spouses": [],
-    "children": []
-  },
-  {
-    "id": "53664179",
-    "gender": "female",
-    "parents": [
-      {
-        "id": "556766444",
-        "type": "blood"
-      },
-      {
-        "id": "413226302",
-        "type": "blood"
-      }
-    ],
-    "siblings": [
-      {
-        "id": "541055541",
-        "type": "blood"
-      }
-    ],
-    "spouses": [],
-    "children": []
-  },
-  {
-    "id": "641724758",
-    "gender": "female",
-    "parents": [],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "957875050",
-        "type": "married"
-      }
-    ],
-    "children": [
-      {
-        "id": "710441828",
-        "type": "blood"
-      }
-    ]
-  },
-  {
-    "id": "26132359",
-    "gender": "female",
-    "parents": [],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "957875050",
-        "type": "married"
-      }
-    ],
-    "children": []
-  },
-  {
-    "id": "1530408275",
-    "gender": "female",
-    "parents": [],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "957875050",
-        "type": "married"
-      }
-    ],
-    "children": [
-      {
-        "id": "556766444",
-        "type": "blood"
-      }
-    ]
-  }
-]
+{
+  "name": "The Extended Family",
+  "members": [
+    {
+      "id": "1718183443",
+      "name": "Michael",
+      "surname": "Johnson",
+      "gender": "male",
+      "dateOfBirth": "1978-04-10",
+      "description": "A devoted father and skilled carpenter.",
+      "parents": [
+        {
+          "id": "710441828",
+          "type": "blood"
+        },
+        {
+          "id": "754994760",
+          "type": "blood"
+        }
+      ],
+      "siblings": [
+        {
+          "id": "999499005",
+          "type": "blood"
+        }
+      ],
+      "spouses": [
+        {
+          "id": "1059082765",
+          "type": "married"
+        }
+      ],
+      "children": [
+        {
+          "id": "1487133388",
+          "type": "blood"
+        }
+      ]
+    },
+    {
+      "id": "1059082765",
+      "name": "Jennifer",
+      "surname": "Johnson",
+      "gender": "female",
+      "dateOfBirth": "1980-09-15",
+      "description": "A caring mother and talented painter.",
+      "parents": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "1718183443",
+          "type": "married"
+        }
+      ],
+      "children": [
+        {
+          "id": "1487133388",
+          "type": "blood"
+        }
+      ]
+    },
+    {
+      "id": "1487133388",
+      "name": "Ethan",
+      "surname": "Johnson",
+      "gender": "male",
+      "dateOfBirth": "2010-03-22",
+      "description": "A bright child who loves reading.",
+      "parents": [
+        {
+          "id": "1718183443",
+          "type": "blood"
+        },
+        {
+          "id": "1059082765",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "999499005",
+      "name": "Ava",
+      "surname": "Johnson",
+      "gender": "female",
+      "dateOfBirth": "1985-06-30",
+      "description": "An adventurous sister who enjoys traveling.",
+      "parents": [
+        {
+          "id": "710441828",
+          "type": "blood"
+        },
+        {
+          "id": "754994760",
+          "type": "blood"
+        }
+      ],
+      "siblings": [
+        {
+          "id": "1718183443",
+          "type": "blood"
+        }
+      ],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "710441828",
+      "name": "Robert",
+      "surname": "Johnson",
+      "gender": "male",
+      "dateOfBirth": "1952-11-12",
+      "description": "A grandfatherly figure who loves gardening.",
+      "parents": [
+        {
+          "id": "957875050",
+          "type": "blood"
+        },
+        {
+          "id": "641724758",
+          "type": "blood"
+        }
+      ],
+      "siblings": [
+        {
+          "id": "556766444",
+          "type": "half"
+        }
+      ],
+      "spouses": [
+        {
+          "id": "754994760",
+          "type": "married"
+        }
+      ],
+      "children": [
+        {
+          "id": "1718183443",
+          "type": "blood"
+        },
+        {
+          "id": "999499005",
+          "type": "blood"
+        }
+      ]
+    },
+    {
+      "id": "754994760",
+      "name": "Diana",
+      "surname": "Johnson",
+      "gender": "female",
+      "dateOfBirth": "1955-01-05",
+      "description": "A grandmotherly figure who loves baking.",
+      "parents": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "710441828",
+          "type": "married"
+        }
+      ],
+      "children": [
+        {
+          "id": "1718183443",
+          "type": "blood"
+        },
+        {
+          "id": "999499005",
+          "type": "blood"
+        }
+      ]
+    },
+    {
+      "id": "957875050",
+      "name": "Thomas",
+      "surname": "Anderson",
+      "gender": "male",
+      "dateOfBirth": "1925-07-10",
+      "description": "A patriarch who founded the family's estate.",
+      "parents": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "641724758",
+          "type": "divorced"
+        },
+        {
+          "id": "1530408275",
+          "type": "divorced"
+        },
+        {
+          "id": "26132359",
+          "type": "married"
+        }
+      ],
+      "children": [
+        {
+          "id": "710441828",
+          "type": "blood"
+        },
+        {
+          "id": "556766444",
+          "type": "blood"
+        }
+      ]
+    },
+    {
+      "id": "556766444",
+      "name": "Mark",
+      "surname": "Anderson",
+      "gender": "male",
+      "dateOfBirth": "1970-02-28",
+      "description": "An uncle who is great at fixing cars.",
+      "parents": [
+        {
+          "id": "957875050",
+          "type": "blood"
+        },
+        {
+          "id": "1530408275",
+          "type": "blood"
+        }
+      ],
+      "siblings": [
+        {
+          "id": "710441828",
+          "type": "half"
+        }
+      ],
+      "spouses": [
+        {
+          "id": "413226302",
+          "type": "married"
+        }
+      ],
+      "children": [
+        {
+          "id": "541055541",
+          "type": "blood"
+        },
+        {
+          "id": "53664179",
+          "type": "blood"
+        }
+      ]
+    },
+    {
+      "id": "413226302",
+      "name": "Lucy",
+      "surname": "Anderson",
+      "gender": "female",
+      "dateOfBirth": "1972-09-09",
+      "description": "An aunt who loves playing the piano.",
+      "parents": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "556766444",
+          "type": "married"
+        }
+      ],
+      "children": [
+        {
+          "id": "541055541",
+          "type": "blood"
+        },
+        {
+          "id": "53664179",
+          "type": "blood"
+        }
+      ]
+    },
+    {
+      "id": "541055541",
+      "name": "David",
+      "surname": "Anderson",
+      "gender": "male",
+      "dateOfBirth": "1995-12-12",
+      "description": "A young man interested in technology.",
+      "parents": [
+        {
+          "id": "556766444",
+          "type": "blood"
+        },
+        {
+          "id": "413226302",
+          "type": "blood"
+        }
+      ],
+      "siblings": [
+        {
+          "id": "53664179",
+          "type": "blood"
+        }
+      ],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "53664179",
+      "name": "Emily",
+      "surname": "Anderson",
+      "gender": "female",
+      "dateOfBirth": "1998-05-05",
+      "description": "A young woman who loves photography.",
+      "parents": [
+        {
+          "id": "556766444",
+          "type": "blood"
+        },
+        {
+          "id": "413226302",
+          "type": "blood"
+        }
+      ],
+      "siblings": [
+        {
+          "id": "541055541",
+          "type": "blood"
+        }
+      ],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "641724758",
+      "name": "Helen",
+      "surname": "Roberts",
+      "gender": "female",
+      "dateOfBirth": "1930-10-18",
+      "description": "A grandmother who loves nature walks.",
+      "parents": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "957875050",
+          "type": "married"
+        }
+      ],
+      "children": [
+        {
+          "id": "710441828",
+          "type": "blood"
+        }
+      ]
+    },
+    {
+      "id": "26132359",
+      "name": "Irene",
+      "surname": "Roberts",
+      "gender": "female",
+      "dateOfBirth": "1935-03-03",
+      "description": "A step-grandmother who loves knitting.",
+      "parents": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "957875050",
+          "type": "married"
+        }
+      ],
+      "children": []
+    },
+    {
+      "id": "1530408275",
+      "name": "Doris",
+      "surname": "Roberts",
+      "gender": "female",
+      "dateOfBirth": "1932-07-22",
+      "description": "A grandmother who is a great storyteller.",
+      "parents": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "957875050",
+          "type": "married"
+        }
+      ],
+      "children": [
+        {
+          "id": "556766444",
+          "type": "blood"
+        }
+      ]
+    }
+  ]
+}

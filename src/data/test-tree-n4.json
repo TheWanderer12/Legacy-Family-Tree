@@ -1,154 +1,189 @@
-[
-  {
-    "id": "1",
-    "gender": "male",
-    "parents": [
-      {
-        "id": "2",
-        "type": "blood"
-      },
-      {
-        "id": "3",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [],
-    "children": []
-  },
-  {
-    "id": "2",
-    "gender": "male",
-    "parents": [
-      {
-        "id": "4",
-        "type": "blood"
-      }
-    ],
-    "children": [
-      {
-        "id": "1",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "3",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "3",
-    "gender": "female",
-    "parents": [
-      {
-        "id": "5",
-        "type": "blood"
-      }
-    ],
-    "children": [
-      {
-        "id": "1",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "2",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "4",
-    "gender": "male",
-    "parents": [
-      {
-        "id": "6",
-        "type": "blood"
-      },
-      {
-        "id": "7",
-        "type": "blood"
-      }
-    ],
-    "children": [
-      {
-        "id": "2",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": []
-  },
-  {
-    "id": "5",
-    "gender": "male",
-    "parents": [
-      {
-        "id": "8",
-        "type": "blood"
-      }
-    ],
-    "children": [
-      {
-        "id": "3",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": []
-  },
-  {
-    "id": "6",
-    "gender": "male",
-    "parents": [],
-    "children": [
-      {
-        "id": "4",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "7",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "7",
-    "gender": "female",
-    "parents": [],
-    "children": [
-      {
-        "id": "4",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "6",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "8",
-    "gender": "male",
-    "parents": [],
-    "children": [
-      {
-        "id": "5",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": []
-  }
-]
+{
+  "name": "Family Heritage Tree",
+  "members": [
+    {
+      "id": "1",
+      "name": "John",
+      "surname": "Smith",
+      "gender": "male",
+      "dateOfBirth": "2000-01-01",
+      "description": "Son of Michael and Sarah.",
+      "parents": [
+        {
+          "id": "2",
+          "type": "blood"
+        },
+        {
+          "id": "3",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "2",
+      "name": "Michael",
+      "surname": "Smith",
+      "gender": "male",
+      "dateOfBirth": "1975-05-15",
+      "description": "Father of John.",
+      "parents": [
+        {
+          "id": "4",
+          "type": "blood"
+        }
+      ],
+      "children": [
+        {
+          "id": "1",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "3",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Sarah",
+      "surname": "Smith",
+      "gender": "female",
+      "dateOfBirth": "1978-08-20",
+      "description": "Mother of John.",
+      "parents": [
+        {
+          "id": "5",
+          "type": "blood"
+        }
+      ],
+      "children": [
+        {
+          "id": "1",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "2",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Robert",
+      "surname": "Smith",
+      "gender": "male",
+      "dateOfBirth": "1950-02-10",
+      "description": "Grandfather of John.",
+      "parents": [
+        {
+          "id": "6",
+          "type": "blood"
+        },
+        {
+          "id": "7",
+          "type": "blood"
+        }
+      ],
+      "children": [
+        {
+          "id": "2",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": []
+    },
+    {
+      "id": "5",
+      "name": "Margaret",
+      "surname": "Johnson",
+      "gender": "female",
+      "dateOfBirth": "1955-11-30",
+      "description": "Grandmother of John.",
+      "parents": [
+        {
+          "id": "8",
+          "type": "blood"
+        }
+      ],
+      "children": [
+        {
+          "id": "3",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": []
+    },
+    {
+      "id": "6",
+      "name": "Edward",
+      "surname": "Smith",
+      "gender": "male",
+      "dateOfBirth": "1925-07-10",
+      "description": "Great-grandfather of John.",
+      "parents": [],
+      "children": [
+        {
+          "id": "4",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "7",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "7",
+      "name": "Helen",
+      "surname": "Smith",
+      "gender": "female",
+      "dateOfBirth": "1927-03-18",
+      "description": "Great-grandmother of John.",
+      "parents": [],
+      "children": [
+        {
+          "id": "4",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "6",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "8",
+      "name": "William",
+      "surname": "Johnson",
+      "gender": "male",
+      "dateOfBirth": "1930-06-25",
+      "description": "Great-grandfather of Sarah.",
+      "parents": [],
+      "children": [
+        {
+          "id": "5",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": []
+    }
+  ]
+}
