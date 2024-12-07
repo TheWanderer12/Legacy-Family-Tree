@@ -1,5 +1,8 @@
+/**
+ * this file was used for loading family trees from local JSON files, however, I changed it to load family trees from the mongoDB server, and therefore I am not using this file anymore. You can try to pass one of these files as 'nodes' variable to App.tsx to see how it renders it.
+ */
 import averageTree from "../data/average-tree.json";
-import couple from "../data/couple.json";
+import { members } from "../data/couple.json";
 import diffParents from "../data/diff-parents.json";
 import divorcedParents from "../data/divorced-parents.json";
 import severalSpouses from "../data/several-spouses.json";
@@ -13,7 +16,7 @@ export const NODE_WIDTH = 70;
 export const NODE_HEIGHT = 80;
 
 export const SOURCES = {
-  // "couple.json": couple,
+  // "couple.json": members,
   // "average-tree.json": averageTree,
   // "diff-parents.json": diffParents,
   // "divorced-parents.json": divorcedParents,

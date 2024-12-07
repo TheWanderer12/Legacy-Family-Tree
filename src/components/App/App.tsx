@@ -4,7 +4,7 @@ import type { Node, ExtNode } from "../Types/types";
 import ReactFamilyTree from "react-family-tree";
 import { PinchZoomPan } from "../PinchZoomPan/PinchZoomPan";
 import { FamilyNode } from "../FamilyNode/FamilyNode";
-import { NODE_WIDTH, NODE_HEIGHT } from "../const";
+import { NODE_WIDTH, NODE_HEIGHT, SOURCES, DEFAULT_SOURCE } from "../const";
 import { getNodeStyle } from "./utils";
 import Sidebar from "../Sidebar/Sidebar";
 import css from "./App.module.css";
@@ -14,12 +14,12 @@ export default React.memo(function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [nodes, setNodes] = useState<Node[]>([]);
-  const [rootId, setRootId] = useState<string>("");
+  const [nodes, setNodes] = useState<Node[]>([]); // members of the tree
+  const [rootId, setRootId] = useState<string>(""); // root node id. The first node is going to be the root node (focused member)
   const [selectId, setSelectId] = useState<string>();
   const [hoverId, setHoverId] = useState<string>();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [selectedNode, setSelectedNode] = useState<Node | null>(null);
+  const [selectedNode, setSelectedNode] = useState<Node | null>(null); // node which is selected by click
 
   const tree = location.state?.tree as {
     id: string;
@@ -84,6 +84,11 @@ export default React.memo(function App() {
     return null;
   }
 
+  /**
+   * PinchZoomPan is a wrapper component that provides pinch zoom and pan functionality.
+   * ReactFamilyTree is a tree component that renders the family tree.
+   * FamilyNode is a node component that renders a single node.
+   */
   return (
     <div className={css.root}>
       {/* Tree */}
@@ -113,13 +118,13 @@ export default React.memo(function App() {
           />
         </PinchZoomPan>
       )}
-      {/* Reset button */}
+      {/* Reset button. Appears on top right to reset tree after going deep inside on of the member subtrees*/}
       {rootId && rootId !== firstNodeId && (
         <button className={css.reset} onClick={resetRootHandler}>
           Reset
         </button>
       )}
-      {/* Sidebar */}
+      {/* Sidebar. Opens on click on a member. Allows editing details and adding new members. */}
       {isSidebarOpen && selectedNode && (
         <Sidebar
           member={selectedNode}
