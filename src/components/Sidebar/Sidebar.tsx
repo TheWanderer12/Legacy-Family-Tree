@@ -68,25 +68,25 @@ const Sidebar: React.FC<SidebarProps> = ({
   ) => {
     setRelationMode(mode);
     setRelatedMemberId("");
-    setRelationType(RelType.blood);
-    setRelationOptions([]);
     setSpouseIdForChild("none");
     setChildrenForSpouse([]);
 
-    // Determine available relation types based on the current state
+    let options: RelType[] = [];
     if (mode === "parent") {
       const bloodParents = member.parents.filter(
         (rel) => rel.type === RelType.blood
       ).length;
-      if (bloodParents < 2) {
-        setRelationOptions([RelType.blood, RelType.adopted]);
-      } else {
-        setRelationOptions([RelType.adopted]);
-      }
+      options =
+        bloodParents < 2 ? [RelType.blood, RelType.adopted] : [RelType.adopted];
     } else if (mode === "sibling") {
-      setRelationOptions([RelType.blood, RelType.half]);
+      options = [RelType.blood, RelType.half];
     } else if (mode === "spouse") {
-      setRelationOptions([RelType.married, RelType.divorced]);
+      options = [RelType.married, RelType.divorced];
+    }
+
+    setRelationOptions(options);
+    if (options.length > 0) {
+      setRelationType(options[0]);
     }
   };
 
@@ -107,8 +107,18 @@ const Sidebar: React.FC<SidebarProps> = ({
 
       if (relationMode === "parent") {
         // Adding a parent
+        // setting gender based on the first parent's gender (oppositve of it)
+        const firstParent = member.parents[0]
+          ? allMembers.find((m) => m.id === member.parents[0].id)
+          : null;
+        if (firstParent) {
+          newMemberData.gender =
+            firstParent.gender === Gender.male ? Gender.female : Gender.male;
+        } else {
+          // Default gender if no parent exists
+          newMemberData.gender = Gender.male;
+        }
         newMemberData.name = `${member.name}'s parent`;
-        newMemberData.gender = Gender.male;
 
         const response = await axios.post<Node>(
           `http://localhost:5001/api/family-trees/${treeId}/members`,
@@ -116,7 +126,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         );
         const newParent: Node = response.data;
 
-        // Add relation to the selected member
+        // Add parent-child relation to the selected member
         await axios.post(
           `http://localhost:5001/api/family-trees/${treeId}/members/${member.id}/relation`,
           {
@@ -125,6 +135,18 @@ const Sidebar: React.FC<SidebarProps> = ({
             mode: "parent",
           }
         );
+
+        // If there's already a parent, make the new parent a spouse of that first parent
+        if (firstParent) {
+          await axios.post(
+            `http://localhost:5001/api/family-trees/${treeId}/members/${firstParent.id}/relation`,
+            {
+              relatedMemberId: newParent.id,
+              type: RelType.married, // assuming married
+              mode: "spouse",
+            }
+          );
+        }
 
         // Update the application state
         onSave(newParent);
@@ -153,7 +175,8 @@ const Sidebar: React.FC<SidebarProps> = ({
       } else if (relationMode === "spouse") {
         // Adding a spouse
         newMemberData.name = `${member.name}'s spouse`;
-        newMemberData.gender = Gender.female;
+        newMemberData.gender =
+          member.gender === Gender.male ? Gender.female : Gender.male;
 
         const response = await axios.post<Node>(
           `http://localhost:5001/api/family-trees/${treeId}/members`,
@@ -187,7 +210,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           {
             relatedMemberId: newChild.id,
             type: relationType,
-            mode: "parent",
+            mode: "child",
             spouseIdForChild,
           }
         );

@@ -1,737 +1,740 @@
-[
-  {
-    "id": "HkqEDLvxE",
-    "name": "Michael",
-    "surname": "Smith",
-    "gender": "male",
-    "dateOfBirth": "1990-05-15",
-    "description": "An engineer with a love for technology.",
-    "parents": [
-      {
-        "id": "011jVS4rb",
-        "type": "blood"
-      },
-      {
-        "id": "PXACjDxmR",
-        "type": "blood"
-      }
-    ],
-    "siblings": [
-      {
-        "id": "kuVISwh7w",
-        "type": "blood"
-      },
-      {
-        "id": "UIEjvLJMd",
-        "type": "blood"
-      },
-      {
-        "id": "ZVi8fWDBx",
-        "type": "blood"
-      }
-    ],
-    "spouses": [],
-    "children": []
-  },
-  {
-    "id": "011jVS4rb",
-    "name": "John",
-    "surname": "Smith",
-    "gender": "male",
-    "dateOfBirth": "1965-08-20",
-    "description": "A passionate teacher and father.",
-    "parents": [
-      {
-        "id": "ypu71w9_Q",
-        "type": "blood"
-      },
-      {
-        "id": "GEf8zF7A4",
-        "type": "blood"
-      }
-    ],
-    "children": [
-      {
-        "id": "HkqEDLvxE",
-        "type": "blood"
-      },
-      {
-        "id": "kuVISwh7w",
-        "type": "blood"
-      },
-      {
-        "id": "UIEjvLJMd",
-        "type": "blood"
-      },
-      {
-        "id": "ZVi8fWDBx",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "PXACjDxmR",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "PXACjDxmR",
-    "name": "Linda",
-    "surname": "Smith",
-    "gender": "female",
-    "dateOfBirth": "1967-03-12",
-    "description": "An artist with a flair for creativity.",
-    "parents": [
-      {
-        "id": "2DlrR0fK8",
-        "type": "blood"
-      }
-    ],
-    "children": [
-      {
-        "id": "HkqEDLvxE",
-        "type": "blood"
-      },
-      {
-        "id": "kuVISwh7w",
-        "type": "blood"
-      },
-      {
-        "id": "UIEjvLJMd",
-        "type": "blood"
-      },
-      {
-        "id": "ZVi8fWDBx",
-        "type": "blood"
-      }
-    ],
-    "siblings": [
-      {
-        "id": "H-06WvsfJ",
-        "type": "blood"
-      }
-    ],
-    "spouses": [
-      {
-        "id": "011jVS4rb",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "kuVISwh7w",
-    "name": "David",
-    "surname": "Smith",
-    "gender": "male",
-    "dateOfBirth": "1992-11-05",
-    "description": "A sports enthusiast and coach.",
-    "parents": [
-      {
-        "id": "011jVS4rb",
-        "type": "blood"
-      },
-      {
-        "id": "PXACjDxmR",
-        "type": "blood"
-      }
-    ],
-    "children": [
-      {
-        "id": "Fbc9iwnJl",
-        "type": "blood"
-      }
-    ],
-    "siblings": [
-      {
-        "id": "HkqEDLvxE",
-        "type": "blood"
-      },
-      {
-        "id": "UIEjvLJMd",
-        "type": "blood"
-      },
-      {
-        "id": "ZVi8fWDBx",
-        "type": "blood"
-      }
-    ],
-    "spouses": [
-      {
-        "id": "vRSjcaDGj",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "UIEjvLJMd",
-    "name": "Emily",
-    "surname": "Brown",
-    "gender": "female",
-    "dateOfBirth": "1995-07-22",
-    "description": "A dedicated nurse and mother.",
-    "parents": [
-      {
-        "id": "011jVS4rb",
-        "type": "blood"
-      },
-      {
-        "id": "PXACjDxmR",
-        "type": "blood"
-      }
-    ],
-    "children": [
-      {
-        "id": "6_OTJvbvS",
-        "type": "blood"
-      },
-      {
-        "id": "JhSCcdFEP",
-        "type": "blood"
-      },
-      {
-        "id": "6hNxNY1-I",
-        "type": "blood"
-      }
-    ],
-    "siblings": [
-      {
-        "id": "HkqEDLvxE",
-        "type": "blood"
-      },
-      {
-        "id": "kuVISwh7w",
-        "type": "blood"
-      },
-      {
-        "id": "ZVi8fWDBx",
-        "type": "blood"
-      }
-    ],
-    "spouses": [
-      {
-        "id": "RZbkr5vAi",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "RZbkr5vAi",
-    "name": "Robert",
-    "surname": "Brown",
-    "gender": "male",
-    "dateOfBirth": "1990-02-10",
-    "description": "An entrepreneur and father.",
-    "parents": [],
-    "children": [
-      {
-        "id": "6_OTJvbvS",
-        "type": "blood"
-      },
-      {
-        "id": "JhSCcdFEP",
-        "type": "blood"
-      },
-      {
-        "id": "6hNxNY1-I",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "UIEjvLJMd",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "vRSjcaDGj",
-    "name": "Sarah",
-    "surname": "Smith",
-    "gender": "female",
-    "dateOfBirth": "1994-09-18",
-    "description": "A teacher who loves children.",
-    "parents": [
-      {
-        "id": "6vASIIxhd",
-        "type": "blood"
-      },
-      {
-        "id": "iFiwqrWx-",
-        "type": "blood"
-      }
-    ],
-    "children": [
-      {
-        "id": "Fbc9iwnJl",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "kuVISwh7w",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "Fbc9iwnJl",
-    "name": "Lily",
-    "surname": "Smith",
-    "gender": "female",
-    "dateOfBirth": "2018-04-25",
-    "description": "A cheerful child who loves to draw.",
-    "parents": [
-      {
-        "id": "kuVISwh7w",
-        "type": "blood"
-      },
-      {
-        "id": "vRSjcaDGj",
-        "type": "blood"
-      }
-    ],
-    "children": [],
-    "siblings": [],
-    "spouses": []
-  },
-  {
-    "id": "ypu71w9_Q",
-    "name": "Edward",
-    "surname": "Smith",
-    "gender": "male",
-    "dateOfBirth": "1940-06-30",
-    "description": "A retired engineer and grandfather.",
-    "parents": [
-      {
-        "id": "TsyAkbF89",
-        "type": "blood"
-      },
-      {
-        "id": "T54Km7uOC",
-        "type": "blood"
-      }
-    ],
-    "children": [
-      {
-        "id": "011jVS4rb",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "GEf8zF7A4",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "GEf8zF7A4",
-    "name": "Margaret",
-    "surname": "Smith",
-    "gender": "female",
-    "dateOfBirth": "1942-12-05",
-    "description": "A loving grandmother and avid gardener.",
-    "parents": [
-      {
-        "id": "gsgwGS_Kw",
-        "type": "blood"
-      },
-      {
-        "id": "ZgTZx9uXQ",
-        "type": "blood"
-      }
-    ],
-    "children": [
-      {
-        "id": "011jVS4rb",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "ypu71w9_Q",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "2DlrR0fK8",
-    "name": "Thomas",
-    "surname": "Johnson",
-    "gender": "male",
-    "dateOfBirth": "1945-03-11",
-    "description": "An artist known for his landscapes.",
-    "parents": [],
-    "children": [
-      {
-        "id": "PXACjDxmR",
-        "type": "blood"
-      },
-      {
-        "id": "H-06WvsfJ",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": []
-  },
-  {
-    "id": "gsgwGS_Kw",
-    "name": "Henry",
-    "surname": "Taylor",
-    "gender": "male",
-    "dateOfBirth": "1915-01-08",
-    "description": "A veteran and great-grandfather.",
-    "parents": [],
-    "children": [
-      {
-        "id": "GEf8zF7A4",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "ZgTZx9uXQ",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "ZgTZx9uXQ",
-    "name": "Evelyn",
-    "surname": "Taylor",
-    "gender": "female",
-    "dateOfBirth": "1917-11-23",
-    "description": "A pianist and great-grandmother.",
-    "parents": [],
-    "children": [
-      {
-        "id": "GEf8zF7A4",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "gsgwGS_Kw",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "ZVi8fWDBx",
-    "name": "James",
-    "surname": "Smith",
-    "gender": "male",
-    "dateOfBirth": "1997-12-14",
-    "description": "An aspiring musician.",
-    "parents": [
-      {
-        "id": "011jVS4rb",
-        "type": "blood"
-      },
-      {
-        "id": "PXACjDxmR",
-        "type": "blood"
-      }
-    ],
-    "children": [],
-    "siblings": [
-      {
-        "id": "HkqEDLvxE",
-        "type": "blood"
-      },
-      {
-        "id": "kuVISwh7w",
-        "type": "blood"
-      },
-      {
-        "id": "UIEjvLJMd",
-        "type": "blood"
-      }
-    ],
-    "spouses": [
-      {
-        "id": "wJ1EBvc5m",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "6_OTJvbvS",
-    "name": "Daniel",
-    "surname": "Brown",
-    "gender": "male",
-    "dateOfBirth": "2015-06-05",
-    "description": "Loves playing soccer.",
-    "parents": [
-      {
-        "id": "RZbkr5vAi",
-        "type": "blood"
-      },
-      {
-        "id": "UIEjvLJMd",
-        "type": "blood"
-      }
-    ],
-    "children": [],
-    "siblings": [
-      {
-        "id": "JhSCcdFEP",
-        "type": "blood"
-      },
-      {
-        "id": "6hNxNY1-I",
-        "type": "blood"
-      }
-    ],
-    "spouses": []
-  },
-  {
-    "id": "JhSCcdFEP",
-    "name": "Sophia",
-    "surname": "Brown",
-    "gender": "female",
-    "dateOfBirth": "2012-08-19",
-    "description": "Enjoys painting and art.",
-    "parents": [
-      {
-        "id": "RZbkr5vAi",
-        "type": "blood"
-      },
-      {
-        "id": "UIEjvLJMd",
-        "type": "blood"
-      }
-    ],
-    "children": [
-      {
-        "id": "Z0QA5oKks",
-        "type": "blood"
-      }
-    ],
-    "siblings": [
-      {
-        "id": "6_OTJvbvS",
-        "type": "blood"
-      },
-      {
-        "id": "6hNxNY1-I",
-        "type": "blood"
-      }
-    ],
-    "spouses": [
-      {
-        "id": "ilad8NH6g",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "6hNxNY1-I",
-    "name": "Ethan",
-    "surname": "Brown",
-    "gender": "male",
-    "dateOfBirth": "2017-03-22",
-    "description": "Loves playing with building blocks.",
-    "parents": [
-      {
-        "id": "RZbkr5vAi",
-        "type": "blood"
-      },
-      {
-        "id": "UIEjvLJMd",
-        "type": "blood"
-      }
-    ],
-    "children": [],
-    "siblings": [
-      {
-        "id": "6_OTJvbvS",
-        "type": "blood"
-      },
-      {
-        "id": "JhSCcdFEP",
-        "type": "blood"
-      }
-    ],
-    "spouses": []
-  },
-  {
-    "id": "ilad8NH6g",
-    "name": "William",
-    "surname": "Davis",
-    "gender": "male",
-    "dateOfBirth": "2010-09-30",
-    "description": "A young chess prodigy.",
-    "parents": [],
-    "children": [
-      {
-        "id": "Z0QA5oKks",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "JhSCcdFEP",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "Z0QA5oKks",
-    "name": "Oliver",
-    "surname": "Davis",
-    "gender": "male",
-    "dateOfBirth": "2029-12-01",
-    "description": "Just born into the family.",
-    "parents": [
-      {
-        "id": "ilad8NH6g",
-        "type": "blood"
-      },
-      {
-        "id": "JhSCcdFEP",
-        "type": "blood"
-      }
-    ],
-    "children": [],
-    "siblings": [],
-    "spouses": []
-  },
-  {
-    "id": "wJ1EBvc5m",
-    "name": "Grace",
-    "surname": "Smith",
-    "gender": "female",
-    "dateOfBirth": "1999-01-15",
-    "description": "A passionate dancer.",
-    "parents": [],
-    "children": [],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "ZVi8fWDBx",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "TsyAkbF89",
-    "name": "George",
-    "surname": "Smith",
-    "gender": "male",
-    "dateOfBirth": "1918-04-17",
-    "description": "A farmer with a big heart.",
-    "parents": [],
-    "children": [
-      {
-        "id": "ypu71w9_Q",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "T54Km7uOC",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "T54Km7uOC",
-    "name": "Rose",
-    "surname": "Smith",
-    "gender": "female",
-    "dateOfBirth": "1920-07-21",
-    "description": "Loved baking and storytelling.",
-    "parents": [],
-    "children": [
-      {
-        "id": "ypu71w9_Q",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "TsyAkbF89",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "6vASIIxhd",
-    "name": "Charles",
-    "surname": "Johnson",
-    "gender": "male",
-    "dateOfBirth": "1970-10-05",
-    "description": "An architect who loves design.",
-    "parents": [],
-    "children": [
-      {
-        "id": "vRSjcaDGj",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "iFiwqrWx-",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "iFiwqrWx-",
-    "name": "Laura",
-    "surname": "Johnson",
-    "gender": "female",
-    "dateOfBirth": "1972-11-12",
-    "description": "A chef with a passion for flavors.",
-    "parents": [],
-    "children": [
-      {
-        "id": "vRSjcaDGj",
-        "type": "blood"
-      }
-    ],
-    "siblings": [],
-    "spouses": [
-      {
-        "id": "6vASIIxhd",
-        "type": "married"
-      }
-    ]
-  },
-  {
-    "id": "H-06WvsfJ",
-    "name": "Anna",
-    "surname": "Johnson",
-    "gender": "female",
-    "dateOfBirth": "1975-08-27",
-    "description": "A writer and storyteller.",
-    "parents": [
-      {
-        "id": "2DlrR0fK8",
-        "type": "blood"
-      }
-    ],
-    "children": [],
-    "siblings": [
-      {
-        "id": "PXACjDxmR",
-        "type": "blood"
-      }
-    ],
-    "spouses": []
-  }
-]
+{
+  "name": "Average Tree",
+  "members": [
+    {
+      "id": "HkqEDLvxE",
+      "name": "Michael",
+      "surname": "Smith",
+      "gender": "male",
+      "dateOfBirth": "1990-05-15",
+      "description": "An engineer with a love for technology.",
+      "parents": [
+        {
+          "id": "011jVS4rb",
+          "type": "blood"
+        },
+        {
+          "id": "PXACjDxmR",
+          "type": "blood"
+        }
+      ],
+      "siblings": [
+        {
+          "id": "kuVISwh7w",
+          "type": "blood"
+        },
+        {
+          "id": "UIEjvLJMd",
+          "type": "blood"
+        },
+        {
+          "id": "ZVi8fWDBx",
+          "type": "blood"
+        }
+      ],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "011jVS4rb",
+      "name": "John",
+      "surname": "Smith",
+      "gender": "male",
+      "dateOfBirth": "1965-08-20",
+      "description": "A passionate teacher and father.",
+      "parents": [
+        {
+          "id": "ypu71w9_Q",
+          "type": "blood"
+        },
+        {
+          "id": "GEf8zF7A4",
+          "type": "blood"
+        }
+      ],
+      "children": [
+        {
+          "id": "HkqEDLvxE",
+          "type": "blood"
+        },
+        {
+          "id": "kuVISwh7w",
+          "type": "blood"
+        },
+        {
+          "id": "UIEjvLJMd",
+          "type": "blood"
+        },
+        {
+          "id": "ZVi8fWDBx",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "PXACjDxmR",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "PXACjDxmR",
+      "name": "Linda",
+      "surname": "Smith",
+      "gender": "female",
+      "dateOfBirth": "1967-03-12",
+      "description": "An artist with a flair for creativity.",
+      "parents": [
+        {
+          "id": "2DlrR0fK8",
+          "type": "blood"
+        }
+      ],
+      "children": [
+        {
+          "id": "HkqEDLvxE",
+          "type": "blood"
+        },
+        {
+          "id": "kuVISwh7w",
+          "type": "blood"
+        },
+        {
+          "id": "UIEjvLJMd",
+          "type": "blood"
+        },
+        {
+          "id": "ZVi8fWDBx",
+          "type": "blood"
+        }
+      ],
+      "siblings": [
+        {
+          "id": "H-06WvsfJ",
+          "type": "blood"
+        }
+      ],
+      "spouses": [
+        {
+          "id": "011jVS4rb",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "kuVISwh7w",
+      "name": "David",
+      "surname": "Smith",
+      "gender": "male",
+      "dateOfBirth": "1992-11-05",
+      "description": "A sports enthusiast and coach.",
+      "parents": [
+        {
+          "id": "011jVS4rb",
+          "type": "blood"
+        },
+        {
+          "id": "PXACjDxmR",
+          "type": "blood"
+        }
+      ],
+      "children": [
+        {
+          "id": "Fbc9iwnJl",
+          "type": "blood"
+        }
+      ],
+      "siblings": [
+        {
+          "id": "HkqEDLvxE",
+          "type": "blood"
+        },
+        {
+          "id": "UIEjvLJMd",
+          "type": "blood"
+        },
+        {
+          "id": "ZVi8fWDBx",
+          "type": "blood"
+        }
+      ],
+      "spouses": [
+        {
+          "id": "vRSjcaDGj",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "UIEjvLJMd",
+      "name": "Emily",
+      "surname": "Brown",
+      "gender": "female",
+      "dateOfBirth": "1995-07-22",
+      "description": "A dedicated nurse and mother.",
+      "parents": [
+        {
+          "id": "011jVS4rb",
+          "type": "blood"
+        },
+        {
+          "id": "PXACjDxmR",
+          "type": "blood"
+        }
+      ],
+      "children": [
+        {
+          "id": "6_OTJvbvS",
+          "type": "blood"
+        },
+        {
+          "id": "JhSCcdFEP",
+          "type": "blood"
+        },
+        {
+          "id": "6hNxNY1-I",
+          "type": "blood"
+        }
+      ],
+      "siblings": [
+        {
+          "id": "HkqEDLvxE",
+          "type": "blood"
+        },
+        {
+          "id": "kuVISwh7w",
+          "type": "blood"
+        },
+        {
+          "id": "ZVi8fWDBx",
+          "type": "blood"
+        }
+      ],
+      "spouses": [
+        {
+          "id": "RZbkr5vAi",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "RZbkr5vAi",
+      "name": "Robert",
+      "surname": "Brown",
+      "gender": "male",
+      "dateOfBirth": "1990-02-10",
+      "description": "An entrepreneur and father.",
+      "parents": [],
+      "children": [
+        {
+          "id": "6_OTJvbvS",
+          "type": "blood"
+        },
+        {
+          "id": "JhSCcdFEP",
+          "type": "blood"
+        },
+        {
+          "id": "6hNxNY1-I",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "UIEjvLJMd",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "vRSjcaDGj",
+      "name": "Sarah",
+      "surname": "Smith",
+      "gender": "female",
+      "dateOfBirth": "1994-09-18",
+      "description": "A teacher who loves children.",
+      "parents": [
+        {
+          "id": "6vASIIxhd",
+          "type": "blood"
+        },
+        {
+          "id": "iFiwqrWx-",
+          "type": "blood"
+        }
+      ],
+      "children": [
+        {
+          "id": "Fbc9iwnJl",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "kuVISwh7w",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "Fbc9iwnJl",
+      "name": "Lily",
+      "surname": "Smith",
+      "gender": "female",
+      "dateOfBirth": "2018-04-25",
+      "description": "A cheerful child who loves to draw.",
+      "parents": [
+        {
+          "id": "kuVISwh7w",
+          "type": "blood"
+        },
+        {
+          "id": "vRSjcaDGj",
+          "type": "blood"
+        }
+      ],
+      "children": [],
+      "siblings": [],
+      "spouses": []
+    },
+    {
+      "id": "ypu71w9_Q",
+      "name": "Edward",
+      "surname": "Smith",
+      "gender": "male",
+      "dateOfBirth": "1940-06-30",
+      "description": "A retired engineer and grandfather.",
+      "parents": [
+        {
+          "id": "TsyAkbF89",
+          "type": "blood"
+        },
+        {
+          "id": "T54Km7uOC",
+          "type": "blood"
+        }
+      ],
+      "children": [
+        {
+          "id": "011jVS4rb",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "GEf8zF7A4",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "GEf8zF7A4",
+      "name": "Margaret",
+      "surname": "Smith",
+      "gender": "female",
+      "dateOfBirth": "1942-12-05",
+      "description": "A loving grandmother and avid gardener.",
+      "parents": [
+        {
+          "id": "gsgwGS_Kw",
+          "type": "blood"
+        },
+        {
+          "id": "ZgTZx9uXQ",
+          "type": "blood"
+        }
+      ],
+      "children": [
+        {
+          "id": "011jVS4rb",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "ypu71w9_Q",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "2DlrR0fK8",
+      "name": "Thomas",
+      "surname": "Johnson",
+      "gender": "male",
+      "dateOfBirth": "1945-03-11",
+      "description": "An artist known for his landscapes.",
+      "parents": [],
+      "children": [
+        {
+          "id": "PXACjDxmR",
+          "type": "blood"
+        },
+        {
+          "id": "H-06WvsfJ",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": []
+    },
+    {
+      "id": "gsgwGS_Kw",
+      "name": "Henry",
+      "surname": "Taylor",
+      "gender": "male",
+      "dateOfBirth": "1915-01-08",
+      "description": "A veteran and great-grandfather.",
+      "parents": [],
+      "children": [
+        {
+          "id": "GEf8zF7A4",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "ZgTZx9uXQ",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "ZgTZx9uXQ",
+      "name": "Evelyn",
+      "surname": "Taylor",
+      "gender": "female",
+      "dateOfBirth": "1917-11-23",
+      "description": "A pianist and great-grandmother.",
+      "parents": [],
+      "children": [
+        {
+          "id": "GEf8zF7A4",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "gsgwGS_Kw",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "ZVi8fWDBx",
+      "name": "James",
+      "surname": "Smith",
+      "gender": "male",
+      "dateOfBirth": "1997-12-14",
+      "description": "An aspiring musician.",
+      "parents": [
+        {
+          "id": "011jVS4rb",
+          "type": "blood"
+        },
+        {
+          "id": "PXACjDxmR",
+          "type": "blood"
+        }
+      ],
+      "children": [],
+      "siblings": [
+        {
+          "id": "HkqEDLvxE",
+          "type": "blood"
+        },
+        {
+          "id": "kuVISwh7w",
+          "type": "blood"
+        },
+        {
+          "id": "UIEjvLJMd",
+          "type": "blood"
+        }
+      ],
+      "spouses": [
+        {
+          "id": "wJ1EBvc5m",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "6_OTJvbvS",
+      "name": "Daniel",
+      "surname": "Brown",
+      "gender": "male",
+      "dateOfBirth": "2015-06-05",
+      "description": "Loves playing soccer.",
+      "parents": [
+        {
+          "id": "RZbkr5vAi",
+          "type": "blood"
+        },
+        {
+          "id": "UIEjvLJMd",
+          "type": "blood"
+        }
+      ],
+      "children": [],
+      "siblings": [
+        {
+          "id": "JhSCcdFEP",
+          "type": "blood"
+        },
+        {
+          "id": "6hNxNY1-I",
+          "type": "blood"
+        }
+      ],
+      "spouses": []
+    },
+    {
+      "id": "JhSCcdFEP",
+      "name": "Sophia",
+      "surname": "Brown",
+      "gender": "female",
+      "dateOfBirth": "2012-08-19",
+      "description": "Enjoys painting and art.",
+      "parents": [
+        {
+          "id": "RZbkr5vAi",
+          "type": "blood"
+        },
+        {
+          "id": "UIEjvLJMd",
+          "type": "blood"
+        }
+      ],
+      "children": [
+        {
+          "id": "Z0QA5oKks",
+          "type": "blood"
+        }
+      ],
+      "siblings": [
+        {
+          "id": "6_OTJvbvS",
+          "type": "blood"
+        },
+        {
+          "id": "6hNxNY1-I",
+          "type": "blood"
+        }
+      ],
+      "spouses": [
+        {
+          "id": "ilad8NH6g",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "6hNxNY1-I",
+      "name": "Ethan",
+      "surname": "Brown",
+      "gender": "male",
+      "dateOfBirth": "2017-03-22",
+      "description": "Loves playing with building blocks.",
+      "parents": [
+        {
+          "id": "RZbkr5vAi",
+          "type": "blood"
+        },
+        {
+          "id": "UIEjvLJMd",
+          "type": "blood"
+        }
+      ],
+      "children": [],
+      "siblings": [
+        {
+          "id": "6_OTJvbvS",
+          "type": "blood"
+        },
+        {
+          "id": "JhSCcdFEP",
+          "type": "blood"
+        }
+      ],
+      "spouses": []
+    },
+    {
+      "id": "ilad8NH6g",
+      "name": "William",
+      "surname": "Davis",
+      "gender": "male",
+      "dateOfBirth": "2010-09-30",
+      "description": "A young chess prodigy.",
+      "parents": [],
+      "children": [
+        {
+          "id": "Z0QA5oKks",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "JhSCcdFEP",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "Z0QA5oKks",
+      "name": "Oliver",
+      "surname": "Davis",
+      "gender": "male",
+      "dateOfBirth": "2029-12-01",
+      "description": "Just born into the family.",
+      "parents": [
+        {
+          "id": "ilad8NH6g",
+          "type": "blood"
+        },
+        {
+          "id": "JhSCcdFEP",
+          "type": "blood"
+        }
+      ],
+      "children": [],
+      "siblings": [],
+      "spouses": []
+    },
+    {
+      "id": "wJ1EBvc5m",
+      "name": "Grace",
+      "surname": "Smith",
+      "gender": "female",
+      "dateOfBirth": "1999-01-15",
+      "description": "A passionate dancer.",
+      "parents": [],
+      "children": [],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "ZVi8fWDBx",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "TsyAkbF89",
+      "name": "George",
+      "surname": "Smith",
+      "gender": "male",
+      "dateOfBirth": "1918-04-17",
+      "description": "A farmer with a big heart.",
+      "parents": [],
+      "children": [
+        {
+          "id": "ypu71w9_Q",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "T54Km7uOC",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "T54Km7uOC",
+      "name": "Rose",
+      "surname": "Smith",
+      "gender": "female",
+      "dateOfBirth": "1920-07-21",
+      "description": "Loved baking and storytelling.",
+      "parents": [],
+      "children": [
+        {
+          "id": "ypu71w9_Q",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "TsyAkbF89",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "6vASIIxhd",
+      "name": "Charles",
+      "surname": "Johnson",
+      "gender": "male",
+      "dateOfBirth": "1970-10-05",
+      "description": "An architect who loves design.",
+      "parents": [],
+      "children": [
+        {
+          "id": "vRSjcaDGj",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "iFiwqrWx-",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "iFiwqrWx-",
+      "name": "Laura",
+      "surname": "Johnson",
+      "gender": "female",
+      "dateOfBirth": "1972-11-12",
+      "description": "A chef with a passion for flavors.",
+      "parents": [],
+      "children": [
+        {
+          "id": "vRSjcaDGj",
+          "type": "blood"
+        }
+      ],
+      "siblings": [],
+      "spouses": [
+        {
+          "id": "6vASIIxhd",
+          "type": "married"
+        }
+      ]
+    },
+    {
+      "id": "H-06WvsfJ",
+      "name": "Anna",
+      "surname": "Johnson",
+      "gender": "female",
+      "dateOfBirth": "1975-08-27",
+      "description": "A writer and storyteller.",
+      "parents": [
+        {
+          "id": "2DlrR0fK8",
+          "type": "blood"
+        }
+      ],
+      "children": [],
+      "siblings": [
+        {
+          "id": "PXACjDxmR",
+          "type": "blood"
+        }
+      ],
+      "spouses": []
+    }
+  ]
+}

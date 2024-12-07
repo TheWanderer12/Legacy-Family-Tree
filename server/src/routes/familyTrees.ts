@@ -103,6 +103,10 @@ router.post(
         spouseIdForChild,
       } = req.body;
 
+      console.log("Incoming relation type:", type);
+      console.log("Incoming relation mode:", mode);
+      console.log("Incoming relatedMemberId:", relatedMemberId);
+
       if (!relatedMemberId || !type || !mode) {
         return res
           .status(400)
@@ -168,38 +172,46 @@ router.post(
         relatedMember.spouses.push({ id: memberId, type });
 
         // Handle children for the new spouse
-        if (Array.isArray(childrenForSpouse)) {
-          // Children chosen as "blood" children of the spouse
-          childrenForSpouse.forEach((childId: string) => {
-            const child = tree.members.find((m) => m.id === childId);
-            if (child) {
-              // The spouse becomes a blood parent of these selected children
-              child.parents.push({ id: relatedMemberId, type: RelType.blood });
-              relatedMember.children.push({
-                id: childId,
-                type: RelType.blood,
-              });
-            }
-          });
+        if (childrenForSpouse) {
+          if (
+            Array.isArray(childrenForSpouse) &&
+            childrenForSpouse.length > 0
+          ) {
+            // Children chosen as "blood" children of the spouse
+            childrenForSpouse.forEach((childId: string) => {
+              const child = tree.members.find((m) => m.id === childId);
+              if (child) {
+                // The spouse becomes a blood parent of these selected children
+                child.parents.push({
+                  id: relatedMemberId,
+                  type: RelType.blood,
+                });
+                relatedMember.children.push({
+                  id: childId,
+                  type: RelType.blood,
+                });
+              }
+            });
 
-          // Children not selected become 'adopted' for the spouse
-          const otherChildren = member.children
-            .filter((rel) => !childrenForSpouse.includes(rel.id))
-            .map((rel) => rel.id);
+            // Children not selected become 'adopted' for the spouse
+            const otherChildren = member.children
+              .filter((rel) => !childrenForSpouse.includes(rel.id))
+              .map((rel) => rel.id);
 
-          otherChildren.forEach((childId) => {
-            const child = tree.members.find((m) => m.id === childId);
-            if (child) {
-              child.parents.push({
-                id: relatedMemberId,
-                type: RelType.adopted,
-              });
-              relatedMember.children.push({
-                id: childId,
-                type: RelType.adopted,
-              });
-            }
-          });
+            otherChildren.forEach((childId) => {
+              const child = tree.members.find((m) => m.id === childId);
+              if (child) {
+                child.parents.push({
+                  id: relatedMemberId,
+                  type: RelType.adopted,
+                });
+                relatedMember.children.push({
+                  id: childId,
+                  type: RelType.adopted,
+                });
+              }
+            });
+          }
         }
       } else {
         return res.status(400).json({ error: "Invalid mode" });
@@ -266,7 +278,5 @@ router.put(
     }
   }
 );
-
-/** Other routes remain the same **/
 
 export default router;
