@@ -108,14 +108,14 @@ or yarn install
 #### Get MongoDB URI from your MongoDB Atlas
 Create your own MongoDB database online in MongoDB Atlas, create a cluster, then in it create a database and a collection where you will store the data and point to the project. Then, in the Overview, click `Connect`, from `Drivers`, choose `Node.js` driver and find your connection string:
 ```
-MONGO_URI=mongodb+srv://<user>:<password>@cluster0.mongodb.net/FamilyDB?retryWrites=true&w=majority
+MONGO_URI=mongodb+srv://<user>:<db_password>@cluster0.mongodb.net/FamilyDB?retryWrites=true&w=majority
 ```
 Replace `<user>` with your username.
-Replace `<password>` with your password.
+Replace `<db_password>` with your password.
 Replace `cluster0` with your cluster name.
 Replace `FamilyDB` with your **database name**.
 
-`<user>`, `<password>` and cluster name will be provided upon clicking `Connect` while in a cluster on MongoDB atlas; however, you have to **make sure you include the <u>database name</u>** after the slash.
+`<user>` and cluster name will be provided upon clicking `Connect` while in a cluster on MongoDB atlas; however, you have to **make sure you include the <u>database name</u>** after the slash.
 
 ## Running the Project
 ### Backend:
@@ -184,3 +184,11 @@ While the main goal is to fetch from MongoDB, developers can load tree data from
 For questions or support, open an issue on the GitHub repository.
 
 Thank you for using Legacy! I hope it helps you visualize, manage, and celebrate your family heritage.
+
+## Modules by Sanich Kotikov
+* [pinch-zoom-pan](https://www.npmjs.com/package/pinch-zoom-pan)
+* [react-family-tree](https://www.npmjs.com/package/react-family-tree)
+* [relatives-tree](https://www.npmjs.com/package/relatives-tree)
+
+Big thanks to Sanich Kotikov for creating these libraries. They were very useful for my project.
+Github profile of Sanich Kotikov: [Sanich Kotikov](https://github.com/SanichKotikov)
