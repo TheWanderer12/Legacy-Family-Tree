@@ -1,29 +1,36 @@
 # Legacy - Family Tree Creator
 
-Legacy is a family tree creator and visualization tool designed to help users explore, manage, and customize their ancestral data. By integrating a React frontend, MongoDB database, and a Node.js/Express backend, Legacy provides a smooth, user-friendly experience for building interactive family trees, editing member details, and performing CRUD (Create, Read, Update, Delete) operations on family data.
+**Legacy** is a family tree creator and visualization tool designed to help users explore, manage, and customize their ancestral data. By integrating a React frontend, MongoDB database, and a Node.js/Express backend, Legacy provides a smooth, user-friendly experience for building interactive family trees, editing member details, and performing CRUD (Create, Read, Update, Delete) operations on family data.
 
-Key Features
-	•	Dynamic Tree Visualization:
-Leverages react-family-tree and relatives-tree libraries for visualizing family trees in a responsive, zoomable interface.
-	•	PinchZoomPan integration for intuitive tree navigation (zooming, panning, and dragging).
-	•	Detailed nodes displaying each member’s basic info.
-	•	MongoDB Integration:
-Fetch, store, and update family trees in a MongoDB database. No reliance solely on static JSON files, making it easy to handle large and evolving datasets.
-	•	CRUD Functionality:
-Comprehensive server-side routes to add new family members, update existing ones, or remove them entirely. Manage relationships between nodes (parent, sibling, spouse, child) dynamically from the interface.
-	•	Modular & Extensible Codebase:
-Clear separation of concerns:
-	•	server folder: Contains Express.js routes, Mongoose schemas, and all backend logic.
-	•	src folder: Houses the React frontend, including components, pages, utilities, and styles.
-	•	Editable Member Details:
-Users can select a family member node to open a sidebar overlay (drawer) that allows:
-	•	Editing personal info (name, surname, date of birth, description).
-	•	Adding new relatives (parents, siblings, spouses, children) dynamically.
-	•	Flexible Data Loading:
-While the primary mode is fetching data from MongoDB, the project maintains the ability to load trees from local JSON files for quick testing or fallback scenarios.
+## Key Features
 
-Project Structure
+- **Dynamic Tree Visualization**:  
+  Leverages [react-family-tree](https://github.com/sanichkotikov/react-family-tree) and [relatives-tree](https://github.com/sanichkotikov/relatives-tree) libraries for visualizing family trees in a responsive, zoomable interface.  
+  - **PinchZoomPan** integration for intuitive tree navigation (zooming, panning, and dragging).
+  - Detailed nodes displaying each member’s basic info.
+  
+- **MongoDB Integration**:  
+  Fetch, store, and update family trees in a MongoDB database. No reliance solely on static JSON files, making it easy to handle large and evolving datasets.
 
+- **CRUD Functionality**:  
+  Comprehensive server-side routes to add new family members, update existing ones, or remove them entirely. Manage relationships between nodes (parent, sibling, spouse, child) dynamically from the interface.
+
+- **Modular & Extensible Codebase**:  
+  Clear separation of concerns:
+  - **`server` folder**: Contains Express.js routes, Mongoose schemas, and all backend logic.
+  - **`src` folder**: Houses the React frontend, including components, pages, utilities, and styles.
+  
+- **Editable Member Details**:  
+  Users can select a family member node to open a sidebar overlay that allows:
+  - Editing personal info (name, surname, date of birth, description).
+  - Adding new relatives (parents, siblings, spouses, children) dynamically.
+  
+- **Flexible Data Loading**:  
+  While the primary mode is fetching data from MongoDB, the project maintains the ability to load trees from local JSON files for quick testing or fallback scenarios.
+
+## Project Structure
+
+```
 .
 ├── server/
 │   ├── src/
@@ -63,72 +70,86 @@ Project Structure
 ├── tsconfig.json
 ├── tailwind.config.js
 └── ...
+```
+## Getting Started
 
-Getting Started
+### Prerequisites
 
-Prerequisites
-	•	Node.js (v14+)
-	•	npm or yarn
-	•	MongoDB instance running locally or remotely
+- **Node.js** (v14+)
+- **npm** or **yarn**
+- **MongoDB** instance running locally or remotely
 
-Installation
-	1.	Clone the repository:
+### Installation
 
-git clone [https://github.com/YourUsername/legacy-family-tree.git](https://github.com/TheWanderer12/Legacy.git)
-cd Legacy
+1. **Clone the repository**:
 
+```
+git clone https://github.com/YourUsername/legacy-family-tree.git
+cd legacy-family-tree
+```
 
-	2.	Install dependencies for both frontend and backend:
+2. **Install dependencies for both frontend and backend**:
 
-# For server
+### For server
+```
 cd server
 npm install
-# or yarn install
+```
+or yarn install
 
-# For frontend
+### For frontend
+```
 cd ../
 npm install
-# or yarn install
+```
+or yarn install
 
-
-	3.	Create a .env file in server folder with MongoDB URI:
-
+3.	**Create a .env file in server folder with MongoDB URI**:
+#### Get MongoDB URI from your MongoDB Atlas
+Create your own MongoDB database online in MongoDB Atlas, create a cluster, then in it create a database and a collection where you will store the data and point to the project. Then, in the Overview, click `Connect`, from `Drivers`, choose `Node.js` driver and find your connection string:
+```
 MONGO_URI=mongodb+srv://<user>:<password>@cluster0.mongodb.net/FamilyDB?retryWrites=true&w=majority
+```
+Replace `<user>` with your username.
+Replace `<password>` with your password.
+Replace `cluster0` with your cluster name.
+Replace `FamilyDB` with your **database name**.
 
-Replace 'FamilyDB' with your database name.
+`<user>`, `<password>` and cluster name will be provided upon clicking `Connect` while in a cluster on MongoDB atlas; however, you have to **make sure you include the <u>database name</u>** after the slash.
 
-Running the Project
-	•	Backend:
-
+## Running the Project
+### Backend:
+```
 cd server
 npm run dev
-# or yarn dev
+```
+or yarn dev
 
 This starts the Express server on a specified port (usually 5001).
 
-	•	Frontend:
-
+### Frontend:
+```
 cd ..
 npm start
-# or yarn start
+```
+or yarn start
 
 This launches the React app on http://localhost:3000 by default.
 
-Using the App
-	•	Home Page:
-	•	Displays a welcome message and a “Create new Family Tree” button.
-	•	YourTrees Page:
-	•	Lists available family trees from MongoDB.
-	•	Each tree card allows you to open that tree in the App page.
-	•	Offers options to add a new tree, rename existing ones, or delete them.
-	•	App Page:
-	•	Visualizes the selected family tree using ReactFamilyTree and PinchZoomPan.
-	•	Click on a family member node to open the Sidebar.
-	•	Sidebar:
-	•	Edit member details (name, surname, gender, dateOfBirth, description).
-	•	Add new relations: parents, siblings, spouses, children.
-	•	On save, changes are sent to the server for database updating.
-
+## Using the App
+- **Home Page**:
+  - Displays a welcome message and a “Create new Family Tree” button.
+- **YourTrees Page**:
+  - Lists available family trees from MongoDB.
+  - Each tree card allows you to open that tree in the App page.
+  - Offers options to add a new tree, rename existing ones, or delete them.
+- **App Page**:
+  - Visualizes the selected family tree using ReactFamilyTree and PinchZoomPan.
+  - Click on a family member node to open the Sidebar.
+- **Sidebar**:
+  - Edit member details (name, surname, gender, dateOfBirth, description).
+  - Add new relations: parents, siblings, spouses, children.
+  - On save, changes are sent to the server for database updating.
 CRUD Operations
 	•	Add a Member:
 Through Sidebar, select “Add Parent/Sibling/Spouse/Child”.
@@ -140,23 +161,26 @@ Deletion is triggered from YourTrees or possibly a button inside Sidebar, callin
 	•	Add Relationship:
 For parent addition, if one parent exists, the new parent is automatically related as that parent’s spouse too. The server code in familyTrees.ts handles copying ids and types between arrays to maintain consistency. Similar logic applies to siblings, spouses, and children.
 
-Customization
-	•	Styling:
+## Customization
+#### Styling:
 Utilizes Tailwind CSS and module CSS files for components (e.g., FamilyNode.module.css, Sidebar.module.css).
-	•	Types & Interfaces:
-Defined in src/components/Types/types.ts.
+#### Types & Interfaces:
+Defined in src/components/Types/
+- types.ts
+- react-family-tree.d.ts
+
 Allows adding attributes to Node or Relation objects as needed.
-	•	Local JSON Fallback:
-While the main goal is to fetch from MongoDB, developers can load tree data from src/data/ folder for testing. Just uncomment the relevant imports in const.ts and pass them to the tree components.
+#### Local JSON Fallback:
+While the main goal is to fetch from MongoDB, developers can load tree data from src/data/ folder for testing. Just uncomment the relevant imports in const.ts and pass the `members` array as `nodes` prop to `ReactFamilyTree` component.
 
-Contributing
-	•	Fork the repository.
-	•	Create a new branch for your feature or bugfix.
-	•	Make changes and test thoroughly.
-	•	Submit a pull request, describing your changes in detail.
+## Contributing
+- Fork the repository.
+- Create a new branch for your feature or bugfix.
+- Make changes and test thoroughly.
+- Submit a pull request, describing your changes in detail.
 
-Contact
+## Contact
 
-For questions or support, open an issue on the GitHub repository or contact the maintainers via email.
+For questions or support, open an issue on the GitHub repository.
 
 Thank you for using Legacy! I hope it helps you visualize, manage, and celebrate your family heritage.
