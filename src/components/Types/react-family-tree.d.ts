@@ -1,5 +1,5 @@
 declare module "react-family-tree" {
-  import { Node, ExtNode } from "./types"; // Use your custom types
+  import { Node, ExtNode } from "./types";
 
   interface Props {
     nodes: ReadonlyArray<Node>;

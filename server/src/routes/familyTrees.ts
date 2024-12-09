@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import FamilyTree from "../models/FamilyTree";
-import { Node, Relation, RelType } from "../../types";
+import { Node, RelType } from "../../types";
 import { v4 as uuidv4 } from "uuid";
 
 const router = express.Router();
