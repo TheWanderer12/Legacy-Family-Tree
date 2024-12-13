@@ -93,11 +93,11 @@ export default function Home() {
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className="text-center p-8 rounded">
-        <h1 className="text-3xl font-bold mb-8 text-blue-500 bg-white bg-opacity-90 p-3 rounded">
+        <h1 className="text-3xl font-bold mb-8 text-blue-600 bg-red-100 bg-opacity-90 p-3 rounded-3xl">
           Welcome to The Legacy Family Tree Creator
         </h1>
         <button
-          className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 cursor-pointer"
+          className="text-base px-6 py-3 bg-blue-600 text-white rounded-full shadow hover:bg-blue-800 cursor-pointer font-sans border border-amber-300"
           onClick={() => setShowAddTreeModal(true)}
         >
           Create new Family Tree

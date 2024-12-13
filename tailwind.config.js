@@ -5,7 +5,14 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}", // Adjust this if your project uses different file extensions
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["'Noto Sans'", "sans-serif"],
+      },
+      colors: {
+        headerBg: "rgb(166, 188, 217)",
+      },
+    },
   },
   plugins: [],
 };
