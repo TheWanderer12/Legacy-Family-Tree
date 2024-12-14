@@ -93,7 +93,7 @@ export default function Home() {
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className="text-center p-8 rounded">
-        <h1 className="text-3xl font-bold mb-8 text-blue-600 bg-red-100 bg-opacity-90 p-3 rounded-3xl">
+        <h1 className="text-3xl font-bold font-quintessential mb-8 text-blue-600 bg-red-100 bg-opacity-90 p-3 rounded-3xl">
           Welcome to The Legacy Family Tree Creator
         </h1>
         <button
@@ -106,19 +106,19 @@ export default function Home() {
 
       {/* Add Tree Modal */}
       {showAddTreeModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded shadow-lg">
+        <div className=" fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-2xl shadow-lg text-center">
             <h2 className="text-xl font-semibold mb-4">Add New Tree</h2>
             <input
               type="text"
               value={newTreeNameInput}
               onChange={(e) => setNewTreeNameInput(e.target.value)}
               placeholder="Enter tree name"
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none"
+              className="w-full border border-gray-300 rounded-full px-3 py-2 focus:outline-none focus:border-blue-500"
             />
             <div className="flex justify-end space-x-2 mt-4">
               <button
-                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600 focus:outline-none"
+                className="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-700 focus:outline-none"
                 onClick={() => {
                   setShowAddTreeModal(false);
                   setNewTreeNameInput("");
@@ -127,7 +127,7 @@ export default function Home() {
                 Cancel
               </button>
               <button
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none"
+                className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 focus:outline-none"
                 onClick={addTree}
               >
                 Create Tree

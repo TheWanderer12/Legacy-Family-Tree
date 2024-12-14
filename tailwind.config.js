@@ -8,6 +8,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ["'Noto Sans'", "sans-serif"],
+        quintessential: ["'Quintessential'", "cursive"],
       },
       colors: {
         headerBg: "rgb(166, 188, 217)",
