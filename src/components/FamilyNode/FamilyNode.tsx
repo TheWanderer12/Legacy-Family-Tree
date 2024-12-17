@@ -37,7 +37,8 @@ export const FamilyNode = React.memo(function FamilyNode({
         )}
         onClick={clickHandler}
       >
-        <div className={css.id}> {node.name}</div>
+        <div className={css.name}> {node.name}</div>
+        <div className={css.surname}> {node.surname}</div>
         {/* <div className={css.img}> <img src={"../data/img/"}{node.id}{".jpg"} alt="" /></div> */}
       </div>
       {node.hasSubTree && (

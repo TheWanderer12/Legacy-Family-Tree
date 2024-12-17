@@ -12,8 +12,8 @@ import testTreeN1 from "../data/test-tree-n1.json";
 import testTreeN2 from "../data/test-tree-n2.json";
 import type { Node } from "./Types/types";
 
-export const NODE_WIDTH = 70;
-export const NODE_HEIGHT = 80;
+export const NODE_WIDTH = 90;
+export const NODE_HEIGHT = 100;
 
 export const SOURCES = {
   // "couple.json": members,
