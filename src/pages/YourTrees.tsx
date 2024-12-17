@@ -181,7 +181,7 @@ export default function YourTrees() {
                   value={newTreeName}
                   onChange={(e) => setNewTreeName(e.target.value)}
                   onClick={(e) => e.stopPropagation()}
-                  className="border border-gray-300 rounded-full px-2 py-1 focus:outline-none focus: border-blue-500"
+                  className="border border-gray-300 rounded-full px-2 py-1 focus:outline-none focus:border-blue-500"
                 />
               ) : (
                 <h2 className="text-xl font-semibold">{tree.name}</h2>
