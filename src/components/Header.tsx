@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="top-0 left-0 w-full flex items-center justify-between p-2 bg-gray-800 text-white shadow-lg z-30">
+    <header className="fixed top-0 left-0 w-full flex items-center justify-between p-2 bg-gray-800 text-white shadow-lg z-30">
       <Link to="/" className="h-full">
         <h1 className="text-xl font-bold font-sans">Legacy</h1>
       </Link>

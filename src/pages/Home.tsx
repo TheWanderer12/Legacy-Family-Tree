@@ -108,7 +108,7 @@ export default function Home() {
       {showAddTreeModal && (
         <div className=" fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-2xl shadow-lg text-center">
-            <h2 className="text-xl font-semibold mb-4">Add New Tree</h2>
+            <h2 className="text-xl font-semibold mb-4">Create New Tree</h2>
             <input
               type="text"
               value={newTreeNameInput}

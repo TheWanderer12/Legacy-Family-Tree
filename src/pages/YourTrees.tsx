@@ -142,20 +142,33 @@ export default function YourTrees() {
   };
 
   return (
-    <div className="container mx-auto mt-16">
-      <h1 className="text-3xl font-bold mb-8 text-center">Your Trees</h1>
-      {loading && <p className="text-center text-gray-600">Loading trees...</p>}
-      {error && <p className="text-center text-red-500">Error: {error}</p>}
-      {trees.length === 0 && !loading && (
-        <p className="text-center text-gray-600">
-          No trees available. Add a tree to get started.
-        </p>
-      )}
+    <div className="container mx-auto pt-8 pb-16 bg-amber-50 min-h-screen">
       <div className="flex flex-col items-center">
+        <div className="flex items-center w-full max-w-md justify-between mb-8">
+          <h1 className="font-sans text-3xl font-bold">Your Trees</h1>
+          <button
+            className="font-sans bg-blue-500 text-white px-6 py-2 rounded-2xl hover:bg-blue-700 hover:cursor-pointer focus:outline-none"
+            onClick={() => setShowAddTreeModal(true)}
+          >
+            Add a Tree
+          </button>
+        </div>
+
+        {loading && (
+          <p className="font-sans text-center text-gray-600">
+            Loading trees...
+          </p>
+        )}
+        {error && <p className="text-center text-red-500">Error: {error}</p>}
+        {trees.length === 0 && !loading && (
+          <p className="font-sans text-center text-gray-600">
+            No trees available. Add a tree to get started.
+          </p>
+        )}
         {trees.map((tree) => (
           <div
             key={tree.id}
-            className="w-full max-w-md bg-blue-100 shadow-md rounded-lg p-6 mb-4 cursor-pointer hover:shadow-lg transition-shadow"
+            className="w-full max-w-md bg-blue-200 shadow-md rounded-xl p-6 mb-4 cursor-pointer hover:shadow-2xl transition-shadow"
             role="button"
             tabIndex={0}
             onClick={() => openTree(tree)}
@@ -168,7 +181,7 @@ export default function YourTrees() {
                   value={newTreeName}
                   onChange={(e) => setNewTreeName(e.target.value)}
                   onClick={(e) => e.stopPropagation()}
-                  className="border border-gray-300 rounded px-2 py-1 focus:outline-none"
+                  className="border border-gray-300 rounded-full px-2 py-1 focus:outline-none focus: border-blue-500"
                 />
               ) : (
                 <h2 className="text-xl font-semibold">{tree.name}</h2>
@@ -176,7 +189,7 @@ export default function YourTrees() {
               <div className="flex space-x-2">
                 {editingTreeId === tree.id ? (
                   <button
-                    className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 focus:outline-none"
+                    className="font-sans bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-700 focus:outline-none"
                     onClick={(e) => {
                       e.stopPropagation();
                       renameTree(tree.id, newTreeName);
@@ -187,7 +200,7 @@ export default function YourTrees() {
                   </button>
                 ) : (
                   <button
-                    className="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 focus:outline-none"
+                    className="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-700 focus:outline-none"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleRename(tree.id);
@@ -198,7 +211,7 @@ export default function YourTrees() {
                   </button>
                 )}
                 <button
-                  className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 focus:outline-none"
+                  className="bg-red-500 text-white px-3 py-1 rounded-full hover:bg-red-700 focus:outline-none"
                   onClick={(e) => {
                     e.stopPropagation();
                     deleteTree(tree.id);
@@ -209,34 +222,30 @@ export default function YourTrees() {
                 </button>
               </div>
             </div>
-            <p className="text-gray-600 mt-2">Members: {tree.members.length}</p>
+            <p className="font-sans text-gray-600 mt-2">
+              Members: {tree.members.length}
+            </p>
           </div>
         ))}
-      </div>
-      <div className="flex justify-center mt-8">
-        <button
-          className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 focus:outline-none"
-          onClick={() => setShowAddTreeModal(true)}
-        >
-          Add Tree
-        </button>
       </div>
 
       {/* Add Tree Modal */}
       {showAddTreeModal && (
         <div className=" fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-2xl shadow-lg text-center">
-            <h2 className="text-xl font-semibold mb-4">Add New Tree</h2>
+            <h2 className="font-sans text-xl font-semibold mb-4">
+              Add New Tree
+            </h2>
             <input
               type="text"
               value={newTreeNameInput}
               onChange={(e) => setNewTreeNameInput(e.target.value)}
               placeholder="Enter tree name"
-              className="w-full border border-gray-300 rounded-full px-3 py-2 focus:outline-none focus:border-blue-500"
+              className="font-sans w-full border border-gray-300 rounded-full px-3 py-2 focus:outline-none focus:border-blue-500"
             />
             <div className="flex justify-end space-x-2 mt-4">
               <button
-                className="bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-700 focus:outline-none"
+                className="font-sans bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-700 focus:outline-none"
                 onClick={() => {
                   setShowAddTreeModal(false);
                   setNewTreeNameInput("");
@@ -245,7 +254,7 @@ export default function YourTrees() {
                 Cancel
               </button>
               <button
-                className="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 focus:outline-none"
+                className="font-sans bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 focus:outline-none"
                 onClick={addTree}
               >
                 Create Tree
