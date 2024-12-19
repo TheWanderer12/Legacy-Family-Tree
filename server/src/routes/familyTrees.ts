@@ -133,6 +133,51 @@ router.post(
         // Adding a parent
         member.parents.push({ id: relatedMemberId, type });
         relatedMember.children.push({ id: memberId, type });
+
+        // Now handle siblings of 'member'
+        for (const siblingRel of member.siblings) {
+          const sibling = tree.members.find((m) => m.id === siblingRel.id);
+          if (!sibling) continue;
+
+          let parentChildType: RelType;
+
+          if (siblingRel.type === RelType.blood) {
+            // If sibling is blood:
+            // parent-member = blood => parent-sibling = blood
+            // parent-member = adopted => parent-sibling = adopted
+            parentChildType =
+              type === RelType.blood ? RelType.blood : RelType.adopted;
+          } else if (siblingRel.type === RelType.half) {
+            // If sibling is half:
+            // parent-member = blood => parent-sibling = adopted
+            // parent-member = adopted => parent-sibling = blood
+            if (type === RelType.blood) {
+              parentChildType = RelType.adopted;
+            } else {
+              // type === RelType.adopted
+              parentChildType = RelType.blood;
+            }
+          } else {
+            // If there's another relationship type not defined, fallback to adopted
+            parentChildType = RelType.adopted;
+          }
+
+          // Add sibling as child to the new parent if not already there
+          if (!relatedMember.children.some((c) => c.id === sibling.id)) {
+            relatedMember.children.push({
+              id: sibling.id,
+              type: parentChildType,
+            });
+          }
+
+          // Add new parent as parent to the sibling if not already there
+          if (!sibling.parents.some((p) => p.id === relatedMemberId)) {
+            sibling.parents.push({
+              id: relatedMemberId,
+              type: parentChildType,
+            });
+          }
+        }
       } else if (mode === "child") {
         // Adding a child
         member.children.push({ id: relatedMemberId, type });

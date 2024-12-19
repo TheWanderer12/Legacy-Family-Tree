@@ -12,7 +12,7 @@ interface FamilyNodeProps {
   style?: React.CSSProperties;
 }
 
-export const FamilyNode = React.memo(function FamilyNode({
+export function FamilyNode({
   node,
   isRoot,
   isHover,
@@ -49,4 +49,4 @@ export const FamilyNode = React.memo(function FamilyNode({
       )}
     </div>
   );
-});
+}
