@@ -23,8 +23,16 @@
   background: #a4ecff;
 }
 
+.male:hover {
+  background: #83bccb;
+}
+
 .female {
   background: #fdaed8;
+}
+
+.female:hover {
+  background: #ba6b95;
 }
 
 .isRoot {
