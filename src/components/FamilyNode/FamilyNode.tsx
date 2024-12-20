@@ -7,6 +7,7 @@ interface FamilyNodeProps {
   node: ExtNode;
   isRoot: boolean;
   isHover?: boolean;
+  isSelected?: boolean;
   onClick: (id: string) => void;
   onSubClick: (id: string) => void;
   style?: React.CSSProperties;
@@ -16,6 +17,7 @@ export function FamilyNode({
   node,
   isRoot,
   isHover,
+  isSelected,
   onClick,
   onSubClick,
   style,
@@ -33,7 +35,8 @@ export function FamilyNode({
           css.inner,
           css[node.gender],
           isRoot && css.isRoot,
-          isHover && css.isHover
+          isHover && css.isHover,
+          isSelected && css.isSelected
         )}
         onClick={clickHandler}
       >

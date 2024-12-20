@@ -43,6 +43,29 @@
   border-color: rgba(0, 0, 0, 0.8);
 }
 
+.isSelected {
+  position: relative;
+  overflow: hidden;
+}
+
+.isSelected::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  border: 2px dashed darkblue;
+  animation: dash-animation 1s linear infinite;
+}
+
+@keyframes dash-animation {
+  to {
+    background-position: 100% 0;
+  }
+}
+
 .name,
 .surname {
   width: 100%;

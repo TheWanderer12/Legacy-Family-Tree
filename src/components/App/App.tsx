@@ -75,6 +75,11 @@ export default function App() {
     [nodes, selectId]
   );
 
+  const handleCloseSidebar = () => {
+    setIsSidebarOpen(false);
+    setSelectId(undefined);
+  };
+
   function integrateNewMember(
     prevNodes: Node[],
     newMember: Node,
@@ -83,13 +88,11 @@ export default function App() {
     triggerMemberId?: string
   ): Node[] {
     if (!relationMode || !relationType || !triggerMemberId) {
-      // Just updating an existing member
       return prevNodes.map((node) =>
         node.id === newMember.id ? { ...node, ...newMember } : node
       );
     }
 
-    // Adding a new member
     let updatedNodes = [...prevNodes, newMember];
 
     const triggerIndex = updatedNodes.findIndex(
@@ -104,7 +107,6 @@ export default function App() {
     const createdMember = { ...updatedNodes[newIndex] };
 
     if (relationMode === "parent") {
-      // Adding a parent
       triggerMember.parents = [
         ...triggerMember.parents,
         { id: createdMember.id, type: relationType },
@@ -114,7 +116,6 @@ export default function App() {
         { id: triggerMember.id, type: relationType },
       ];
 
-      // Handle siblings of triggerMember
       for (const siblingRel of triggerMember.siblings) {
         const siblingIndex = updatedNodes.findIndex(
           (m) => m.id === siblingRel.id
@@ -125,27 +126,19 @@ export default function App() {
         let parentChildType: RelType;
 
         if (siblingRel.type === RelType.blood) {
-          // sibling = blood
-          // parent-member = blood => parent-sibling = blood
-          // parent-member = adopted => parent-sibling = adopted
           parentChildType =
             relationType === RelType.blood ? RelType.blood : RelType.adopted;
         } else if (siblingRel.type === RelType.half) {
-          // sibling = half
-          // parent-member = blood => parent-sibling = adopted
-          // parent-member = adopted => parent-sibling = blood
           if (relationType === RelType.blood) {
             parentChildType = RelType.adopted;
           } else {
-            // relationType = adopted
             parentChildType = RelType.blood;
           }
         } else {
-          // Other cases default to adopted
           parentChildType = RelType.adopted;
         }
 
-        // Add the sibling as child to the createdMember if not present
+        // Add the sibling as child to the createdMember if not present already
         if (!createdMember.children.some((c) => c.id === sibling.id)) {
           createdMember.children = [
             ...createdMember.children,
@@ -153,7 +146,7 @@ export default function App() {
           ];
         }
 
-        // Add the parent to the sibling's parents if not present
+        // Add the parent to the sibling's parents if not present already
         if (!sibling.parents.some((p) => p.id === createdMember.id)) {
           sibling.parents = [
             ...sibling.parents,
@@ -161,7 +154,6 @@ export default function App() {
           ];
         }
 
-        // Update sibling in updatedNodes
         updatedNodes[siblingIndex] = sibling;
       }
     } else if (relationMode === "sibling") {
@@ -187,7 +179,7 @@ export default function App() {
               { id: createdMember.id, type: parentRel.type },
             ];
           }
-          // Also add this parent's id to newMember's parents if not present
+
           if (!createdMember.parents.some((p) => p.id === parentRel.id)) {
             createdMember.parents = [
               ...createdMember.parents,
@@ -206,9 +198,6 @@ export default function App() {
         ...createdMember.spouses,
         { id: triggerMember.id, type: relationType },
       ];
-      // ChildrenForSpouse logic would have been handled on the server.
-      // If you want to mirror that logic locally, you'd need the childrenForSpouse array
-      // passed down similarly to how the server handles it. Then replicate the spouse-children logic.
     } else if (relationMode === "child") {
       triggerMember.children = [
         ...triggerMember.children,
@@ -218,10 +207,8 @@ export default function App() {
         ...createdMember.parents,
         { id: triggerMember.id, type: relationType },
       ];
-      // If spouseIdForChild was chosen, you would similarly find that spouse and add relations here.
     }
 
-    // Update both the trigger and created member in updatedNodes
     updatedNodes[triggerIndex] = triggerMember;
     updatedNodes[newIndex] = createdMember;
 
@@ -245,6 +232,7 @@ export default function App() {
                 node={node}
                 isRoot={node.id === rootId}
                 isHover={node.id === hoverId}
+                isSelected={node.id === selectId}
                 onClick={(id) => {
                   setSelectId(id);
                   const found = nodes.find((n) => n.id === id);
@@ -267,10 +255,9 @@ export default function App() {
         <Sidebar
           member={selectedNode}
           isOpen={isSidebarOpen}
-          onClose={() => setIsSidebarOpen(false)}
+          onClose={handleCloseSidebar}
           treeId={tree?.id ?? ""}
           allMembers={nodes}
-          // Updated onSave to handle new members with relationships
           onSave={(
             updatedData: Node,
             relationMode?: "parent" | "sibling" | "spouse" | "child",
@@ -286,7 +273,7 @@ export default function App() {
                 triggerMemberId
               )
             );
-            setIsSidebarOpen(false);
+            handleCloseSidebar();
           }}
         />
       )}

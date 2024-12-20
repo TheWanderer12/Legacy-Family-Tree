@@ -1,3 +1,6 @@
+/**
+ * This file contains types used for the ReactFamilyTree module. It is adapted from the relatives-tree library's types, in order to add more attributes to the nodes and change the visibility of some variables.
+ */
 export declare type Mutable<T> = {
   -readonly [P in keyof T]: T[P];
 };

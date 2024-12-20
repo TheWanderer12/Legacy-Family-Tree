@@ -7,7 +7,6 @@ interface SidebarProps {
   member: Node;
   isOpen: boolean;
   onClose: () => void;
-  // Updated signature: onSave can now receive additional parameters
   onSave: (
     updatedData: Node,
     relationMode?: "parent" | "sibling" | "spouse" | "child",
@@ -81,7 +80,6 @@ const Sidebar: React.FC<SidebarProps> = ({
         `http://localhost:5001/api/family-trees/${treeId}/members/${member.id}`,
         formData
       );
-      // For updates to existing members, just call onSave with no relationMode
       onSave(formData);
       console.log("Member updated successfully");
     } catch (error) {

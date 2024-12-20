@@ -88,7 +88,6 @@ export default function YourTrees() {
     }
 
     try {
-      // Create the new tree
       const newTreeData = {
         name: newTreeNameInput,
         members: [],
@@ -101,7 +100,6 @@ export default function YourTrees() {
 
       console.log("Created tree:", createdTree);
 
-      // Add the first member named "New Member"
       const newMemberData = {
         name: "New Member",
         surname: "",
@@ -121,10 +119,8 @@ export default function YourTrees() {
 
       console.log("Created member:", createdMember);
 
-      // Update the tree's members with the new member
       createdTree.members = [createdMember];
 
-      // Close the modal and reset input
       setShowAddTreeModal(false);
       setNewTreeNameInput("");
 
@@ -241,11 +237,11 @@ export default function YourTrees() {
               value={newTreeNameInput}
               onChange={(e) => setNewTreeNameInput(e.target.value)}
               placeholder="Enter tree name"
-              className="font-sans w-full border border-gray-300 rounded-full px-3 py-2 focus:outline-none focus:border-blue-500"
+              className="font-sans w-full border border-gray-300 rounded-xl px-3 py-2 focus:outline-none focus:border-blue-500"
             />
             <div className="flex justify-end space-x-2 mt-4">
               <button
-                className="font-sans bg-red-500 text-white px-4 py-2 rounded-full hover:bg-red-700 focus:outline-none"
+                className="font-sans bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-700 focus:outline-none transition duration-200"
                 onClick={() => {
                   setShowAddTreeModal(false);
                   setNewTreeNameInput("");
@@ -254,7 +250,7 @@ export default function YourTrees() {
                 Cancel
               </button>
               <button
-                className="font-sans bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 focus:outline-none"
+                className="font-sans bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 focus:outline-none transition duration-200"
                 onClick={addTree}
               >
                 Create Tree

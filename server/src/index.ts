@@ -20,13 +20,10 @@ mongoose
 
 const app: Application = express();
 
-// Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
-// Routes
 app.use("/api/family-trees", familyTreeRoutes);
 
-// Start the server
 const PORT: number = Number(process.env.PORT) || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
