@@ -147,7 +147,7 @@ export default function YourTrees() {
         <div className="flex items-center w-full max-w-md justify-between mb-8">
           <h1 className="font-sans text-3xl font-bold">Your Trees</h1>
           <button
-            className="font-sans bg-blue-500 text-white px-6 py-2 rounded-2xl hover:bg-blue-700 hover:cursor-pointer focus:outline-none"
+            className="font-sans bg-blue-500 text-white px-6 py-2 rounded-2xl hover:bg-blue-700 hover:cursor-pointer focus:outline-none transition duration-200"
             onClick={() => setShowAddTreeModal(true)}
           >
             Add a Tree
@@ -181,7 +181,7 @@ export default function YourTrees() {
                   value={newTreeName}
                   onChange={(e) => setNewTreeName(e.target.value)}
                   onClick={(e) => e.stopPropagation()}
-                  className="border border-gray-300 rounded-full px-2 py-1 focus:outline-none focus:border-blue-500"
+                  className="border border-gray-300 bg-amber-50 rounded-xl px-2 py-1 focus:outline-none focus:border-blue-500"
                 />
               ) : (
                 <h2 className="text-xl font-semibold">{tree.name}</h2>
@@ -189,7 +189,7 @@ export default function YourTrees() {
               <div className="flex space-x-2">
                 {editingTreeId === tree.id ? (
                   <button
-                    className="font-sans bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-700 focus:outline-none"
+                    className="font-sans bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-700 focus:outline-none transition duration-200"
                     onClick={(e) => {
                       e.stopPropagation();
                       renameTree(tree.id, newTreeName);
@@ -200,7 +200,7 @@ export default function YourTrees() {
                   </button>
                 ) : (
                   <button
-                    className="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-700 focus:outline-none"
+                    className="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-700 focus:outline-none transition duration-200"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleRename(tree.id);
@@ -211,7 +211,7 @@ export default function YourTrees() {
                   </button>
                 )}
                 <button
-                  className="bg-red-500 text-white px-3 py-1 rounded-full hover:bg-red-700 focus:outline-none"
+                  className="bg-red-500 text-white px-3 py-1 rounded-full hover:bg-red-700 focus:outline-none transition duration-200"
                   onClick={(e) => {
                     e.stopPropagation();
                     deleteTree(tree.id);

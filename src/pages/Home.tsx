@@ -94,10 +94,10 @@ export default function Home() {
     >
       <div className="text-center p-8 rounded">
         <h1 className="text-3xl font-bold font-quintessential mb-8 text-blue-600 bg-red-100 bg-opacity-90 p-3 rounded-3xl">
-          Welcome to The Legacy Family Tree Creator
+          Welcome to The 'Legacy' Family Tree Creator
         </h1>
         <button
-          className="text-base px-6 py-3 bg-blue-600 text-white rounded-full shadow hover:bg-blue-800 cursor-pointer font-sans border border-amber-300"
+          className="text-base px-6 py-3 bg-blue-600 text-white rounded-full shadow-2xl hover:bg-blue-800 cursor-pointer font-sans border border-amber-300 transition duration-200"
           onClick={() => setShowAddTreeModal(true)}
         >
           Create new Family Tree

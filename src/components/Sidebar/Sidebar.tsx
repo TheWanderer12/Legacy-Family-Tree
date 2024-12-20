@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
 import { Node, RelType, Gender, Relation } from "../Types/types";
+import styles from "./Sidebar.module.css";
 
 interface SidebarProps {
   member: Node;
@@ -34,10 +35,32 @@ const Sidebar: React.FC<SidebarProps> = ({
   const [relationOptions, setRelationOptions] = useState<RelType[]>([]);
   const [spouseIdForChild, setSpouseIdForChild] = useState<string>("none");
   const [childrenForSpouse, setChildrenForSpouse] = useState<string[]>([]);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     setFormData(member);
   }, [member]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollContainer = document.querySelector(".scroll-container");
+      if (scrollContainer) {
+        const scrollTop = scrollContainer.scrollTop;
+        setIsScrolled(scrollTop > 0);
+      }
+    };
+
+    const scrollContainer = document.querySelector(".scroll-container");
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (scrollContainer) {
+        scrollContainer.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -235,56 +258,62 @@ const Sidebar: React.FC<SidebarProps> = ({
   return (
     <>
       <div
-        className={`fixed top-0 left-0 h-full w-full max-w-xs bg-blue-50 z-50 transform transition-transform duration-300 ease-in-out shadow-lg ${
+        className={`fixed top-0 left-0 h-full w-full max-w-xs bg-gray-200 z-50 transform transition-transform duration-300 ease-in-out shadow-lg ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
         style={{ boxShadow: "2px 0 5px rgba(0, 0, 0, 0.3)" }}
       >
         <div
-          className="p-6 overflow-y-auto h-full"
+          className="scroll-container overflow-y-auto h-full"
           onWheel={(e) => e.stopPropagation()}
         >
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 text-2xl text-gray-600 hover:text-gray-800 focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center shadow"
+          <div
+            className={`sticky top-0 bg-gray-200 flex items-center justify-between ${
+              isScrolled ? "shadow-md" : ""
+            }`}
           >
-            &times;
-          </button>
-
-          <h3 className="text-2xl font-semibold mb-4">Edit Family Member</h3>
-
-          <div className="space-y-4">
+            <h3 className="text-2xl font-semibold py-3 px-6">
+              Edit Family Member
+            </h3>
+            <button
+              onClick={onClose}
+              className="absolute right-4 text-2xl text-red-500 hover:text-red-700 focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center shadow hover:shadow-xl border border-red-500"
+            >
+              &times;
+            </button>
+          </div>
+          <div className="px-6 pb-20 font-sans space-y-4">
             <div>
-              <label className="block text-gray-700">Name</label>
+              <label className="block text-black">Name</label>
               <input
                 type="text"
                 name="name"
                 value={formData.name || ""}
                 onChange={handleChange}
                 placeholder="Enter name"
-                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+                className="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:border-blue-400"
               />
             </div>
 
             <div>
-              <label className="block text-gray-700">Surname</label>
+              <label className="block text-black">Surname</label>
               <input
                 type="text"
                 name="surname"
                 value={formData.surname || ""}
                 onChange={handleChange}
                 placeholder="Enter surname"
-                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+                className="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:border-blue-400"
               />
             </div>
 
             <div>
-              <label className="block text-gray-700">Gender</label>
+              <label className="block text-black">Gender</label>
               <select
                 name="gender"
                 value={formData.gender || "male"}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded bg-white focus:outline-none focus:ring focus:border-blue-300"
+                className={`w-full p-2 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-1 focus:border-blue-400`}
               >
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -292,169 +321,187 @@ const Sidebar: React.FC<SidebarProps> = ({
             </div>
 
             <div>
-              <label className="block text-gray-700">Date of Birth</label>
+              <label className="block text-black">Date of Birth</label>
               <input
                 type="date"
                 name="dateOfBirth"
                 value={formData.dateOfBirth?.toString().slice(0, 10) || ""}
                 onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+                className={`w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:border-blue-400 ${styles.dateInput}`}
               />
             </div>
 
             <div>
-              <label className="block text-gray-700">Description</label>
+              <label className="block text-black">Description</label>
               <textarea
                 name="description"
                 value={formData.description || ""}
                 onChange={handleChange}
                 placeholder="Enter description"
-                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300"
+                className="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:border-blue-400"
                 rows={4}
               ></textarea>
             </div>
 
             <button
               onClick={handleSave}
-              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-200"
+              className="w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition duration-200"
               disabled={isLoading}
             >
               {isLoading ? "Saving..." : "Save"}
             </button>
-          </div>
 
-          <h3 className="text-2xl font-semibold mt-8 mb-4">Relationships</h3>
-          <div className="grid grid-cols-2 gap-2">
-            <button
-              onClick={() => handleRelationMode("parent")}
-              className="bg-green-700 hover:bg-green-800 text-white py-1 px-3 rounded transition duration-200"
-            >
-              Add Parent
-            </button>
-            <button
-              onClick={() => handleRelationMode("sibling")}
-              className="bg-green-700 hover:bg-green-800 text-white py-1 px-3 rounded transition duration-200"
-            >
-              Add Sibling
-            </button>
-            <button
-              onClick={() => handleRelationMode("spouse")}
-              className="bg-green-700 hover:bg-green-800 text-white py-1 px-3 rounded transition duration-200"
-            >
-              Add Spouse
-            </button>
-            <button
-              onClick={() => handleRelationMode("child")}
-              className="bg-green-700 hover:bg-green-800 text-white py-1 px-3 rounded transition duration-200"
-            >
-              Add Child
-            </button>
-          </div>
-
-          {relationMode && (
-            <div className="mt-4">
-              <h4 className="text-xl font-semibold mb-2">
-                Add{" "}
-                {relationMode.charAt(0).toUpperCase() + relationMode.slice(1)}
-              </h4>
-
-              {relationOptions.length > 0 && (
-                <div className="mb-4">
-                  <label className="block text-gray-700">
-                    Relationship Type
-                  </label>
-                  <select
-                    name="relationType"
-                    value={relationType}
-                    onChange={(e) => setRelationType(e.target.value as RelType)}
-                    className="w-full p-2 border border-gray-300 rounded bg-white focus:outline-none focus:ring focus:border-blue-300"
-                  >
-                    {relationOptions.map((type) => (
-                      <option key={type} value={type}>
-                        {type}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              )}
-
-              {relationMode === "spouse" && (
-                <div className="mb-4">
-                  <label className="block text-gray-700">
-                    Select Children with New Spouse
-                  </label>
-                  {member.children.length > 0 ? (
-                    member.children.map((childRel) => {
-                      const child = allMembers.find(
-                        (m) => m.id === childRel.id
-                      );
-                      if (!child) return null;
-                      return (
-                        <div key={child.id} className="flex items-center">
-                          <input
-                            type="checkbox"
-                            value={child.id}
-                            onChange={(e) => {
-                              if (e.target.checked) {
-                                setChildrenForSpouse((prev) => [
-                                  ...prev,
-                                  child.id,
-                                ]);
-                              } else {
-                                setChildrenForSpouse((prev) =>
-                                  prev.filter((id) => id !== child.id)
-                                );
-                              }
-                            }}
-                          />
-                          <span className="ml-2">
-                            {child.name} {child.surname}
-                          </span>
-                        </div>
-                      );
-                    })
-                  ) : (
-                    <p>No children to select.</p>
-                  )}
-                </div>
-              )}
-
-              {relationMode === "child" && (
-                <div className="mb-4">
-                  <label className="block text-gray-700">
-                    Select Spouse (if any)
-                  </label>
-                  <select
-                    name="spouseIdForChild"
-                    value={spouseIdForChild}
-                    onChange={(e) => setSpouseIdForChild(e.target.value)}
-                    className="w-full p-2 border border-gray-300 rounded bg-white focus:outline-none focus:ring focus:border-blue-300"
-                  >
-                    <option value="none">None</option>
-                    {member.spouses.map((spouseRel) => {
-                      const spouse = allMembers.find(
-                        (m) => m.id === spouseRel.id
-                      );
-                      if (!spouse) return null;
-                      return (
-                        <option key={spouse.id} value={spouse.id}>
-                          {spouse.name} {spouse.surname}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </div>
-              )}
-
+            <h3 className="text-2xl font-semibold py-2">Relationships</h3>
+            <div className="grid grid-cols-2 gap-2">
               <button
-                onClick={handleAddRelation}
-                className="mt-2 w-full bg-green-600 text-white py-2 rounded hover:bg-green-700 transition duration-200"
-                disabled={isLoading}
+                onClick={() => handleRelationMode("parent")}
+                className={`text-white py-2 px-3 rounded-xl transition duration-200 ${
+                  relationMode === "parent"
+                    ? "bg-green-900 ring-2 ring-black"
+                    : "bg-green-700 hover:bg-green-800"
+                } text-white`}
               >
-                {isLoading ? "Adding..." : "Confirm"}
+                Add Parent
+              </button>
+              <button
+                onClick={() => handleRelationMode("sibling")}
+                className={`text-white py-2 px-3 rounded-xl transition duration-200 ${
+                  relationMode === "sibling"
+                    ? "bg-green-900 ring-2 ring-black"
+                    : "bg-green-700 hover:bg-green-800"
+                } text-white`}
+              >
+                Add Sibling
+              </button>
+              <button
+                onClick={() => handleRelationMode("spouse")}
+                className={`text-white py-2 px-3 rounded-xl transition duration-200 ${
+                  relationMode === "spouse"
+                    ? "bg-green-900 ring-2 ring-black"
+                    : "bg-green-700 hover:bg-green-800"
+                } text-white`}
+              >
+                Add Spouse
+              </button>
+              <button
+                onClick={() => handleRelationMode("child")}
+                className={`text-white py-2 px-3 rounded-xl transition duration-200 ${
+                  relationMode === "child"
+                    ? "bg-green-900 ring-2 ring-black"
+                    : "bg-green-700 hover:bg-green-800"
+                } text-white`}
+              >
+                Add Child
               </button>
             </div>
-          )}
+
+            {relationMode && (
+              <div className="mt-4">
+                <h4 className="text-xl font-semibold mb-2">
+                  Add{" "}
+                  {relationMode.charAt(0).toUpperCase() + relationMode.slice(1)}
+                </h4>
+
+                {relationOptions.length > 0 && (
+                  <div className="mb-4">
+                    <label className="block text-black">
+                      Relationship Type
+                    </label>
+                    <select
+                      name="relationType"
+                      value={relationType}
+                      onChange={(e) =>
+                        setRelationType(e.target.value as RelType)
+                      }
+                      className="w-full p-2 border border-gray-300 rounded-xl bg-white hover:cursor-pointer focus:outline-none focus:ring-1 focus:border-blue-400"
+                    >
+                      {relationOptions.map((type) => (
+                        <option key={type} value={type}>
+                          {type}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                )}
+
+                {relationMode === "spouse" && (
+                  <div className="mb-4">
+                    <label className="block text-black">
+                      Select Children with New Spouse
+                    </label>
+                    {member.children.length > 0 ? (
+                      member.children.map((childRel) => {
+                        const child = allMembers.find(
+                          (m) => m.id === childRel.id
+                        );
+                        if (!child) return null;
+                        return (
+                          <div key={child.id} className="flex items-center">
+                            <input
+                              type="checkbox"
+                              value={child.id}
+                              onChange={(e) => {
+                                if (e.target.checked) {
+                                  setChildrenForSpouse((prev) => [
+                                    ...prev,
+                                    child.id,
+                                  ]);
+                                } else {
+                                  setChildrenForSpouse((prev) =>
+                                    prev.filter((id) => id !== child.id)
+                                  );
+                                }
+                              }}
+                            />
+                            <span className="ml-2">
+                              {child.name} {child.surname}
+                            </span>
+                          </div>
+                        );
+                      })
+                    ) : (
+                      <p>No children to select.</p>
+                    )}
+                  </div>
+                )}
+
+                {relationMode === "child" && (
+                  <div className="mb-4">
+                    <label className="block text-black">
+                      Select Spouse (if any)
+                    </label>
+                    <select
+                      name="spouseIdForChild"
+                      value={spouseIdForChild}
+                      onChange={(e) => setSpouseIdForChild(e.target.value)}
+                      className="w-full p-2 border border-gray-300 rounded-xl bg-white hover:cursor-pointer focus:outline-none focus:ring-1 focus:border-blue-400"
+                    >
+                      <option value="none">None</option>
+                      {member.spouses.map((spouseRel) => {
+                        const spouse = allMembers.find(
+                          (m) => m.id === spouseRel.id
+                        );
+                        if (!spouse) return null;
+                        return (
+                          <option key={spouse.id} value={spouse.id}>
+                            {spouse.name} {spouse.surname}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
+                )}
+
+                <button
+                  onClick={handleAddRelation}
+                  className="mt-2 w-full bg-green-600 text-white py-2 rounded-xl hover:bg-green-700 transition duration-200"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Adding..." : "Confirm"}
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>

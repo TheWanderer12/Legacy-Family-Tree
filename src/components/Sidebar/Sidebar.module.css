@@ -31,3 +31,7 @@
 .sidebar-overlay.open {
   display: block;
 }
+
+.dateInput::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
