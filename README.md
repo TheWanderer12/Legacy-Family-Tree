@@ -2,6 +2,26 @@
 
 **Legacy** is a family tree creator and visualization tool designed to help users explore, manage, and customize their ancestral data. By integrating a React frontend, MongoDB database, and a Node.js/Express backend, Legacy provides a smooth, user-friendly experience for building interactive family trees, editing member details, and performing CRUD (Create, Read, Update, Delete) operations on family data.
 
+## Screenshots of the demo
+
+<img width="1280" alt="homepage_img" src="https://github.com/user-attachments/assets/a8fdc5bf-dad8-4e52-9b10-487bde8ffa47" />
+<img width="1280" alt="create_tree_modal_img" src="https://github.com/user-attachments/assets/85e6421a-3ee3-41a3-bf46-b53a7a118974" />
+<img width="1280" alt="your_trees_img" src="https://github.com/user-attachments/assets/f116cffb-f770-4062-83f5-6d1dc1edab24" />
+<img width="1280" alt="rename_tree_img" src="https://github.com/user-attachments/assets/63f86994-d182-4927-a4c7-e5103e35aeea" />
+<img width="1280" alt="delete_tree_img" src="https://github.com/user-attachments/assets/a6ad923a-64ed-48b4-9d2e-ec408966043a" />
+<img width="1280" alt="whole_tree_img" src="https://github.com/user-attachments/assets/5d8ad269-2004-46bb-9231-f84f1415b032" />
+<img width="1280" alt="member_details_img" src="https://github.com/user-attachments/assets/94a40928-0ef3-449b-a16c-c25894113b60" />
+<img width="1280" alt="add_parent_img" src="https://github.com/user-attachments/assets/40e5ec54-1f38-4cd7-ac36-763326748392" />
+<img width="1280" alt="rel_select_img" src="https://github.com/user-attachments/assets/f73d46c2-5689-4fc0-868e-b0762b88732a" />
+<img width="1280" alt="add_spouse_img" src="https://github.com/user-attachments/assets/b9dc5bbc-778f-4330-99fa-ed79eb7ed76f" />
+<img width="1280" alt="add_sibling_img" src="https://github.com/user-attachments/assets/eaacef47-15ac-48ad-b015-b15c197db789" />
+<img width="1280" alt="add_child_img" src="https://github.com/user-attachments/assets/ef7db8ae-30eb-4eb2-9ac2-cddba84ac93e" />
+<img width="1280" alt="added_son_img" src="https://github.com/user-attachments/assets/ed7c1a35-aa08-425d-9bf3-259655a55c30" />
+<img width="1280" alt="tree_with_subtree_img" src="https://github.com/user-attachments/assets/ad865445-3a14-4baf-beb6-e1853c0520fd" />
+<img width="1280" alt="subtree_img" src="https://github.com/user-attachments/assets/f7286b81-0b4c-4f09-90bd-bcd49ff69fa7" />
+<img width="1280" alt="zoomout_and_drag_img" src="https://github.com/user-attachments/assets/cafd7bf9-a7f8-43df-9e36-c6b45c3ab5b6" />
+<img width="1280" alt="zoom_in_img" src="https://github.com/user-attachments/assets/ca5e545a-2e76-4d40-8fa9-d434139a8338" />
+
 ## Key Features
 
 - **Dynamic Tree Visualization**:  
