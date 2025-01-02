@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
-import { Node, RelType, Gender, Relation } from "../Types/types";
+import { Node, RelType, Gender } from "../Types/types";
 import styles from "./Sidebar.module.css";
 
 interface SidebarProps {
@@ -11,7 +11,13 @@ interface SidebarProps {
     updatedData: Node,
     relationMode?: "parent" | "sibling" | "spouse" | "child",
     relationType?: RelType,
-    triggerMemberId?: string
+    triggerMemberId?: string,
+    childrenForSpouse?: string[]
+  ) => void;
+  onSaveSpouseRelationship: (
+    memberId: string,
+    spouseId: string,
+    relationType: RelType
   ) => void;
   treeId: string;
   allMembers: Node[];
@@ -22,6 +28,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   isOpen,
   onClose,
   onSave,
+  onSaveSpouseRelationship,
   treeId,
   allMembers,
 }) => {
@@ -36,8 +43,14 @@ const Sidebar: React.FC<SidebarProps> = ({
   const [childrenForSpouse, setChildrenForSpouse] = useState<string[]>([]);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Reset form data when member changes
   useEffect(() => {
     setFormData(member);
+    setRelationType(RelType.blood);
+    setRelationMode(null);
+    setRelationOptions([]);
+    setSpouseIdForChild("none");
+    setChildrenForSpouse([]);
   }, [member]);
 
   useEffect(() => {
@@ -162,6 +175,8 @@ const Sidebar: React.FC<SidebarProps> = ({
           }
         );
 
+        onSave(newParent, relationMode, relationType, member.id);
+
         if (firstParent) {
           await axios.post(
             `http://localhost:5001/api/family-trees/${treeId}/members/${firstParent.id}/relation`,
@@ -171,9 +186,14 @@ const Sidebar: React.FC<SidebarProps> = ({
               mode: "spouse",
             }
           );
+          // Add spouse in FrontEnd as well
+          onSaveSpouseRelationship(
+            firstParent.id,
+            newParent.id,
+            RelType.married
+          );
         }
 
-        onSave(newParent, relationMode, relationType, member.id);
         console.log("Parent added successfully");
       } else if (relationMode === "sibling") {
         newMemberData.name = `${member.name}'s sibling`;
@@ -217,7 +237,13 @@ const Sidebar: React.FC<SidebarProps> = ({
           }
         );
 
-        onSave(newSpouse, relationMode, relationType, member.id);
+        onSave(
+          newSpouse,
+          relationMode,
+          relationType,
+          member.id,
+          childrenForSpouse
+        );
         console.log("Spouse added successfully");
       } else if (relationMode === "child") {
         newMemberData.name = `${member.name}'s child`;

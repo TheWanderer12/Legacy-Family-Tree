@@ -85,8 +85,10 @@ export default function App() {
     newMember: Node,
     relationMode?: "parent" | "sibling" | "spouse" | "child",
     relationType?: RelType,
-    triggerMemberId?: string
+    triggerMemberId?: string,
+    childrenForSpouse?: string[]
   ): Node[] {
+    // if no new member, update details of focused member
     if (!relationMode || !relationType || !triggerMemberId) {
       return prevNodes.map((node) =>
         node.id === newMember.id ? { ...node, ...newMember } : node
@@ -116,6 +118,7 @@ export default function App() {
         { id: triggerMember.id, type: relationType },
       ];
 
+      // handle siblings of triggerMember
       for (const siblingRel of triggerMember.siblings) {
         const siblingIndex = updatedNodes.findIndex(
           (m) => m.id === siblingRel.id
@@ -189,6 +192,34 @@ export default function App() {
           updatedNodes[parentIndex] = parentNode;
         }
       }
+
+      // Add new sibling to all other siblings
+      for (const otherSiblingRel of triggerMember.siblings) {
+        if (otherSiblingRel.id !== createdMember.id) {
+          const otherSiblingIndex = updatedNodes.findIndex(
+            (m) => m.id === otherSiblingRel.id
+          );
+          if (otherSiblingIndex !== -1) {
+            const otherSibling = { ...updatedNodes[otherSiblingIndex] };
+
+            if (!otherSibling.siblings.some((s) => s.id === createdMember.id)) {
+              otherSibling.siblings = [
+                ...otherSibling.siblings,
+                { id: createdMember.id, type: relationType },
+              ];
+            }
+
+            if (!createdMember.siblings.some((s) => s.id === otherSibling.id)) {
+              createdMember.siblings = [
+                ...createdMember.siblings,
+                { id: otherSibling.id, type: relationType },
+              ];
+            }
+
+            updatedNodes[otherSiblingIndex] = otherSibling;
+          }
+        }
+      }
     } else if (relationMode === "spouse") {
       triggerMember.spouses = [
         ...triggerMember.spouses,
@@ -198,6 +229,57 @@ export default function App() {
         ...createdMember.spouses,
         { id: triggerMember.id, type: relationType },
       ];
+
+      // Handle selected children ONLY if childrenForSpouse was provided (Adding parent implicitly adds spouse too. children will be added based on sibling relationships instead)
+      console.log("going in if");
+      if (childrenForSpouse) {
+        console.log("entered if");
+        // Add selected children as blood
+        for (const childId of childrenForSpouse) {
+          const childIndex = updatedNodes.findIndex((m) => m.id === childId);
+          if (childIndex !== -1) {
+            const child = { ...updatedNodes[childIndex] };
+            if (!child.parents.some((p) => p.id === createdMember.id)) {
+              child.parents = [
+                ...child.parents,
+                { id: createdMember.id, type: RelType.blood },
+              ];
+            }
+            if (!createdMember.children.some((c) => c.id === child.id)) {
+              createdMember.children = [
+                ...createdMember.children,
+                { id: child.id, type: RelType.blood },
+              ];
+            }
+            updatedNodes[childIndex] = child;
+          }
+        }
+
+        // Add the rest as adopted
+        const otherChildren = triggerMember.children
+          .filter((c) => !childrenForSpouse.includes(c.id))
+          .map((c) => c.id);
+
+        for (const childId of otherChildren) {
+          const childIndex = updatedNodes.findIndex((m) => m.id === childId);
+          if (childIndex !== -1) {
+            const child = { ...updatedNodes[childIndex] };
+            if (!child.parents.some((p) => p.id === createdMember.id)) {
+              child.parents = [
+                ...child.parents,
+                { id: createdMember.id, type: RelType.adopted },
+              ];
+            }
+            if (!createdMember.children.some((c) => c.id === child.id)) {
+              createdMember.children = [
+                ...createdMember.children,
+                { id: child.id, type: RelType.adopted },
+              ];
+            }
+            updatedNodes[childIndex] = child;
+          }
+        }
+      }
     } else if (relationMode === "child") {
       triggerMember.children = [
         ...triggerMember.children,
@@ -211,8 +293,59 @@ export default function App() {
 
     updatedNodes[triggerIndex] = triggerMember;
     updatedNodes[newIndex] = createdMember;
-
+    console.log("Updated nodes:", updatedNodes);
     return updatedNodes;
+  }
+
+  function integrateExistingRelationship(
+    prevNodes: Node[],
+    memberAId: string,
+    memberBId: string,
+    relType: RelType,
+    mode: "spouse"
+  ): Node[] {
+    console.log("integrateExistingRelationship called");
+    const updatedNodes = [...prevNodes];
+    const aIndex = updatedNodes.findIndex((n) => n.id === memberAId);
+    const bIndex = updatedNodes.findIndex((n) => n.id === memberBId);
+    console.log("gonna find indexes");
+    console.log("aIndex:", aIndex);
+    console.log("bIndex:", bIndex);
+    if (aIndex === -1 || bIndex === -1) return updatedNodes;
+    console.log("found indexes");
+    const a = { ...updatedNodes[aIndex] };
+    const b = { ...updatedNodes[bIndex] };
+
+    if (mode === "spouse") {
+      if (!a.spouses.some((s) => s.id === b.id)) {
+        a.spouses = [...a.spouses, { id: b.id, type: relType }];
+      }
+      if (!b.spouses.some((s) => s.id === a.id)) {
+        b.spouses = [...b.spouses, { id: a.id, type: relType }];
+      }
+    }
+    console.log("a:", a);
+    console.log("b", b);
+    updatedNodes[aIndex] = a;
+    updatedNodes[bIndex] = b;
+    return updatedNodes;
+  }
+
+  function handleSaveSpouseRelationship(
+    memberAId: string,
+    memberBId: string,
+    relType: RelType
+  ) {
+    console.log("entered handleSaveSpouseRelationship");
+    setNodes((prevNodes) =>
+      integrateExistingRelationship(
+        prevNodes,
+        memberAId,
+        memberBId,
+        relType,
+        "spouse"
+      )
+    );
   }
 
   return (
@@ -262,7 +395,8 @@ export default function App() {
             updatedData: Node,
             relationMode?: "parent" | "sibling" | "spouse" | "child",
             relationType?: RelType,
-            triggerMemberId?: string
+            triggerMemberId?: string,
+            childrenForSpouse?: string[]
           ) => {
             setNodes((prevNodes) =>
               integrateNewMember(
@@ -270,11 +404,13 @@ export default function App() {
                 updatedData,
                 relationMode,
                 relationType,
-                triggerMemberId
+                triggerMemberId,
+                childrenForSpouse
               )
             );
             handleCloseSidebar();
           }}
+          onSaveSpouseRelationship={handleSaveSpouseRelationship}
         />
       )}
     </div>

@@ -203,17 +203,36 @@ router.post(
             });
           }
         }
+
+        // Add new sibling to all other siblings
+        for (const otherSiblingRel of member.siblings) {
+          if (otherSiblingRel.id !== relatedMemberId) {
+            const otherSibling = tree.members.find(
+              (m) => m.id === otherSiblingRel.id
+            );
+            if (otherSibling) {
+              if (
+                !otherSibling.siblings.some((s) => s.id === relatedMemberId)
+              ) {
+                otherSibling.siblings.push({ id: relatedMemberId, type });
+              }
+
+              if (
+                !relatedMember.siblings.some((s) => s.id === otherSibling.id)
+              ) {
+                relatedMember.siblings.push({ id: otherSibling.id, type });
+              }
+            }
+          }
+        }
       } else if (mode === "spouse") {
         member.spouses.push({ id: relatedMemberId, type });
         relatedMember.spouses.push({ id: memberId, type });
 
-        // Handle children for the spouse
-        if (Array.isArray(childrenForSpouse)) {
-          // If childrenForSpouse is empty, no children are selected as blood.
-          const selectedChildren = childrenForSpouse || [];
-
+        // Handle selected children ONLY if childrenForSpouse was provided (Adding parent implicitly adds spouse too. children are added based on sibling relationships instead)
+        if (childrenForSpouse) {
           // Add selected children as blood
-          for (const childId of selectedChildren) {
+          for (const childId of childrenForSpouse) {
             const child = tree.members.find((m) => m.id === childId);
             if (child) {
               child.parents.push({ id: relatedMemberId, type: RelType.blood });
@@ -221,19 +240,21 @@ router.post(
             }
           }
 
-          // add other children as adopted ONLY if childrenForSpouse was provided
-          if (selectedChildren.length > 0) {
-            const otherChildren = member.children
-              .filter((rel) => !selectedChildren.includes(rel.id))
-              .map((rel) => rel.id);
+          // Add the rest as adopted
+          const otherChildren = member.children
+            .filter((rel) => !childrenForSpouse.includes(rel.id))
+            .map((rel) => rel.id);
 
-            for (const childId of otherChildren) {
-              const child = tree.members.find((m) => m.id === childId);
-              if (child) {
+          for (const childId of otherChildren) {
+            const child = tree.members.find((m) => m.id === childId);
+            if (child) {
+              if (!child.parents.some((p) => p.id === relatedMemberId)) {
                 child.parents.push({
                   id: relatedMemberId,
                   type: RelType.adopted,
                 });
+              }
+              if (!relatedMember.children.some((c) => c.id === childId)) {
                 relatedMember.children.push({
                   id: childId,
                   type: RelType.adopted,
