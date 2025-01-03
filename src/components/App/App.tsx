@@ -231,9 +231,7 @@ export default function App() {
       ];
 
       // Handle selected children ONLY if childrenForSpouse was provided (Adding parent implicitly adds spouse too. children will be added based on sibling relationships instead)
-      console.log("going in if");
       if (childrenForSpouse) {
-        console.log("entered if");
         // Add selected children as blood
         for (const childId of childrenForSpouse) {
           const childIndex = updatedNodes.findIndex((m) => m.id === childId);
@@ -293,7 +291,6 @@ export default function App() {
 
     updatedNodes[triggerIndex] = triggerMember;
     updatedNodes[newIndex] = createdMember;
-    console.log("Updated nodes:", updatedNodes);
     return updatedNodes;
   }
 
@@ -304,15 +301,10 @@ export default function App() {
     relType: RelType,
     mode: "spouse"
   ): Node[] {
-    console.log("integrateExistingRelationship called");
     const updatedNodes = [...prevNodes];
     const aIndex = updatedNodes.findIndex((n) => n.id === memberAId);
     const bIndex = updatedNodes.findIndex((n) => n.id === memberBId);
-    console.log("gonna find indexes");
-    console.log("aIndex:", aIndex);
-    console.log("bIndex:", bIndex);
     if (aIndex === -1 || bIndex === -1) return updatedNodes;
-    console.log("found indexes");
     const a = { ...updatedNodes[aIndex] };
     const b = { ...updatedNodes[bIndex] };
 
@@ -324,8 +316,6 @@ export default function App() {
         b.spouses = [...b.spouses, { id: a.id, type: relType }];
       }
     }
-    console.log("a:", a);
-    console.log("b", b);
     updatedNodes[aIndex] = a;
     updatedNodes[bIndex] = b;
     return updatedNodes;
@@ -336,7 +326,6 @@ export default function App() {
     memberBId: string,
     relType: RelType
   ) {
-    console.log("entered handleSaveSpouseRelationship");
     setNodes((prevNodes) =>
       integrateExistingRelationship(
         prevNodes,
