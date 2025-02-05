@@ -138,7 +138,7 @@ export default function YourTrees() {
   };
 
   return (
-    <div className="container mx-auto pt-8 pb-16 bg-amber-50 min-h-screen">
+    <div className="w-full mx-auto pt-8 pb-16 bg-amber-50 min-h-screen">
       <div className="flex flex-col items-center">
         <div className="flex items-center w-full max-w-md justify-between mb-8">
           <h1 className="font-sans text-3xl font-bold">Your Trees</h1>
