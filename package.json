@@ -2,6 +2,7 @@
   "name": "react-family-tree-example",
   "version": "3.2.0",
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.7",
     "classnames": "2.3.2",
