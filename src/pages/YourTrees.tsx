@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Node } from "../components/Types/types";
 import { useNavigate } from "react-router-dom";
@@ -18,8 +18,14 @@ export default function YourTrees() {
   const [editingTreeId, setEditingTreeId] = useState<string | null>(null);
   const [newTreeName, setNewTreeName] = useState<string>("");
   const [showAddTreeModal, setShowAddTreeModal] = useState(false);
-
+  const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (editingTreeId && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [editingTreeId]);
 
   useEffect(() => {
     fetchTrees();
@@ -174,6 +180,7 @@ export default function YourTrees() {
             <div className="flex justify-between items-center">
               {editingTreeId === tree.id ? (
                 <input
+                  ref={inputRef}
                   type="text"
                   value={newTreeName}
                   onChange={(e) => setNewTreeName(e.target.value)}
