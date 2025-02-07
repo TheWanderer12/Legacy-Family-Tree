@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import backgroundImage from "../assets/pictures/treepic.webp";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AddTreeModal from "components/AddTreeModal/AddTreeModal";
 
 type Node = {
   id: string;
@@ -27,15 +28,15 @@ export default function Home() {
   const [newTreeNameInput, setNewTreeNameInput] = useState("");
   const navigate = useNavigate();
 
-  const addTree = async () => {
-    if (!newTreeNameInput.trim()) {
+  const addTree = async (newTreeName: string) => {
+    if (!newTreeName.trim()) {
       alert("Please enter a valid tree name.");
       return;
     }
 
     try {
       const newTreeData = {
-        name: newTreeNameInput,
+        name: newTreeName,
         members: [],
       };
       const response = await axios.post<Tree>(
@@ -100,37 +101,14 @@ export default function Home() {
       </div>
 
       {/* Add Tree Modal */}
-      {showAddTreeModal && (
-        <div className=" fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded-2xl shadow-lg text-center">
-            <h2 className="text-xl font-semibold mb-4">Create New Tree</h2>
-            <input
-              type="text"
-              value={newTreeNameInput}
-              onChange={(e) => setNewTreeNameInput(e.target.value)}
-              placeholder="Enter tree name"
-              className="w-full border border-gray-300 rounded-xl px-3 py-2 focus:outline-none focus:border-blue-500"
-            />
-            <div className="flex justify-end space-x-2 mt-4">
-              <button
-                className="bg-red-500 text-white px-4 py-2 rounded-xl hover:bg-red-700 focus:outline-none transition duration-200"
-                onClick={() => {
-                  setShowAddTreeModal(false);
-                  setNewTreeNameInput("");
-                }}
-              >
-                Cancel
-              </button>
-              <button
-                className="bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 focus:outline-none transition duration-200"
-                onClick={addTree}
-              >
-                Create Tree
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <AddTreeModal
+        isOpen={showAddTreeModal}
+        onClose={() => {
+          setShowAddTreeModal(false);
+          setNewTreeNameInput("");
+        }}
+        onAddTree={addTree}
+      />
     </div>
   );
 }
