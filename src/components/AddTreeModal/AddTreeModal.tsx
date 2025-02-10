@@ -15,6 +15,7 @@ export default function AddTreeModal({
   const inputRef = useRef<HTMLInputElement>(null);
   const modalContentRef = useRef<HTMLDivElement>(null);
 
+  // Focus the input when the modal is opened. Wait for the transition to end first.
   useEffect(() => {
     if (isOpen && modalContentRef.current) {
       const contentEl = modalContentRef.current;

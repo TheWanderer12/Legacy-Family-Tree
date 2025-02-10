@@ -50,6 +50,13 @@ export default function App() {
           setNodes(response.data.members);
           if (response.data.members.length > 0) {
             setRootId(response.data.members[0].id);
+            // if freshly created tree (has only 1 member), open sidebar for it automatically
+            if (response.data.members.length === 1) {
+              const onlyMember = response.data.members[0];
+              setSelectId(onlyMember.id);
+              setSelectedNode(onlyMember);
+              setIsSidebarOpen(true);
+            }
           }
         } catch (error) {
           console.error("Error fetching tree data:", (error as Error).message);
@@ -68,11 +75,6 @@ export default function App() {
   const resetRootHandler = useCallback(
     () => setRootId(firstNodeId),
     [firstNodeId]
-  );
-
-  const selected = useMemo(
-    () => nodes.find((item) => item.id === selectId),
-    [nodes, selectId]
   );
 
   const handleCloseSidebar = () => {
