@@ -364,7 +364,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 value={formData.description || ""}
                 onChange={handleChange}
                 placeholder="Enter description"
-                className="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:border-blue-400"
+                className="w-full min-h-10 p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:border-blue-400"
                 rows={4}
               ></textarea>
             </div>
