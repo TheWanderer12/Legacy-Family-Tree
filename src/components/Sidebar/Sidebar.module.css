@@ -35,3 +35,7 @@
 .dateInput::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
+
+.boldLabels label {
+  font-weight: bold;
+}

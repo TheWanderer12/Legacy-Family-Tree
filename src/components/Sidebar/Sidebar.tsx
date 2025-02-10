@@ -306,7 +306,9 @@ const Sidebar: React.FC<SidebarProps> = ({
               <XMarkIcon />
             </button>
           </div>
-          <div className="px-6 pb-20 font-sans space-y-4">
+          <div
+            className={`${styles.boldLabels} px-6 pb-20 font-sans space-y-4`}
+          >
             <div>
               <label className="block text-black">Name</label>
               <input
@@ -337,7 +339,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 name="gender"
                 value={formData.gender || "male"}
                 onChange={handleChange}
-                className={`w-full p-2 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-1 focus:border-blue-400`}
+                className={`w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:border-blue-400`}
               >
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -369,7 +371,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
             <button
               onClick={handleSave}
-              className="w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition duration-200"
+              className="w-full bg-blue-600 text-white font-bold py-2 rounded-xl hover:bg-blue-700 transition duration-200"
               disabled={isLoading}
             >
               {isLoading ? "Saving..." : "Save"}
@@ -379,9 +381,9 @@ const Sidebar: React.FC<SidebarProps> = ({
             <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => handleRelationMode("parent")}
-                className={`text-white py-2 px-3 rounded-xl transition duration-200 ${
+                className={`text-white font-bold py-2 px-3 rounded-xl transition duration-200 ${
                   relationMode === "parent"
-                    ? "bg-green-900 ring-2 ring-black"
+                    ? "bg-green-900 scale-105"
                     : "bg-green-700 hover:bg-green-800"
                 } text-white`}
               >
@@ -389,9 +391,9 @@ const Sidebar: React.FC<SidebarProps> = ({
               </button>
               <button
                 onClick={() => handleRelationMode("sibling")}
-                className={`text-white py-2 px-3 rounded-xl transition duration-200 ${
+                className={`text-white font-bold py-2 px-3 rounded-xl transition duration-200 ${
                   relationMode === "sibling"
-                    ? "bg-green-900 ring-2 ring-black"
+                    ? "bg-green-900 scale-105"
                     : "bg-green-700 hover:bg-green-800"
                 } text-white`}
               >
@@ -399,9 +401,9 @@ const Sidebar: React.FC<SidebarProps> = ({
               </button>
               <button
                 onClick={() => handleRelationMode("spouse")}
-                className={`text-white py-2 px-3 rounded-xl transition duration-200 ${
+                className={`text-white font-bold py-2 px-3 rounded-xl transition duration-200 ${
                   relationMode === "spouse"
-                    ? "bg-green-900 ring-2 ring-black"
+                    ? "bg-green-900 scale-105"
                     : "bg-green-700 hover:bg-green-800"
                 } text-white`}
               >
@@ -409,9 +411,9 @@ const Sidebar: React.FC<SidebarProps> = ({
               </button>
               <button
                 onClick={() => handleRelationMode("child")}
-                className={`text-white py-2 px-3 rounded-xl transition duration-200 ${
+                className={`text-white font-bold py-2 px-3 rounded-xl transition duration-200 ${
                   relationMode === "child"
-                    ? "bg-green-900 ring-2 ring-black"
+                    ? "bg-green-900 scale-105"
                     : "bg-green-700 hover:bg-green-800"
                 } text-white`}
               >
@@ -437,7 +439,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                       onChange={(e) =>
                         setRelationType(e.target.value as RelType)
                       }
-                      className="w-full p-2 border border-gray-300 rounded-xl bg-white hover:cursor-pointer focus:outline-none focus:ring-1 focus:border-blue-400"
+                      className="w-full p-2 border border-gray-300 rounded-xl hover:cursor-pointer focus:outline-none focus:ring-1 focus:border-blue-400"
                     >
                       {relationOptions.map((type) => (
                         <option key={type} value={type}>
@@ -498,7 +500,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                       name="spouseIdForChild"
                       value={spouseIdForChild}
                       onChange={(e) => setSpouseIdForChild(e.target.value)}
-                      className="w-full p-2 border border-gray-300 rounded-xl bg-white hover:cursor-pointer focus:outline-none focus:ring-1 focus:border-blue-400"
+                      className="w-full p-2 border border-gray-300 rounded-xl hover:cursor-pointer focus:outline-none focus:ring-1 focus:border-blue-400"
                     >
                       <option value="none">None</option>
                       {member.spouses.map((spouseRel) => {
@@ -518,7 +520,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
                 <button
                   onClick={handleAddRelation}
-                  className="mt-2 w-full bg-green-600 text-white py-2 rounded-xl hover:bg-green-700 transition duration-200"
+                  className="mt-2 w-full bg-green-600 text-white font-bold py-2 rounded-xl hover:bg-green-700 transition duration-200"
                   disabled={isLoading}
                 >
                   {isLoading ? "Adding..." : "Confirm"}
