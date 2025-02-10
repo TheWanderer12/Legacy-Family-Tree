@@ -2,7 +2,7 @@ import React, { useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
 import { Node, RelType, Gender } from "../Types/types";
 import styles from "./Sidebar.module.css";
-
+import { XMarkIcon } from "@heroicons/react/20/solid";
 interface SidebarProps {
   member: Node;
   isOpen: boolean;
@@ -301,9 +301,9 @@ const Sidebar: React.FC<SidebarProps> = ({
             </h3>
             <button
               onClick={onClose}
-              className="absolute right-4 text-2xl text-red-500 hover:text-red-700 focus:outline-none bg-white rounded-full w-8 h-8 flex items-center justify-center shadow hover:shadow-xl border border-red-500"
+              className="absolute right-4 text-2xl text-red-500 hover:text-white focus:outline-none bg-white hover:bg-red-500 rounded-full w-8 h-8 flex items-center justify-center shadow hover:shadow-xl border-2 border-red-500 transition-colors duration-200"
             >
-              &times;
+              <XMarkIcon />
             </button>
           </div>
           <div className="px-6 pb-20 font-sans space-y-4">
