@@ -43,7 +43,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   const [childrenForSpouse, setChildrenForSpouse] = useState<string[]>([]);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Reset form data when member changes
+  // Reset form data when member changes and scroll up
   useEffect(() => {
     setFormData(member);
     setRelationType(RelType.blood);
@@ -51,8 +51,17 @@ const Sidebar: React.FC<SidebarProps> = ({
     setRelationOptions([]);
     setSpouseIdForChild("none");
     setChildrenForSpouse([]);
+
+    const scrollContainer = document.querySelector(".scroll-container");
+    if (scrollContainer) {
+      scrollContainer.scrollTo({
+        top: 0,
+        behavior: "auto",
+      });
+    }
   }, [member]);
 
+  // scroll down when relationship adder button is pressed
   useEffect(() => {
     if (relationMode) {
       const scrollContainer = document.querySelector(".scroll-container");
@@ -300,24 +309,24 @@ const Sidebar: React.FC<SidebarProps> = ({
         style={{ boxShadow: "2px 0 5px rgba(0, 0, 0, 0.3)" }}
       >
         <div
+          className={`sticky top-0 bg-gray-200 flex items-center justify-between ${
+            isScrolled ? "shadow-md" : ""
+          }`}
+        >
+          <h3 className="text-2xl font-semibold py-3 px-6">
+            Edit Family Member
+          </h3>
+          <button
+            onClick={onClose}
+            className="absolute right-3 text-2xl text-red-500 hover:text-white focus:outline-none bg-white hover:bg-red-500 rounded-full w-8 h-8 flex items-center shadow hover:shadow-xl border-2 border-red-500 transition-colors duration-200"
+          >
+            <XMarkIcon />
+          </button>
+        </div>
+        <div
           className="scroll-container overflow-y-auto h-full"
           onWheel={(e) => e.stopPropagation()}
         >
-          <div
-            className={`sticky top-0 bg-gray-200 flex items-center justify-between ${
-              isScrolled ? "shadow-md" : ""
-            }`}
-          >
-            <h3 className="text-2xl font-semibold py-3 px-6">
-              Edit Family Member
-            </h3>
-            <button
-              onClick={onClose}
-              className="absolute right-4 text-2xl text-red-500 hover:text-white focus:outline-none bg-white hover:bg-red-500 rounded-full w-8 h-8 flex items-center justify-center shadow hover:shadow-xl border-2 border-red-500 transition-colors duration-200"
-            >
-              <XMarkIcon />
-            </button>
-          </div>
           <div
             className={`${styles.boldLabels} px-6 pb-20 font-sans space-y-4`}
           >
@@ -329,7 +338,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 value={formData.name || ""}
                 onChange={handleChange}
                 placeholder="Enter name"
-                className="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:border-blue-400"
+                className="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:border-gray-600"
               />
             </div>
 
@@ -341,7 +350,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 value={formData.surname || ""}
                 onChange={handleChange}
                 placeholder="Enter surname"
-                className="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:border-blue-400"
+                className="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:border-gray-600"
               />
             </div>
 
@@ -351,7 +360,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 name="gender"
                 value={formData.gender || "male"}
                 onChange={handleChange}
-                className={`w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:border-blue-400`}
+                className={`w-full min-h-10 p-2 border border-gray-300 rounded-xl focus:outline-none focus:border-gray-600`}
               >
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -365,7 +374,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 name="dateOfBirth"
                 value={formData.dateOfBirth?.toString().slice(0, 10) || ""}
                 onChange={handleChange}
-                className={`w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:border-blue-400 ${styles.dateInput}`}
+                className={`w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:border-gray-600 ${styles.dateInput}`}
               />
             </div>
 
@@ -376,7 +385,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 value={formData.description || ""}
                 onChange={handleChange}
                 placeholder="Enter description"
-                className="w-full min-h-10 p-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-1 focus:border-blue-400"
+                className="w-full min-h-10 p-2 border border-gray-300 rounded-xl focus:outline-none focus:border-gray-600"
                 rows={4}
               ></textarea>
             </div>
@@ -390,7 +399,11 @@ const Sidebar: React.FC<SidebarProps> = ({
             </button>
 
             <h3 className="text-2xl font-semibold py-2">Relationships</h3>
-            <div className="grid grid-cols-2 gap-2">
+            <div
+              className={`grid grid-cols-2 gap-2 ${
+                relationMode ? "" : "mb-20"
+              }`}
+            >
               <button
                 onClick={() => handleRelationMode("parent")}
                 className={`text-white font-bold py-2 px-3 rounded-xl transition duration-200 ${
@@ -451,7 +464,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                       onChange={(e) =>
                         setRelationType(e.target.value as RelType)
                       }
-                      className="w-full p-2 border border-gray-300 rounded-xl hover:cursor-pointer focus:outline-none focus:ring-1 focus:border-blue-400"
+                      className="w-full min-h-10 p-2 border border-gray-300 rounded-xl hover:cursor-pointer focus:outline-none focus:border-gray-600"
                     >
                       {relationOptions.map((type) => (
                         <option key={type} value={type}>
@@ -512,7 +525,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                       name="spouseIdForChild"
                       value={spouseIdForChild}
                       onChange={(e) => setSpouseIdForChild(e.target.value)}
-                      className="w-full p-2 border border-gray-300 rounded-xl hover:cursor-pointer focus:outline-none focus:ring-1 focus:border-blue-400"
+                      className="w-full min-h-10 p-2 border border-gray-300 rounded-xl hover:cursor-pointer focus:outline-none focus:border-gray-600"
                     >
                       <option value="none">None</option>
                       {member.spouses.map((spouseRel) => {
@@ -532,7 +545,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
                 <button
                   onClick={handleAddRelation}
-                  className="mt-2 w-full bg-green-600 text-white font-bold py-2 rounded-xl hover:bg-green-700 transition duration-200"
+                  className="mt-2 mb-24 w-full bg-green-600 text-white font-bold py-2 rounded-xl hover:bg-green-700 transition duration-200"
                   disabled={isLoading}
                 >
                   {isLoading ? "Adding..." : "Confirm"}
