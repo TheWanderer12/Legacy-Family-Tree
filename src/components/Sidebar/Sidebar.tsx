@@ -401,7 +401,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             <h3 className="text-2xl font-semibold py-2">Relationships</h3>
             <div
               className={`grid grid-cols-2 gap-2 ${
-                relationMode ? "" : "mb-20"
+                relationMode ? "" : "pb-24"
               }`}
             >
               <button
