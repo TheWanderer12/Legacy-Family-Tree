@@ -446,11 +446,18 @@ const Sidebar: React.FC<SidebarProps> = ({
               </button>
             </div>
 
-            {relationMode && (
-              <div className="mt-4">
+            <>
+              <div
+                className={`mt-4 overflow-hidden transition-all duration-700 ${
+                  relationMode ? "opacity-100" : "max-h-0 opacity-0"
+                }`}
+              >
                 <h4 className="text-xl font-semibold mb-2">
                   Add{" "}
-                  {relationMode.charAt(0).toUpperCase() + relationMode.slice(1)}
+                  {relationMode
+                    ? relationMode.charAt(0).toUpperCase() +
+                      relationMode.slice(1)
+                    : ""}
                 </h4>
 
                 {relationOptions.length > 0 && (
@@ -551,7 +558,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                   {isLoading ? "Adding..." : "Confirm"}
                 </button>
               </div>
-            )}
+            </>
           </div>
         </div>
       </div>
