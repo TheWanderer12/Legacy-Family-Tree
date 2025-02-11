@@ -54,6 +54,18 @@ const Sidebar: React.FC<SidebarProps> = ({
   }, [member]);
 
   useEffect(() => {
+    if (relationMode) {
+      const scrollContainer = document.querySelector(".scroll-container");
+      if (scrollContainer) {
+        scrollContainer.scrollTo({
+          top: scrollContainer.scrollHeight,
+          behavior: "smooth",
+        });
+      }
+    }
+  }, [relationMode]);
+
+  useEffect(() => {
     const handleScroll = () => {
       const scrollContainer = document.querySelector(".scroll-container");
       if (scrollContainer) {
