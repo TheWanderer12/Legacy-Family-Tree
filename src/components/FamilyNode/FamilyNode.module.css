@@ -56,13 +56,23 @@
   right: 0;
   bottom: 0;
   border-radius: inherit;
-  border: 2px dashed darkblue;
-  animation: dash-animation 1s linear infinite;
+  pointer-events: none;
+  background: linear-gradient(to right, darkblue 50%, transparent 50%),
+    linear-gradient(to right, darkblue 50%, transparent 50%),
+    linear-gradient(to bottom, darkblue 50%, transparent 50%),
+    linear-gradient(to bottom, darkblue 50%, transparent 50%);
+  background-size: 20px 3px, 20px 3px, 3px 20px, 3px 20px;
+  background-position: 0 0, 0 100%, 0 0, 100% 0;
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  animation: marching-ants 3s linear infinite;
 }
 
-@keyframes dash-animation {
-  to {
-    background-position: 100% 0;
+@keyframes marching-ants {
+  0% {
+    background-position: 0 0, 0 100%, 0 0, 100% 0;
+  }
+  100% {
+    background-position: 20px 0, -20px 100%, 0 -20px, 100% 20px;
   }
 }
 

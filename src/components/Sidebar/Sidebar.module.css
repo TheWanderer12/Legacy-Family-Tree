@@ -16,22 +16,6 @@
   transform: translateX(0);
 }
 
-/* Optional overlay when sidebar is open */
-.sidebar-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: none;
-  z-index: 999;
-}
-
-.sidebar-overlay.open {
-  display: block;
-}
-
 .dateInput::-webkit-calendar-picker-indicator {
   cursor: pointer;
 }
