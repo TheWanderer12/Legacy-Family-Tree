@@ -375,7 +375,7 @@ export default function App() {
           Reset
         </button>
       )}
-      {isSidebarOpen && selectedNode && (
+      {selectedNode && (
         <Sidebar
           member={selectedNode}
           isOpen={isSidebarOpen}
