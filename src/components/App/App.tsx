@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { Node, ExtNode, RelType } from "../Types/types";
+import { Node, ExtNode, RelType, Gender } from "../Types/types";
 import ReactFamilyTree from "react-family-tree";
 import { PinchZoomPan } from "../PinchZoomPan/PinchZoomPan";
 import { FamilyNode } from "../FamilyNode/FamilyNode";
@@ -9,6 +9,7 @@ import { getNodeStyle } from "./utils";
 import Sidebar from "../Sidebar/Sidebar";
 import css from "./App.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import { EmitFlags } from "typescript";
 
 export default function App() {
   const location = useLocation();
@@ -339,6 +340,18 @@ export default function App() {
     );
   }
 
+  const EMPTY_NODE: Node = {
+    id: "",
+    name: "",
+    surname: "",
+    gender: Gender.male,
+    dateOfBirth: "",
+    parents: [],
+    children: [],
+    siblings: [],
+    spouses: [],
+  };
+
   return (
     <div className={css.root}>
       {nodes.length > 0 && rootId && (
@@ -375,35 +388,33 @@ export default function App() {
           Reset
         </button>
       )}
-      {selectedNode && (
-        <Sidebar
-          member={selectedNode}
-          isOpen={isSidebarOpen}
-          onClose={handleCloseSidebar}
-          treeId={tree?.id ?? ""}
-          allMembers={nodes}
-          onSave={(
-            updatedData: Node,
-            relationMode?: "parent" | "sibling" | "spouse" | "child",
-            relationType?: RelType,
-            triggerMemberId?: string,
-            childrenForSpouse?: string[]
-          ) => {
-            setNodes((prevNodes) =>
-              integrateNewMember(
-                prevNodes,
-                updatedData,
-                relationMode,
-                relationType,
-                triggerMemberId,
-                childrenForSpouse
-              )
-            );
-            handleCloseSidebar();
-          }}
-          onSaveSpouseRelationship={handleSaveSpouseRelationship}
-        />
-      )}
+      <Sidebar
+        member={selectedNode ?? EMPTY_NODE}
+        isOpen={isSidebarOpen}
+        onClose={handleCloseSidebar}
+        treeId={tree?.id ?? ""}
+        allMembers={nodes}
+        onSave={(
+          updatedData: Node,
+          relationMode?: "parent" | "sibling" | "spouse" | "child",
+          relationType?: RelType,
+          triggerMemberId?: string,
+          childrenForSpouse?: string[]
+        ) => {
+          setNodes((prevNodes) =>
+            integrateNewMember(
+              prevNodes,
+              updatedData,
+              relationMode,
+              relationType,
+              triggerMemberId,
+              childrenForSpouse
+            )
+          );
+          handleCloseSidebar();
+        }}
+        onSaveSpouseRelationship={handleSaveSpouseRelationship}
+      />
     </div>
   );
 }

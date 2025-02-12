@@ -300,6 +300,25 @@ const Sidebar: React.FC<SidebarProps> = ({
     }
   };
 
+  if (!member) {
+    // Still show the container so it can animate,
+    // but you might display "No member selected," or nothing.
+    return (
+      <div
+        className={`
+          fixed top-0 left-0 h-full w-full max-w-xs bg-gray-200 z-50
+          transform transition-transform duration-300 ease-in-out shadow-lg
+          ${isOpen ? "translate-x-0" : "-translate-x-full"}
+        `}
+        style={{ boxShadow: "2px 0 5px rgba(0, 0, 0, 0.3)" }}
+      >
+        <div className="p-4">
+          <p className="text-black font-bold">No member selected.</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div
