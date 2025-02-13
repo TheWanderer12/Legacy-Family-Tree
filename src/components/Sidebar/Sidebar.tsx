@@ -1,4 +1,10 @@
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, {
+  useState,
+  useEffect,
+  ChangeEvent,
+  useRef,
+  useLayoutEffect,
+} from "react";
 import axios from "axios";
 import { Node, RelType, Gender } from "../Types/types";
 import styles from "./Sidebar.module.css";
@@ -42,6 +48,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   const [spouseIdForChild, setSpouseIdForChild] = useState<string>("none");
   const [childrenForSpouse, setChildrenForSpouse] = useState<string[]>([]);
   const [isScrolled, setIsScrolled] = useState(false);
+  const nameInputRef = useRef<HTMLInputElement>(null);
 
   // Reset form data when member changes and scroll up
   useEffect(() => {
@@ -300,9 +307,23 @@ const Sidebar: React.FC<SidebarProps> = ({
     }
   };
 
+  useLayoutEffect(() => {
+    const isDefaultName =
+      member.name.endsWith("'s parent") ||
+      member.name.endsWith("'s child") ||
+      member.name.endsWith("'s spouse") ||
+      member.name.endsWith("'s sibling") ||
+      member.name.includes("New Member");
+
+    if (isOpen && isDefaultName && nameInputRef.current) {
+      setTimeout(() => {
+        nameInputRef.current?.focus();
+        nameInputRef.current?.select();
+      }, 0);
+    }
+  }, [member, isOpen]);
+
   if (!member) {
-    // Still show the container so it can animate,
-    // but you might display "No member selected," or nothing.
     return (
       <div
         className={`
@@ -352,6 +373,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             <div>
               <label className="block text-black">Name</label>
               <input
+                ref={nameInputRef}
                 type="text"
                 name="name"
                 value={formData.name || ""}

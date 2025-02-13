@@ -340,6 +340,7 @@ export default function App() {
     );
   }
 
+  // for initial launch, sidebar gets empty node
   const EMPTY_NODE: Node = {
     id: "",
     name: "",
