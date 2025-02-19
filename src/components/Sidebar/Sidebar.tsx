@@ -13,8 +13,8 @@ interface SidebarProps {
   member: Node;
   isOpen: boolean;
   onClose: () => void;
-  onSave: (
-    updatedData: Node,
+  onAddRelation: (
+    newMember: Node,
     relationMode?: "parent" | "sibling" | "spouse" | "child",
     relationType?: RelType,
     triggerMemberId?: string,
@@ -33,7 +33,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   member,
   isOpen,
   onClose,
-  onSave,
+  onAddRelation,
   onSaveSpouseRelationship,
   treeId,
   allMembers,
@@ -121,7 +121,8 @@ const Sidebar: React.FC<SidebarProps> = ({
         `http://localhost:5001/api/family-trees/${treeId}/members/${member.id}`,
         formData
       );
-      onSave(formData);
+      // if updating current member details, just pass current member as 'newMember' and only it's formData
+      onAddRelation(formData);
       console.log("Member updated successfully");
     } catch (error) {
       console.error(error);
@@ -203,7 +204,8 @@ const Sidebar: React.FC<SidebarProps> = ({
           }
         );
 
-        onSave(newParent, relationMode, relationType, member.id);
+        // add on FrontEnd too
+        onAddRelation(newParent, relationMode, relationType, member.id);
 
         if (firstParent) {
           await axios.post(
@@ -221,7 +223,6 @@ const Sidebar: React.FC<SidebarProps> = ({
             RelType.married
           );
         }
-
         console.log("Parent added successfully");
       } else if (relationMode === "sibling") {
         newMemberData.name = `${member.name}'s sibling`;
@@ -242,7 +243,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           }
         );
 
-        onSave(newSibling, relationMode, relationType, member.id);
+        onAddRelation(newSibling, relationMode, relationType, member.id);
         console.log("Sibling added successfully");
       } else if (relationMode === "spouse") {
         newMemberData.name = `${member.name}'s spouse`;
@@ -265,7 +266,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           }
         );
 
-        onSave(
+        onAddRelation(
           newSpouse,
           relationMode,
           relationType,
@@ -293,12 +294,11 @@ const Sidebar: React.FC<SidebarProps> = ({
           }
         );
 
-        onSave(newChild, relationMode, relationType, member.id);
+        onAddRelation(newChild, relationMode, relationType, member.id);
         console.log("Child added successfully");
       }
 
       setRelationMode(null);
-      onClose();
     } catch (error) {
       console.error(error);
       console.log("Failed to add relation");
@@ -319,7 +319,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       setTimeout(() => {
         nameInputRef.current?.focus();
         nameInputRef.current?.select();
-      }, 0);
+      }, 100);
     }
   }, [member, isOpen]);
 
@@ -379,7 +379,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 value={formData.name || ""}
                 onChange={handleChange}
                 placeholder="Enter name"
-                className="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:border-gray-600"
+                className="w-full p-2 border border-gray-300 hover:border-gray-400 rounded-xl focus:outline-none focus:border-gray-600"
               />
             </div>
 
@@ -391,7 +391,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 value={formData.surname || ""}
                 onChange={handleChange}
                 placeholder="Enter surname"
-                className="w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:border-gray-600"
+                className="w-full p-2 border border-gray-300 hover:border-gray-400 rounded-xl focus:outline-none focus:border-gray-600"
               />
             </div>
 
@@ -401,7 +401,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 name="gender"
                 value={formData.gender || "male"}
                 onChange={handleChange}
-                className={`w-full min-h-10 p-2 border border-gray-300 rounded-xl focus:outline-none focus:border-gray-600`}
+                className={`w-full min-h-10 p-2 border border-gray-300 hover:border-gray-400 rounded-xl focus:outline-none focus:border-gray-600`}
               >
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -415,7 +415,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 name="dateOfBirth"
                 value={formData.dateOfBirth?.toString().slice(0, 10) || ""}
                 onChange={handleChange}
-                className={`w-full p-2 border border-gray-300 rounded-xl focus:outline-none focus:border-gray-600 ${styles.dateInput}`}
+                className={`w-full p-2 border border-gray-300 hover:border-gray-400 rounded-xl focus:outline-none focus:border-gray-600 ${styles.dateInput}`}
               />
             </div>
 
@@ -426,7 +426,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 value={formData.description || ""}
                 onChange={handleChange}
                 placeholder="Enter description"
-                className="w-full min-h-10 p-2 border border-gray-300 rounded-xl focus:outline-none focus:border-gray-600"
+                className="w-full min-h-10 p-2 border border-gray-300 hover:border-gray-400 rounded-xl focus:outline-none focus:border-gray-600"
                 rows={4}
               ></textarea>
             </div>
@@ -512,7 +512,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                       onChange={(e) =>
                         setRelationType(e.target.value as RelType)
                       }
-                      className="w-full min-h-10 p-2 border border-gray-300 rounded-xl hover:cursor-pointer focus:outline-none focus:border-gray-600"
+                      className="w-full min-h-10 p-2 border border-gray-300 hover:border-gray-400 rounded-xl hover:cursor-pointer focus:outline-none focus:border-gray-600"
                     >
                       {relationOptions.map((type) => (
                         <option key={type} value={type}>
@@ -573,7 +573,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                       name="spouseIdForChild"
                       value={spouseIdForChild}
                       onChange={(e) => setSpouseIdForChild(e.target.value)}
-                      className="w-full min-h-10 p-2 border border-gray-300 rounded-xl hover:cursor-pointer focus:outline-none focus:border-gray-600"
+                      className="w-full min-h-10 p-2 border border-gray-300 hover:border-gray-400 rounded-xl hover:cursor-pointer focus:outline-none focus:border-gray-600"
                     >
                       <option value="none">None</option>
                       {member.spouses.map((spouseRel) => {

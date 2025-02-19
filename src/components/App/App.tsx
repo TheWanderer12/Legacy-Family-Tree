@@ -9,7 +9,6 @@ import { getNodeStyle } from "./utils";
 import Sidebar from "../Sidebar/Sidebar";
 import css from "./App.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import { EmitFlags } from "typescript";
 
 export default function App() {
   const location = useLocation();
@@ -90,12 +89,13 @@ export default function App() {
     relationType?: RelType,
     triggerMemberId?: string,
     childrenForSpouse?: string[]
-  ): Node[] {
+  ): { nodes: Node[]; newSelectedNode: Node } {
     // if no new member, update details of focused member
     if (!relationMode || !relationType || !triggerMemberId) {
-      return prevNodes.map((node) =>
+      const updated = prevNodes.map((node) =>
         node.id === newMember.id ? { ...node, ...newMember } : node
       );
+      return { nodes: updated, newSelectedNode: newMember };
     }
 
     let updatedNodes = [...prevNodes, newMember];
@@ -105,7 +105,7 @@ export default function App() {
     );
     const newIndex = updatedNodes.findIndex((n) => n.id === newMember.id);
     if (triggerIndex === -1 || newIndex === -1) {
-      return updatedNodes;
+      return { nodes: updatedNodes, newSelectedNode: newMember };
     }
 
     const triggerMember = { ...updatedNodes[triggerIndex] };
@@ -294,7 +294,7 @@ export default function App() {
 
     updatedNodes[triggerIndex] = triggerMember;
     updatedNodes[newIndex] = createdMember;
-    return updatedNodes;
+    return { nodes: updatedNodes, newSelectedNode: createdMember };
   }
 
   function integrateExistingRelationship(
@@ -395,24 +395,24 @@ export default function App() {
         onClose={handleCloseSidebar}
         treeId={tree?.id ?? ""}
         allMembers={nodes}
-        onSave={(
-          updatedData: Node,
+        onAddRelation={(
+          newMember: Node,
           relationMode?: "parent" | "sibling" | "spouse" | "child",
           relationType?: RelType,
           triggerMemberId?: string,
           childrenForSpouse?: string[]
         ) => {
-          setNodes((prevNodes) =>
-            integrateNewMember(
-              prevNodes,
-              updatedData,
-              relationMode,
-              relationType,
-              triggerMemberId,
-              childrenForSpouse
-            )
+          const { nodes: updatedNodes, newSelectedNode } = integrateNewMember(
+            nodes,
+            newMember,
+            relationMode,
+            relationType,
+            triggerMemberId,
+            childrenForSpouse
           );
-          handleCloseSidebar();
+          setNodes(updatedNodes);
+          setSelectedNode(newSelectedNode);
+          setSelectId(newSelectedNode.id);
         }}
         onSaveSpouseRelationship={handleSaveSpouseRelationship}
       />
