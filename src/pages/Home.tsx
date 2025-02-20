@@ -3,6 +3,7 @@ import backgroundImage from "../assets/pictures/treepic.webp";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import AddTreeModal from "components/AddTreeModal/AddTreeModal";
+import css from "./Home.module.css";
 
 type Node = {
   id: string;
@@ -84,16 +85,20 @@ export default function Home() {
   };
 
   return (
-    <div
-      className="flex items-center justify-center h-screen bg-cover bg-center"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-    >
-      <div className="text-center p-8 rounded">
-        <h1 className="text-3xl font-bold font-quintessential mb-8 text-blue-600 bg-red-100 bg-opacity-90 p-3 rounded-2xl">
-          Welcome to The 'Legacy' Family Tree Creator
+    <div className="relative flex items-center justify-center h-screen bg-cover bg-center backdrop-filter">
+      <div
+        className="absolute inset-0 bg-cover bg-center filter blur-sm"
+        style={{ backgroundImage: `url(${backgroundImage})` }}
+      ></div>
+      <div className="relative text-center p-8 rounded">
+        <h1
+          className={`${css.fontYoungSerif} text-5xl mb-8 text-blue-600  bg-opacity-90 p-3 rounded-2xl`}
+          style={{ WebkitTextStroke: "1px #ffffff" }}
+        >
+          Welcome to 'Legacy' Family Tree Creator
         </h1>
         <button
-          className="text-base px-6 py-3 bg-blue-600 text-white rounded-2xl shadow-2xl scale-100 hover:bg-blue-500 hover:scale-125 cursor-pointer font-sans border border-amber-300 transition-all duration-300"
+          className="text-base px-6 py-3 bg-blue-600 text-white rounded-2xl shadow-2xl scale-100 hover:bg-blue-500 hover:scale-125 cursor-pointer font-sans border border-white transition-all duration-300"
           onClick={() => setShowAddTreeModal(true)}
         >
           Create new Family Tree
