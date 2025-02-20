@@ -61,6 +61,11 @@ export default function AddTreeModal({
           type="text"
           value={newTreeNameInput}
           onChange={(e) => setNewTreeNameInput(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              onAddTree(newTreeNameInput);
+            }
+          }}
           placeholder="Enter tree name"
           className="font-sans w-full border-2 border-gray-300 rounded-xl px-3 py-2 focus:outline-none focus:border-gray-700"
         />
