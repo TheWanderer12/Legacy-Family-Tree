@@ -159,7 +159,7 @@ export default function YourTrees() {
 
         {loading && (
           <p className="font-sans text-center text-gray-600">
-            Loading trees...
+            Loading trees from database...
           </p>
         )}
         {error && <p className="text-center text-red-500">Error: {error}</p>}
