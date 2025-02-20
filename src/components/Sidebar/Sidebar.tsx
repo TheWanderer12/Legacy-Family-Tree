@@ -18,7 +18,8 @@ interface SidebarProps {
     relationMode?: "parent" | "sibling" | "spouse" | "child",
     relationType?: RelType,
     triggerMemberId?: string,
-    childrenForSpouse?: string[]
+    childrenForSpouse?: string[],
+    spouseIdForChild?: string
   ) => void;
   onSaveSpouseRelationship: (
     memberId: string,
@@ -294,7 +295,14 @@ const Sidebar: React.FC<SidebarProps> = ({
           }
         );
 
-        onAddRelation(newChild, relationMode, relationType, member.id);
+        onAddRelation(
+          newChild,
+          relationMode,
+          relationType,
+          member.id,
+          undefined,
+          spouseIdForChild
+        );
         console.log("Child added successfully");
       }
 
@@ -319,7 +327,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       setTimeout(() => {
         nameInputRef.current?.focus();
         nameInputRef.current?.select();
-      }, 100);
+      }, 50);
     }
   }, [member, isOpen]);
 

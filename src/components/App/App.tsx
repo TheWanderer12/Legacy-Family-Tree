@@ -88,7 +88,8 @@ export default function App() {
     relationMode?: "parent" | "sibling" | "spouse" | "child",
     relationType?: RelType,
     triggerMemberId?: string,
-    childrenForSpouse?: string[]
+    childrenForSpouse?: string[],
+    spouseIdForChild?: string
   ): { nodes: Node[]; newSelectedNode: Node } {
     // if no new member, update details of focused member
     if (!relationMode || !relationType || !triggerMemberId) {
@@ -290,6 +291,25 @@ export default function App() {
         ...createdMember.parents,
         { id: triggerMember.id, type: relationType },
       ];
+
+      if (spouseIdForChild && spouseIdForChild !== "none") {
+        const spouseIndex = updatedNodes.findIndex(
+          (m) => m.id === spouseIdForChild
+        );
+        if (spouseIndex !== -1) {
+          const spouse = { ...updatedNodes[spouseIndex] };
+
+          createdMember.parents = [
+            ...createdMember.parents,
+            { id: spouseIdForChild, type: RelType.blood },
+          ];
+          spouse.children = [
+            ...spouse.children,
+            { id: createdMember.id, type: RelType.blood },
+          ];
+          updatedNodes[spouseIndex] = spouse;
+        }
+      }
     }
 
     updatedNodes[triggerIndex] = triggerMember;
@@ -400,7 +420,8 @@ export default function App() {
           relationMode?: "parent" | "sibling" | "spouse" | "child",
           relationType?: RelType,
           triggerMemberId?: string,
-          childrenForSpouse?: string[]
+          childrenForSpouse?: string[],
+          spouseIdForChild?: string
         ) => {
           const { nodes: updatedNodes, newSelectedNode } = integrateNewMember(
             nodes,
@@ -408,7 +429,8 @@ export default function App() {
             relationMode,
             relationType,
             triggerMemberId,
-            childrenForSpouse
+            childrenForSpouse,
+            spouseIdForChild
           );
           setNodes(updatedNodes);
           setSelectedNode(newSelectedNode);
