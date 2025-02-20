@@ -185,6 +185,16 @@ export default function YourTrees() {
                   value={newTreeName}
                   onChange={(e) => setNewTreeName(e.target.value)}
                   onClick={(e) => e.stopPropagation()}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      e.stopPropagation();
+                      renameTree(tree.id, newTreeName);
+                    }
+                    if (e.key === "Escape") {
+                      e.stopPropagation();
+                      setEditingTreeId(null);
+                    }
+                  }}
                   className="border-2 border-gray-300 bg-amber-50 rounded-xl px-2 py-1 focus:outline-none focus:border-gray-700"
                 />
               ) : (
