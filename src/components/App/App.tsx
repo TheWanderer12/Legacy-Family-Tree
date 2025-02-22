@@ -405,7 +405,11 @@ export default function App() {
         </PinchZoomPan>
       )}
       {rootId && rootId !== firstNodeId && (
-        <button className={css.reset} onClick={resetRootHandler}>
+        <button
+          className={`font-sans text-base p-2 pr-3 rounded-xl leading-none bg-black text-white hover:bg-gray-100 hover:text-black hover:border hover:border-black transition-colors duration-300 flex items-center ${css.reset}`}
+          onClick={resetRootHandler}
+        >
+          <span className="material-icons text-base mr-1">refresh</span>
           Reset
         </button>
       )}

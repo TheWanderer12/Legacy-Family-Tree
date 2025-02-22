@@ -49,12 +49,11 @@
 .reset {
   position: absolute;
   right: 10px;
-  top: 60px;
+  top: 10px;
   padding: 4px 10px;
   background: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
-  line-height: 1;
   cursor: pointer;
 }
 

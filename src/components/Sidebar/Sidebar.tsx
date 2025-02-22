@@ -351,10 +351,9 @@ const Sidebar: React.FC<SidebarProps> = ({
   return (
     <>
       <div
-        className={`fixed top-0 left-0 h-full w-full max-w-xs bg-gray-200 z-50 transform transition-transform duration-300 ease-in-out shadow-lg ${
+        className={`fixed top-0 left-0 h-full w-full max-w-xs bg-gray-200 z-50 transform transition-transform duration-300 ease-in-out shadow-2xl ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         }`}
-        style={{ boxShadow: "2px 0 5px rgba(0, 0, 0, 0.3)" }}
       >
         <div
           className={`sticky top-0 bg-gray-200 flex items-center justify-between ${

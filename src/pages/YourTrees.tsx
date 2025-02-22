@@ -4,6 +4,7 @@ import { Node } from "../components/Types/types";
 import { useNavigate } from "react-router-dom";
 import { PlusIcon, PencilIcon, TrashIcon } from "@heroicons/react/20/solid";
 import AddTreeModal from "components/AddTreeModal/AddTreeModal";
+import css from "./YourTrees.module.css";
 
 type Tree = {
   id: string;
@@ -147,12 +148,12 @@ export default function YourTrees() {
     <div className="w-full mx-auto pt-8 pb-16 bg-amber-50 min-h-screen">
       <div className="flex flex-col items-center">
         <div className="flex items-center w-full max-w-xl justify-between mb-8">
-          <h1 className="font-sans text-3xl font-bold">Your Trees</h1>
+          <h1 className={`font-youngSerif text-3xl font-bold`}>Your Trees</h1>
           <button
             className="font-sans bg-blue-500 text-white pl-3 pr-4 py-2 rounded-xl shadow-md hover:bg-blue-700 hover:cursor-pointer focus:outline-none transition duration-200 flex items-center"
             onClick={() => setShowAddTreeModal(true)}
           >
-            <PlusIcon className="w-6 h-6 mr-2 inline" />
+            <PlusIcon className="w-6 h-6 mr-1 inline" />
             Add a Tree
           </button>
         </div>

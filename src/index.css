@@ -1,8 +1,8 @@
-/* src/index.css */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Castoro&family=Gabriela&family=Quintessential&family=Young+Serif&display=swap");
 
 * {
   box-sizing: border-box;
