@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect, useCallback } from "react";
+import { useMemo, useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { Node, ExtNode, RelType, Gender } from "../Types/types";
 import ReactFamilyTree from "react-family-tree";
@@ -9,10 +9,14 @@ import { getNodeStyle } from "./utils";
 import Sidebar from "../Sidebar/Sidebar";
 import css from "./App.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import Header from "../Header";
+import { saveAs } from "file-saver";
+import { useDownload } from "context/DownloadContext";
 
 export default function App() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { setDownloadFunction } = useDownload();
 
   const [nodes, setNodes] = useState<Node[]>([]);
   const [rootId, setRootId] = useState<string>("");
@@ -65,6 +69,8 @@ export default function App() {
 
       fetchTree();
     }
+    setDownloadFunction(() => handleDownload);
+    return () => setDownloadFunction(undefined);
   }, [tree]);
 
   const firstNodeId = useMemo(
@@ -76,6 +82,14 @@ export default function App() {
     () => setRootId(firstNodeId),
     [firstNodeId]
   );
+
+  const handleDownload = () => {
+    if (!tree) return;
+
+    const dataStr = JSON.stringify(tree, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+    saveAs(blob, `${tree?.name ?? "family_tree"}.json`);
+  };
 
   const handleCloseSidebar = () => {
     setIsSidebarOpen(false);
@@ -409,7 +423,9 @@ export default function App() {
           className={`font-sans text-base p-2 pr-3 rounded-xl leading-none bg-black text-white hover:bg-gray-100 hover:text-black hover:border hover:border-black transition-colors duration-300 flex items-center ${css.reset}`}
           onClick={resetRootHandler}
         >
-          <span className="material-icons text-base mr-1">refresh</span>
+          <span className="material-symbols-outlined text-base mr-1">
+            refresh
+          </span>
           Reset
         </button>
       )}
