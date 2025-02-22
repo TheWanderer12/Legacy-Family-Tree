@@ -93,12 +93,12 @@ export default function Home() {
       <div className="relative text-center p-8 rounded">
         <h1
           className={`${css.fontYoungSerif} text-5xl mb-8 text-blue-600  bg-opacity-90 p-3 rounded-2xl`}
-          style={{ WebkitTextStroke: "1px #ffffff" }}
+          style={{ WebkitTextStroke: "1.5px #ffffff" }}
         >
           Welcome to 'Legacy' Family Tree Creator
         </h1>
         <button
-          className="text-base px-6 py-3 bg-blue-600 text-white rounded-2xl shadow-2xl scale-100 hover:bg-blue-500 hover:scale-125 cursor-pointer font-sans border border-white transition-all duration-300"
+          className={`${css.createButton} text-base px-6 py-3 bg-blue-600 text-white rounded-2xl shadow-2xl scale-100 hover:bg-blue-500 hover:scale-125 cursor-pointer font-sans border border-white transition-all duration-300`}
           onClick={() => setShowAddTreeModal(true)}
         >
           Create new Family Tree

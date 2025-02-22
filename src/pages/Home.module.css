@@ -5,3 +5,30 @@
   font-weight: 400;
   font-style: normal;
 }
+
+.createButton {
+  background: linear-gradient(
+    45deg,
+    #2563eb,
+    #2563eb,
+    #2563eb,
+    #55d6ed,
+    #2563eb,
+    #2563eb,
+    #2563eb
+  );
+  background-size: 400% 400%;
+}
+
+.createButton:hover {
+  animation: gradientShift 3s linear infinite alternate;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
