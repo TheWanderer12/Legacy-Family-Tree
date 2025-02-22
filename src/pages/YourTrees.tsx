@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Node } from "../components/Types/types";
 import { useNavigate } from "react-router-dom";
 import { PlusIcon, PencilIcon, TrashIcon } from "@heroicons/react/20/solid";
 import AddTreeModal from "components/AddTreeModal/AddTreeModal";
-import css from "./YourTrees.module.css";
+import { saveAs } from "file-saver";
 
 type Tree = {
   id: string;
@@ -89,6 +89,23 @@ export default function YourTrees() {
     }
   };
 
+  const downloadTree = async (treeId: string, treeName: string) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:5001/api/family-trees/${treeId}`
+      );
+      const treeData = response.data;
+
+      const jsonString = JSON.stringify(treeData, null, 2);
+      const blob = new Blob([jsonString], { type: "application/json" });
+
+      saveAs(blob, `${treeName}.json`);
+    } catch (error) {
+      console.error("Error downloading tree:", error);
+      alert("Failed to download tree data.");
+    }
+  };
+
   const addTree = async (newTreeName: string) => {
     if (!newTreeName.trim()) {
       alert("Please enter a valid tree name.");
@@ -145,15 +162,15 @@ export default function YourTrees() {
   };
 
   return (
-    <div className="w-full mx-auto pt-8 pb-16 bg-amber-50 min-h-screen">
+    <div className="w-full mx-auto pt-8 pb-16 bg-amber-50 min-h-screen px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col items-center">
-        <div className="flex items-center w-full max-w-xl justify-between mb-8">
+        <div className="flex items-center w-full max-w-2xl justify-between mb-8">
           <h1 className={`font-youngSerif text-3xl font-bold`}>Your Trees</h1>
           <button
-            className="font-sans bg-blue-500 text-white pl-3 pr-4 py-2 rounded-xl shadow-md hover:bg-blue-700 hover:cursor-pointer focus:outline-none transition duration-200 flex items-center"
+            className="font-sans font-bold bg-blue-500 text-white pl-3 pr-4 py-2 rounded-xl shadow-md hover:bg-blue-700 hover:cursor-pointer focus:outline-none transition duration-200 flex items-center"
             onClick={() => setShowAddTreeModal(true)}
           >
-            <PlusIcon className="w-6 h-6 mr-1 inline" />
+            <PlusIcon className="w-6 h-6 mr-1 inline font-bold" />
             Add a Tree
           </button>
         </div>
@@ -172,7 +189,7 @@ export default function YourTrees() {
         {trees.map((tree) => (
           <div
             key={tree.id}
-            className="w-full max-w-xl bg-blue-200 shadow-md rounded-xl p-6 mb-4 cursor-pointer hover:shadow-2xl transition-shadow"
+            className="w-full max-w-2xl bg-blue-200 shadow-md rounded-xl p-6 mb-4 cursor-pointer hover:shadow-2xl transition-shadow"
             role="button"
             tabIndex={0}
             onClick={() => openTree(tree)}
@@ -205,7 +222,7 @@ export default function YourTrees() {
                 {editingTreeId === tree.id ? (
                   <>
                     <button
-                      className="font-sans bg-gray-100 text-black px-8 py-1 rounded-full shadow-md hover:bg-gray-800 hover:text-white focus:outline-none transition duration-200 flex items-center"
+                      className="font-sans font-bold bg-gray-100 text-black px-8 py-1 rounded-full shadow-md hover:bg-gray-800 hover:text-white focus:outline-none transition duration-200 flex items-center"
                       onClick={(e) => {
                         e.stopPropagation();
                         renameTree(tree.id, newTreeName);
@@ -215,7 +232,7 @@ export default function YourTrees() {
                       Save
                     </button>
                     <button
-                      className="font-sans bg-gray-500 text-white px-5 py-1 rounded-full shadow-md hover:bg-gray-800 focus:outline-none transition duration-200 flex items-center"
+                      className="font-sans font-bold bg-gray-500 text-white px-5 py-1 rounded-full shadow-md hover:bg-gray-800 focus:outline-none transition duration-200 flex items-center"
                       onClick={(e) => {
                         e.stopPropagation();
                         setEditingTreeId(null);
@@ -228,7 +245,20 @@ export default function YourTrees() {
                 ) : (
                   <>
                     <button
-                      className="font-sans bg-gray-100 text-black px-3 py-1 rounded-full shadow-md hover:bg-gray-800 hover:text-white focus:outline-none transition duration-200 flex items-center"
+                      className="font-sans font-bold bg-gray-100 text-black px-3 py-1 rounded-full shadow-md hover:bg-gray-800 hover:text-white focus:outline-none transition duration-200 flex items-center"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        downloadTree(tree.id, tree.name);
+                      }}
+                      aria-label={`Download tree ${tree.name}`}
+                    >
+                      <span className="material-symbols-outlined">
+                        download
+                      </span>
+                      Download
+                    </button>
+                    <button
+                      className="font-sans font-bold bg-gray-100 text-black px-3 py-1 rounded-full shadow-md hover:bg-gray-800 hover:text-white focus:outline-none transition duration-200 flex items-center"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleRename(tree.id);
@@ -240,7 +270,7 @@ export default function YourTrees() {
                     </button>
 
                     <button
-                      className="font-sans bg-red-500 text-white px-3 py-1 rounded-full shadow-md hover:bg-red-700 focus:outline-none transition duration-200 flex items-center"
+                      className="font-sans font-bold bg-red-500 text-white px-3 py-1 rounded-full shadow-md hover:bg-red-700 focus:outline-none transition duration-200 flex items-center"
                       onClick={(e) => {
                         e.stopPropagation();
                         deleteTree(tree.id);
@@ -260,7 +290,6 @@ export default function YourTrees() {
           </div>
         ))}
       </div>
-
       {/* Add Tree Modal */}
       <AddTreeModal
         isOpen={showAddTreeModal}
