@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { PlusIcon, PencilIcon, TrashIcon } from "@heroicons/react/20/solid";
 import AddTreeModal from "components/AddTreeModal/AddTreeModal";
 import { saveAs } from "file-saver";
+import css from "./YourTrees.module.css";
 
 type Tree = {
   id: string;
@@ -167,7 +168,7 @@ export default function YourTrees() {
         <div className="flex items-center w-full max-w-2xl justify-between mb-8">
           <h1 className={`font-youngSerif text-3xl font-bold`}>Your Trees</h1>
           <button
-            className="font-sans font-bold bg-blue-500 text-white pl-3 pr-4 py-2 rounded-xl shadow-md hover:bg-blue-700 hover:cursor-pointer focus:outline-none transition duration-200 flex items-center"
+            className="font-sans font-bold bg-blue-500 text-white pl-3 pr-4 py-2 rounded-xl shadow-md hover:bg-blue-700 hover:cursor-pointer focus:outline-none transition duration-200"
             onClick={() => setShowAddTreeModal(true)}
           >
             <PlusIcon className="w-6 h-6 mr-1 inline font-bold" />
@@ -189,13 +190,15 @@ export default function YourTrees() {
         {trees.map((tree) => (
           <div
             key={tree.id}
-            className="w-full max-w-2xl bg-blue-200 shadow-md rounded-xl p-6 mb-4 cursor-pointer hover:shadow-2xl transition-shadow"
+            className={`w-full max-w-2xl bg-blue-200 shadow-md rounded-xl p-4 mb-4 cursor-pointer hover:shadow-2xl transition-shadow ${
+              editingTreeId === tree.id ? "pt-3" : "pt-4"
+            }`}
             role="button"
             tabIndex={0}
             onClick={() => openTree(tree)}
             onKeyDown={(e) => e.key === "Enter" && openTree(tree)}
           >
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center gap-4">
               {editingTreeId === tree.id ? (
                 <input
                   ref={inputRef}
@@ -213,80 +216,93 @@ export default function YourTrees() {
                       setEditingTreeId(null);
                     }
                   }}
-                  className="border-2 border-gray-300 bg-amber-50 rounded-xl px-2 py-1 focus:outline-none focus:border-gray-700"
+                  className={`${css.smallScreenInput} min-w-[150px] max-w-full border-2 border-gray-300 bg-amber-50 rounded-xl px-2 py-1 focus:outline-none focus:border-gray-700 text-lg`}
                 />
               ) : (
-                <h2 className="text-xl font-semibold">{tree.name}</h2>
+                <h2
+                  className={`${css.smallScreenTitle} text-xl font-semibold break-words`}
+                >
+                  {tree.name}
+                </h2>
               )}
-              <div className="flex space-x-2">
-                {editingTreeId === tree.id ? (
-                  <>
-                    <button
-                      className="font-sans font-bold bg-gray-100 text-black px-8 py-1 rounded-full shadow-md hover:bg-gray-800 hover:text-white focus:outline-none transition duration-200 flex items-center"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        renameTree(tree.id, newTreeName);
-                      }}
-                      aria-label={`Save name for tree ${tree.name}`}
-                    >
-                      Save
-                    </button>
-                    <button
-                      className="font-sans font-bold bg-gray-500 text-white px-5 py-1 rounded-full shadow-md hover:bg-gray-800 focus:outline-none transition duration-200 flex items-center"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setEditingTreeId(null);
-                      }}
-                      aria-label={`Cancel renaming tree ${tree.name}`}
-                    >
-                      Cancel
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <button
-                      className="font-sans font-bold bg-gray-100 text-black px-3 py-1 rounded-full shadow-md hover:bg-gray-800 hover:text-white focus:outline-none transition duration-200 flex items-center"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        downloadTree(tree.id, tree.name);
-                      }}
-                      aria-label={`Download tree ${tree.name}`}
-                    >
-                      <span className="material-symbols-outlined">
-                        download
-                      </span>
-                      Download
-                    </button>
-                    <button
-                      className="font-sans font-bold bg-gray-100 text-black px-3 py-1 rounded-full shadow-md hover:bg-gray-800 hover:text-white focus:outline-none transition duration-200 flex items-center"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleRename(tree.id);
-                      }}
-                      aria-label={`Rename tree ${tree.name}`}
-                    >
-                      <PencilIcon className="w-4 h-4 inline mr-1" />
-                      Rename
-                    </button>
-
-                    <button
-                      className="font-sans font-bold bg-red-500 text-white px-3 py-1 rounded-full shadow-md hover:bg-red-700 focus:outline-none transition duration-200 flex items-center"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        deleteTree(tree.id);
-                      }}
-                      aria-label={`Delete tree ${tree.name}`}
-                    >
-                      <TrashIcon className="w-4 h-4 inline mr-1" />
-                      Delete
-                    </button>
-                  </>
-                )}
-              </div>
+              <p
+                className={`${css.smallScreenMembers} font-sans text-gray-600 font-semibold whitespace-nowrap`}
+              >
+                Members:{" "}
+                <p
+                  className={`${css.smallScreenMemberCount} font-bold inline text-black text-base`}
+                >
+                  {tree.members.length}
+                </p>
+              </p>
             </div>
-            <p className="font-sans text-gray-600 mt-2">
-              Members: {tree.members.length}
-            </p>
+
+            <div
+              className={`flex w-full sm:w-auto justify-center sm:justify-start gap-2 ${
+                editingTreeId === tree.id ? "mt-2" : "mt-3"
+              }`}
+            >
+              {editingTreeId === tree.id ? (
+                <>
+                  <button
+                    className={`${css.smallScreenButtons} w-full sm:w-[120px] h-[32px] flex items-center justify-center font-sans font-bold bg-gray-100 text-black px-8 py-1 rounded-full shadow-md hover:bg-gray-800 hover:text-white focus:outline-none transition duration-200`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      renameTree(tree.id, newTreeName);
+                    }}
+                    aria-label={`Save name for tree ${tree.name}`}
+                  >
+                    Save
+                  </button>
+                  <button
+                    className={`${css.smallScreenButtons} w-full sm:w-[120px] h-[32px] flex items-center justify-center font-sans font-bold bg-gray-500 text-white px-5 py-1 rounded-full shadow-md hover:bg-gray-800 focus:outline-none transition duration-200`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setEditingTreeId(null);
+                    }}
+                    aria-label={`Cancel renaming tree ${tree.name}`}
+                  >
+                    Cancel
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    className={`${css.smallScreenButtons} w-full sm:w-[120px] flex items-center justify-center font-sans font-bold bg-gray-100 text-black px-3 py-1 rounded-full shadow-md hover:bg-gray-800 hover:text-white focus:outline-none transition duration-200`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleRename(tree.id);
+                    }}
+                    aria-label={`Rename tree ${tree.name}`}
+                  >
+                    <PencilIcon className="w-4 h-4 inline mr-1" />
+                    Rename
+                  </button>
+                  <button
+                    className={`${css.smallScreenButtons} w-full sm:w-[120px] flex items-center justify-center font-sans font-bold bg-gray-100 text-black px-3 py-1 rounded-full shadow-md hover:bg-gray-800 hover:text-white focus:outline-none transition duration-200`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      downloadTree(tree.id, tree.name);
+                    }}
+                    aria-label={`Download tree ${tree.name}`}
+                  >
+                    <span className="material-symbols-outlined">download</span>
+                    Download
+                  </button>
+                  <button
+                    className={`${css.smallScreenButtons} w-full sm:w-[120px] flex items-center justify-center font-sans font-bold bg-red-500 text-white px-3 py-1 rounded-full shadow-md hover:bg-red-700 focus:outline-none transition duration-200`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      deleteTree(tree.id);
+                    }}
+                    aria-label={`Delete tree ${tree.name}`}
+                  >
+                    <TrashIcon className="w-4 h-4 inline mr-1" />
+                    Delete
+                  </button>
+                </>
+              )}
+            </div>
           </div>
         ))}
       </div>

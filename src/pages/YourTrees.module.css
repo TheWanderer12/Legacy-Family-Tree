@@ -1,0 +1,31 @@
+@media (max-width: 400px) {
+  .smallScreenButtons {
+    font-size: 0.75rem;
+    padding: 4px 6px;
+    height: 28px;
+  }
+
+  .smallScreenTitle {
+    font-size: 1.125rem;
+  }
+
+  .smallScreenMembers {
+    font-size: 0.8rem;
+  }
+
+  .smallScreenMemberCount {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 400px) {
+  .smallScreenInput {
+    min-width: 210px;
+  }
+}
+
+@media (min-width: 500px) {
+  .smallScreenInput {
+    min-width: 250px;
+  }
+}

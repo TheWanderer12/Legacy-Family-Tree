@@ -1,7 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-  important: true,
   content: [
     "./src/**/*.{js,jsx,ts,tsx}", // Adjust this if your project uses different file extensions
   ],

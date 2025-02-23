@@ -98,7 +98,7 @@ export default function Home() {
           Welcome to 'Legacy' Family Tree Creator
         </h1>
         <button
-          className={`${css.createButton} text-base px-6 py-3 bg-blue-600 text-white rounded-2xl shadow-2xl scale-100 hover:bg-blue-500 hover:scale-125 cursor-pointer font-sans border border-white transition-all duration-300`}
+          className={`${css.createButton} sm:text-base text-2xl px-6 py-3 bg-blue-600 text-white rounded-2xl shadow-2xl scale-100 hover:bg-blue-500 hover:scale-125 cursor-pointer font-sans border border-white transition-all duration-300`}
           onClick={() => setShowAddTreeModal(true)}
         >
           Create new Family Tree

@@ -34,5 +34,5 @@ body {
 
 #root {
   height: 100%;
-  padding-top: 54px;
+  padding-top: 54px; /* change according to Header. It's manual so far*/
 }

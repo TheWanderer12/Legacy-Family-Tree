@@ -420,10 +420,10 @@ export default function App() {
       )}
       {rootId && rootId !== firstNodeId && (
         <button
-          className={`font-sans text-base p-2 pr-3 rounded-xl leading-none bg-black text-white hover:bg-gray-100 hover:text-black hover:border hover:border-black transition-colors duration-300 flex items-center ${css.reset}`}
+          className={`absolute font-semibold font-sans text-base rounded-xl leading-none bg-black text-white hover:bg-gray-100 hover:text-black border border-black transition-colors duration-300 flex items-center ${css.reset}`}
           onClick={resetRootHandler}
         >
-          <span className="material-symbols-outlined text-base mr-1">
+          <span className="material-symbols-outlined text-base font-semibold mr-1">
             refresh
           </span>
           Reset
