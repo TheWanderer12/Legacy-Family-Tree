@@ -9,7 +9,6 @@ import { getNodeStyle } from "./utils";
 import Sidebar from "../Sidebar/Sidebar";
 import css from "./App.module.css";
 import { useLocation, useNavigate } from "react-router-dom";
-import Header from "../Header";
 import { saveAs } from "file-saver";
 import { useDownload } from "context/DownloadContext";
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import backgroundImage from "../assets/pictures/treepic.webp";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -27,7 +27,28 @@ type Tree = {
 export default function Home() {
   const [showAddTreeModal, setShowAddTreeModal] = useState(false);
   const [newTreeNameInput, setNewTreeNameInput] = useState("");
+  const [treeNames, setTreeNames] = useState<string[]>([]);
   const navigate = useNavigate();
+
+  interface TreeName {
+    id: string;
+    name: string;
+  }
+
+  useEffect(() => {
+    const fetchTreeNames = async () => {
+      try {
+        const response = await axios.get<TreeName[]>(
+          "http://localhost:5001/api/family-trees/names"
+        );
+        setTreeNames(response.data.map((tree) => tree.name));
+      } catch (error) {
+        console.error("Error fetching tree names:", error);
+      }
+    };
+
+    fetchTreeNames();
+  }, []);
 
   const addTree = async (newTreeName: string) => {
     if (!newTreeName.trim()) {
@@ -113,6 +134,7 @@ export default function Home() {
           setNewTreeNameInput("");
         }}
         onAddTree={addTree}
+        existingTreeNames={treeNames}
       />
     </div>
   );

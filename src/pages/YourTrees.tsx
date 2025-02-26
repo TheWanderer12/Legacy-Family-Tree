@@ -311,6 +311,7 @@ export default function YourTrees() {
         isOpen={showAddTreeModal}
         onClose={() => setShowAddTreeModal(false)}
         onAddTree={addTree}
+        existingTreeNames={trees.map((tree) => tree.name)}
       />
     </div>
   );

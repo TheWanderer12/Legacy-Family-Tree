@@ -4,12 +4,14 @@ interface AddTreeModalProps {
   isOpen: boolean;
   onClose: () => void;
   onAddTree: (treeName: string) => void;
+  existingTreeNames: string[];
 }
 
 export default function AddTreeModal({
   isOpen,
   onClose,
   onAddTree,
+  existingTreeNames,
 }: AddTreeModalProps) {
   const [newTreeNameInput, setNewTreeNameInput] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -17,26 +19,34 @@ export default function AddTreeModal({
 
   // Focus the input when the modal is opened. Wait for the transition to end first.
   useEffect(() => {
-    if (isOpen && modalContentRef.current) {
-      const contentEl = modalContentRef.current;
+    if (isOpen) {
+      const defaultName = "New Family Tree";
+      const uniqueName = generateUniqueTreeName(defaultName, existingTreeNames);
+      setNewTreeNameInput(uniqueName);
 
-      const handleTransitionEnd = (e: TransitionEvent) => {
-        if (
-          e.target === contentEl &&
-          (e.propertyName === "transform" || e.propertyName === "opacity")
-        ) {
-          inputRef.current?.focus();
-          contentEl.removeEventListener("transitionend", handleTransitionEnd);
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus();
+          inputRef.current.select();
         }
-      };
-
-      contentEl.addEventListener("transitionend", handleTransitionEnd);
-
-      return () => {
-        contentEl.removeEventListener("transitionend", handleTransitionEnd);
-      };
+      }, 100);
     }
-  }, [isOpen]);
+  }, [isOpen, existingTreeNames]);
+
+  const generateUniqueTreeName = (
+    baseName: string,
+    existingNames: string[]
+  ) => {
+    let count = 1;
+    let newName = baseName;
+
+    while (existingNames.includes(newName)) {
+      count++;
+      newName = `${baseName} ${count}`;
+    }
+
+    return newName;
+  };
 
   return (
     <div

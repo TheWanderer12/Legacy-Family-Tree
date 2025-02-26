@@ -20,6 +20,16 @@ router.get("/", async (_req: Request, res: Response) => {
   }
 });
 
+// Get all existing tree names
+router.get("/names", async (_req: Request, res: Response) => {
+  try {
+    const trees = await FamilyTree.find({}, { name: 1 });
+    res.json(trees.map((tree) => ({ id: tree._id, name: tree.name })));
+  } catch (err) {
+    res.status(500).json({ error: (err as Error).message });
+  }
+});
+
 // Get a single family tree
 router.get("/:id", async (req: Request, res: Response) => {
   try {
