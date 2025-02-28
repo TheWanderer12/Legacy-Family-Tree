@@ -4,23 +4,22 @@
 
 ## Screenshots of the demo
 
-<img width="1280" alt="homepage_img" src="https://github.com/user-attachments/assets/a8fdc5bf-dad8-4e52-9b10-487bde8ffa47" />
-<img width="1280" alt="create_tree_modal_img" src="https://github.com/user-attachments/assets/85e6421a-3ee3-41a3-bf46-b53a7a118974" />
-<img width="1280" alt="your_trees_img" src="https://github.com/user-attachments/assets/f116cffb-f770-4062-83f5-6d1dc1edab24" />
-<img width="1280" alt="rename_tree_img" src="https://github.com/user-attachments/assets/63f86994-d182-4927-a4c7-e5103e35aeea" />
-<img width="1280" alt="delete_tree_img" src="https://github.com/user-attachments/assets/a6ad923a-64ed-48b4-9d2e-ec408966043a" />
-<img width="1280" alt="whole_tree_img" src="https://github.com/user-attachments/assets/5d8ad269-2004-46bb-9231-f84f1415b032" />
-<img width="1280" alt="member_details_img" src="https://github.com/user-attachments/assets/94a40928-0ef3-449b-a16c-c25894113b60" />
-<img width="1280" alt="add_parent_img" src="https://github.com/user-attachments/assets/40e5ec54-1f38-4cd7-ac36-763326748392" />
-<img width="1280" alt="rel_select_img" src="https://github.com/user-attachments/assets/f73d46c2-5689-4fc0-868e-b0762b88732a" />
-<img width="1280" alt="add_spouse_img" src="https://github.com/user-attachments/assets/b9dc5bbc-778f-4330-99fa-ed79eb7ed76f" />
-<img width="1280" alt="add_sibling_img" src="https://github.com/user-attachments/assets/eaacef47-15ac-48ad-b015-b15c197db789" />
-<img width="1280" alt="add_child_img" src="https://github.com/user-attachments/assets/ef7db8ae-30eb-4eb2-9ac2-cddba84ac93e" />
-<img width="1280" alt="added_son_img" src="https://github.com/user-attachments/assets/ed7c1a35-aa08-425d-9bf3-259655a55c30" />
-<img width="1280" alt="tree_with_subtree_img" src="https://github.com/user-attachments/assets/ad865445-3a14-4baf-beb6-e1853c0520fd" />
-<img width="1280" alt="subtree_img" src="https://github.com/user-attachments/assets/f7286b81-0b4c-4f09-90bd-bcd49ff69fa7" />
-<img width="1280" alt="zoomout_and_drag_img" src="https://github.com/user-attachments/assets/cafd7bf9-a7f8-43df-9e36-c6b45c3ab5b6" />
-<img width="1280" alt="zoom_in_img" src="https://github.com/user-attachments/assets/ca5e545a-2e76-4d40-8fa9-d434139a8338" />
+<img width="1280" alt="homepage_img" src="https://github.com/user-attachments/assets/61984e8b-5812-48a7-b7a7-347a28fe51bc" />
+<img width="1280" alt="create_tree_modal_img" src="https://github.com/user-attachments/assets/b66b4678-34ac-4bde-9c7c-b3f163dd067d" />
+<img width="1280" alt="your_trees_img" src="https://github.com/user-attachments/assets/c827bc40-77cd-4950-a568-fd36855defda" />
+<img width="1280" alt="rename_tree_img" src="https://github.com/user-attachments/assets/b69eb78f-6cbf-4914-8749-77574347c011" />
+<img width="1280" alt="delete_tree_img" src="https://github.com/user-attachments/assets/3737c5c2-4dc3-4ea1-b768-6947551edea9" />
+<img width="1280" alt="whole_tree_img" src="https://github.com/user-attachments/assets/9cd1edd7-6228-4da8-9288-bb28c1da59a9" />
+<img width="1280" alt="member_details_img" src="https://github.com/user-attachments/assets/5cca463b-6c11-46ca-846d-66bacb11de08" />
+<img width="1280" alt="add_parent_img" src="https://github.com/user-attachments/assets/db0e8338-67d8-4b95-8485-bb39672b7f17" />
+<img width="1280" alt="add_spouse_img" src="https://github.com/user-attachments/assets/e7b0be1e-d313-4aa1-93e1-bdce21307c5a" />
+<img width="1280" alt="add_sibling_img" src="https://github.com/user-attachments/assets/ddebf8e1-584c-41ad-9b38-737df447a0c6" />
+<img width="1280" alt="add_child_img" src="https://github.com/user-attachments/assets/ee82b9fa-ed91-41b2-917c-9ec93e25da57" />
+<img width="1280" alt="added_daughter_img" src="https://github.com/user-attachments/assets/0d2f4e64-9a65-4370-93f5-50e2d9906a6a" />
+<img width="1280" alt="tree_with_subtree_img" src="https://github.com/user-attachments/assets/9c819383-f51f-4b8a-8e3d-bfc6c1ede958" />
+<img width="1280" alt="subtree_img" src="https://github.com/user-attachments/assets/8bbb5203-61ee-4648-8895-1277487919cb" />
+<img width="1280" alt="zoomout_and_drag_img" src="https://github.com/user-attachments/assets/775bacfc-4008-4ef5-bf47-7a7217fff1a6" />
+<img width="1280" alt="zoom_in_img" src="https://github.com/user-attachments/assets/1a63f414-0c2c-4f92-a0cf-25144405fb59" />
 
 ## Key Features
 
